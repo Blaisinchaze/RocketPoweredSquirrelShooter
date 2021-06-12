@@ -151,7 +151,7 @@ public class AiController : MonoBehaviour
 
     private void SpawnEnemy(Enemies type = Enemies.NULL)
     {
-        int chanceRef = currentWave;
+        int chanceRef = currentWave - 1;
         if (chanceRef >= chances.Count)
         {
             chanceRef = chances.Count - 1;
@@ -176,8 +176,9 @@ public class AiController : MonoBehaviour
         }
 
         float rnd = Random.Range(0, 100);
-        int spawnRef = Random.Range(0, spawnPoints.Count - 1);
+        int spawnRef = Random.Range(0, spawnPoints.Count);
         int enemyRef = -1;
+
 
         if (rnd <= percentages.walkers)
         {
@@ -191,6 +192,8 @@ public class AiController : MonoBehaviour
         {
             enemyRef = (int)Enemies.GUN;
         }
+
+        Debug.Log((Enemies)enemyRef + " " + rnd + " " + percentages.walkers + " " + percentages.shielders + " " + percentages.gunners);
 
         enemies.Add(Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>());
 
