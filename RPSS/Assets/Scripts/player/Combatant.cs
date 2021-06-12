@@ -22,13 +22,14 @@ public class Combatant : MonoBehaviour
    public bool kill;
    public bool invulnerable;
 
+
    private void Awake()
    {
       myRenderer = GetComponent<Renderer>();
       myTransform = GetComponent<Transform>();
    }
 
-   void Update()
+   private void Update()
    {
       CheckToggles();
    }
