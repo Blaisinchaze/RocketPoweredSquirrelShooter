@@ -152,11 +152,6 @@ public class NavGrid : MonoBehaviour
                     Gizmos.color = Color.blue;
                     Gizmos.DrawCube(item.worldPosition, nodeSize * 0.8f);
                 }
-                else
-                {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawCube(item.worldPosition, nodeSize * 0.8f);
-                }
             }
         }
     }
