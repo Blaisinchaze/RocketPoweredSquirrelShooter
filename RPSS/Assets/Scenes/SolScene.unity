@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -447,35 +447,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.031
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.67
+      value: 0.31536904
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.028606344
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99204034
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.1259205
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 14.468
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
