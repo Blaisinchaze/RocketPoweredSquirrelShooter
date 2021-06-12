@@ -43,7 +43,7 @@ public class Combatant : MonoBehaviour
    /// <summary>
    /// Modify this to kill the unit. By default, destroys gameObject
    /// </summary>
-   protected virtual void Die()
+   public virtual void Die()
    {
       Destroy(gameObject);
    }

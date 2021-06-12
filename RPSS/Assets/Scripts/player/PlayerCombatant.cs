@@ -10,7 +10,7 @@ public class PlayerCombatant : Combatant
     {
         player = GetComponent<Player>();
     }
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
     }
