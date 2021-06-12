@@ -19,14 +19,37 @@ public class Player : MonoBehaviour
     /// </summary>
     public PlayerComponents Components;
     public PlayerStates currentState { get; private set; }
-
+    
+    [Header("Must be set")]
+    public GameObject rocketHandPrefab;
+    public Transform rocketHandSpawnPoint;
     private void Awake()
     {
         Components.PlayerController = GetComponent<CharacterController>();
         Components.PlayerTransform = transform;
         Components.Inputs = GetComponent<PlayerInput>();
+        Components.RocketHand = Instantiate(rocketHandPrefab, rocketHandSpawnPoint.position, rocketHandPrefab.transform.rotation);
+        Components.RocketHand.GetComponent<RocketFistControls>().player = this;
+        Components.playerMovement = GetComponent<PlayerMovement>();
+        Components.playerCombat = GetComponent<PlayerCombatant>();
     }
 
+    private void Start()
+    {
+        Setup();
+    }
+
+    private void Setup()
+    {
+        var combatstats = Components.playerCombat;
+        if (combatstats.maxHealth > 0)
+            combatstats.health = combatstats.maxHealth;
+        else
+        {
+            combatstats.maxHealth = 3;
+            combatstats.health = 3;
+        }
+    }
     /// <summary>
     /// Use this if you want to set swap between player modes.
     /// </summary>
@@ -66,4 +89,6 @@ public struct PlayerComponents
     public CharacterController PlayerController;
     public GameObject RocketHand;
     public PlayerInput Inputs;
+    public PlayerCombatant playerCombat;
+    public PlayerMovement playerMovement;
 }
