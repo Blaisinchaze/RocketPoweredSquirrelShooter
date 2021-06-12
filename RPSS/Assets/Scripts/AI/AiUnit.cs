@@ -6,16 +6,27 @@ using UnityEditor;
 
 public class AiUnit:Combatant
 {
+    enum State
+    {
+        NULL = -1,
+        MOVE = 0,
+        ATTACK = 1
+    }
+
     NavGrid navGrid;
-    public float chaseSpeed;
+    [Space]
+    public Enemies enemyType;
+    public float range;
+    public float attackDelay;
+    public float moveSpeed;
     [Space]
     public float minDistance = 0.05f;
+    public float pathUpdateRate;
 
     private Vector2Int currentGridPosition;
     private List<GridNode> currentRoute = new List<GridNode>();
 
     private float timer = 0;
-    [Space]
     private GameObject targetPlayer;
 
     private List<Collider2D> colliders = new List<Collider2D>();
@@ -39,6 +50,8 @@ public class AiUnit:Combatant
     private Vector2 prevPos;
 
     bool findingPath = false;
+    private State state;
+    private float attackTimer;
 
     public void Start()
     {
@@ -116,7 +129,7 @@ public class AiUnit:Combatant
 
         currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
 
-        MoveAlongRoute();
+        UpdateAction();
 
         UpdateDirection();
         //if (moving == false)
@@ -134,34 +147,80 @@ public class AiUnit:Combatant
 
     }
 
-    void MoveAlongRoute()
+    void UpdateAction()
     {
         Vector3 moveToPos = Vector3.zero;
 
-        //if within a short distance of the target, move toward the target
-        if (CheckLineToTarget(targetPlayer.transform.position))
+        bool canSeePlayer = CheckLineToTarget(targetPlayer.transform.position);
+
+        if (Vector3.Distance(transform.position, targetPlayer.transform.position) <= range && canSeePlayer)
         {
-            moveToPos = targetPlayer.transform.position;
-            currentRoute.Clear();
-        }
-        else if(!findingPath)
-        {
-            StartCoroutine(FindPath(navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition));
+            state = State.ATTACK;
         }
         else
         {
-            moveToPos = currentRoute[0].worldPosition;
+            state = State.MOVE;
         }
 
-        if (currentRoute.Count > 0)
+        switch (state)
         {
-            currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
-            moveToPos = currentRoute[0].worldPosition;
+            case State.NULL:
+                Debug.Log("WRONG STATE ON AI");
+                break;
+
+            case State.MOVE:
+                if (canSeePlayer)
+                {
+                    moveToPos = targetPlayer.transform.position;
+                    currentRoute.Clear();
+                }
+                else if (!findingPath)
+                {
+                    StartCoroutine(FindPath(navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition));
+                }
+                else
+                {
+                    if (Vector3.Distance(transform.position, currentRoute[0].worldPosition) < minDistance)
+                    {
+                        currentRoute.RemoveAt(0);
+                    }
+                    moveToPos = currentRoute[0].worldPosition;
+                }
+
+                if (currentRoute.Count > 0)
+                {
+                    currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
+                    moveToPos = currentRoute[0].worldPosition;
+                }
+
+                transform.position = Vector3.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
+                break;
+
+            case State.ATTACK:
+                if (attackTimer > 0)
+                {
+                    attackTimer -= Time.deltaTime;
+                    break;
+                }
+
+                switch (enemyType)
+                {
+                    case Enemies.NULL:
+                        Debug.Log("NULL ENEMY TYPE IN ATTACK");
+                        break;
+                    case Enemies.WALK:
+                        break;
+                    case Enemies.SHIELD:
+                        break;
+                    case Enemies.GUN:
+                        break;
+                }
+
+                attackTimer = attackDelay;
+                break;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, moveToPos, chaseSpeed * Time.deltaTime);
-
-        findingPath = false;
+        
     }
 
     private float DistanceFrom(Vector2Int start, Vector2Int end)
@@ -205,7 +264,7 @@ public class AiUnit:Combatant
             if (currentNode == targetNode)
             {
                 RetracePath(startNode, targetNode);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(pathUpdateRate);
                 findingPath = false;
                 yield break;
             }
@@ -241,7 +300,7 @@ public class AiUnit:Combatant
                     if (neighbourNode == targetNode)
                     {
                         RetracePath(startNode, targetNode);
-                        yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(pathUpdateRate);
                         findingPath = false;
                         yield break;
                     }
@@ -249,7 +308,7 @@ public class AiUnit:Combatant
             }
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(pathUpdateRate);
         findingPath = false;
         yield break;
     }
