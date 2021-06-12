@@ -40,16 +40,6 @@ public class CameraBehaviour : MonoBehaviour
         var a = player.transform.position;
         var b = rocketHand.transform.position;
         var dist = (a + b) * 0.5f;
-        
-        // if (player.transform.position.y > rocketHand.transform.position.y)
-        //     meanTarget.position = new Vector3(player.transform.position.x - dist,
-        //         player.transform.position.y - dist,
-        //         0);
-        //
-        // else
-        //     meanTarget.position = new Vector3(player.transform.position.x + dist,
-        //         player.transform.position.y + dist,
-        //         0);
         meanTarget.position = dist;
         print(dist.ToString());
         cam.Follow = meanTarget;
