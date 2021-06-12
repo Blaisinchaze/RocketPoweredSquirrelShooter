@@ -166,7 +166,19 @@ MonoBehaviour:
     m_ActionId: 2a6725ef-f3fb-4c2f-8546-b9646e6d4815
     m_ActionName: Gameplay Combined/Separate[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3776475601556671562}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6cfe8397-89d5-4b01-97fc-7a1a6323a3cd
     m_ActionName: Gameplay Separate/Movement A[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
@@ -178,7 +190,19 @@ MonoBehaviour:
     m_ActionId: f0a0f259-040b-4854-9bda-a6119c34e60e
     m_ActionName: Gameplay Separate/Interact[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3776475601556671562}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Separate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2984f87a-f206-45ac-bc12-e15944529782
     m_ActionName: Gameplay Separate/Separate[/Mouse/rightButton]
   - m_PersistentCalls:
@@ -193,6 +217,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 46b21631-3a44-4f9b-a3c7-ba1f43dba1d5
     m_ActionName: Menu/Back[/Keyboard/escape,/Mouse/backButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b4950e1d-a8d9-4328-955e-5e1bf4c6c599
+    m_ActionName: Gameplay Separate/Fist Firing[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay Combined
@@ -241,6 +269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combineDistance: 10
   moveSpeed: 0
+  defMaterial: {fileID: 2100000, guid: fcf2021f499b97a42b91dd4055735031, type: 2}
+  altMaterial: {fileID: 2100000, guid: e33d5782e5ed7c847a495e3c5a3ba19c, type: 2}
 --- !u!143 &3776475601556671560
 CharacterController:
   m_ObjectHideFlags: 0

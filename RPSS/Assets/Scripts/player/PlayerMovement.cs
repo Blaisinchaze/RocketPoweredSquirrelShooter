@@ -61,23 +61,30 @@ public class PlayerMovement : MonoBehaviour
         if (movementDirection == Vector2.zero) return;
         
         var controller = player.Components.PlayerController;
-        controller.Move(movementDirection * (moveSpeed * Time.deltaTime));
+        var adjustedSpeed = moveSpeed * Time.deltaTime;
+        controller.Move(movementDirection * adjustedSpeed);
         //transform.position += new Vector3(movementDirection.x/moveSpeed,movementDirection.y/moveSpeed,0);
-        
-
     }
+    
     /// <summary>
     /// If the player is combined, swap states. Otherwise, make sure they are close enough before they combine.
     /// </summary>
-    private void TryTogglePlayerState()
+    private bool TryTogglePlayerState()
     {
         if (player.currentState == Player.PlayerStates.Combined)
         {
             player.TogglePlayerState();
-            return;
+            return true;
         }
-        var check = Vector3.Distance(transform.position, player.Components.RocketHand.transform.position) < combineDistance;
-        if (check) player.TogglePlayerState();
+
+        var check = true; //Vector3.Distance(transform.position, player.Components.RocketHand.transform.position) < combineDistance;
+        if (check)
+        {
+            player.TogglePlayerState();
+            return true;
+        }
+
+        return false;
     }
     
     #region InputEvents
