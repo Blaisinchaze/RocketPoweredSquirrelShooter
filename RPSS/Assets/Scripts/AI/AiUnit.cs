@@ -6,6 +6,8 @@ using UnityEditor;
 
 public class AiUnit:MonoBehaviour
 {
+    public bool KILL;
+    [Space]
     NavGrid navGrid;
     public float chaseSpeed;
     [Space]
@@ -109,36 +111,38 @@ public class AiUnit:MonoBehaviour
         }
 
     void Update()
+    {
+        if (KILL){ Die(); }
+
+        currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
+
+
+        if (timer > 0)
         {
-            currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
-
-
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-
-
-            if (timer <= 0)
-            {
-                MoveAlongRoute();
-            }
-
-            UpdateDirection();
-            //if (moving == false)
-            //{
-            //    ph.SetVariable(0);
-            //}
-            //else
-            //{
-            //    ph.SetVariable(1);
-            //}
-
-            float velocity = ((Vector2)transform.position - prevPos).magnitude / Time.deltaTime;
-            ProcessFootStepsFX(gameObject.transform, Mathf.Ceil(velocity));
-            prevPos = transform.position;
-
+            timer -= Time.deltaTime;
         }
+
+
+        if (timer <= 0)
+        {
+            MoveAlongRoute();
+        }
+
+        UpdateDirection();
+        //if (moving == false)
+        //{
+        //    ph.SetVariable(0);
+        //}
+        //else
+        //{
+        //    ph.SetVariable(1);
+        //}
+
+        float velocity = ((Vector2)transform.position - prevPos).magnitude / Time.deltaTime;
+        ProcessFootStepsFX(gameObject.transform, Mathf.Ceil(velocity));
+        prevPos = transform.position;
+
+    }
 
     private void MoveAlongRoute()
         {
@@ -164,52 +168,6 @@ public class AiUnit:MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, moveToPos, chaseSpeed * Time.deltaTime);
         }
-
-    //private void UpdateSchedule()
-        //{
-        //    if (chasing)
-        //    {
-        //        return;
-        //    }
-
-        //    if (Vector3.Distance(transform.position, positions[currentPoint]) < minDistance)
-        //    {
-        //        timer = waitTimes[currentPoint];
-
-        //        if (backtrack)
-        //        {
-        //            if (goingForwards)
-        //            {
-        //                currentPoint++;
-
-        //                if (currentPoint >= positions.Length)
-        //                {
-        //                    goingForwards = false;
-        //                    currentPoint -= 2;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                currentPoint--;
-
-        //                if (currentPoint < 0)
-        //                {
-        //                    goingForwards = true;
-        //                    currentPoint += 2;
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            currentPoint++;
-
-        //            if (currentPoint >= positions.Length)
-        //            {
-        //                currentPoint = 0;
-        //            }
-        //        }
-        //    }
-        //}
 
     private float DistanceFrom(Vector2Int start, Vector2Int end)
         {
@@ -399,22 +357,37 @@ public class AiUnit:MonoBehaviour
             return true;
         }
 
-    public void OnDrawGizmosSelected()
+    private void Die()
+    {
+        AiController cont;
+        if (transform.parent.TryGetComponent(out cont))
         {
-            if (currentRoute == null)
-            {
-                return;
-            }
+            cont.KillEnemy(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-            if (currentRoute.Count > 0)
+    public void OnDrawGizmosSelected()
+    {
+        return;
+
+        if (currentRoute == null)
+        {
+            return;
+        }
+
+        if (currentRoute.Count > 0)
+        {
+            foreach (GridNode node in currentRoute)
             {
-                foreach (GridNode node in currentRoute)
-                {
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawSphere(node.worldPosition, 0.5f);
-                }
+                Gizmos.color = Color.blue;
+                Gizmos.DrawSphere(node.worldPosition, 0.5f);
             }
         }
+    }
 
     private void ProcessFootStepsFX(Transform guard, float velocity)
         {

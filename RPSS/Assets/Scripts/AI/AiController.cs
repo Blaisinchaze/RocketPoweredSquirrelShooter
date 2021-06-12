@@ -25,7 +25,7 @@ public struct SpawnChances
 
         if (total % 1 != 0)
         {
-            Debug.LogError("SPAWN CHANCE SET UP WITH TOO HIGH ACCURACY - CAN ONLY BE TENTHS, NO HUNDREDTHS OR LOWER");
+            Debug.LogError("SPAWN CHANCE SET UP WITH TOO HIGH ACCURACY - CAN ONLY BE whole numbers, NO decimels");
             return;
         }
 
@@ -136,7 +136,7 @@ public class AiController : MonoBehaviour
         currentWave++;
 
         // Calc wave specific values
-        totalEnemiesThisWave = baseEnemycount + (currentWave * incrementPerWave) + enemies.Count;
+        totalEnemiesThisWave = baseEnemycount + (currentWave * incrementPerWave);
         enemiesToSpawn = totalEnemiesThisWave;
         timeBetweenSpawns = secondsForWaveSpawn / totalEnemiesThisWave;
 
@@ -191,6 +191,12 @@ public class AiController : MonoBehaviour
         enemies.Add(Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>());
 
         enemiesToSpawn--;
+    }
+
+    public void KillEnemy(AiUnit enemy)
+    {
+        enemies.Remove(enemy);
+        Destroy(enemy.gameObject);
     }
 
     private void OnValidate()
