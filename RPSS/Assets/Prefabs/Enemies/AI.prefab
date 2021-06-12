@@ -103,7 +103,7 @@ MonoBehaviour:
   kill: 0
   invulnerable: 0
   enemyType: 0
-  range: 3
+  range: 0.75
   attackDelay: 2
   moveSpeed: 2
   minDistance: 0.1

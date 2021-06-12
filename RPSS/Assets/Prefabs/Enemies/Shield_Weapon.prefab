@@ -98,9 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   projRange: 0.5
-  projSpeed: 2
+  projSpeed: 0.125
   turnSpeed: 5
-  weaponHeldDistanceModifier: 0.4
+  weaponHeldDistanceModifier: 0.5
   relativeSpawnPoint: {fileID: 5035154873277011537}
   spawnPrefab: {fileID: 4524077618682415037, guid: 9c15ec8d2e06806418d68720e3a99ae0, type: 3}
   lookRotToPlayer: {x: 0, y: 0, z: 0, w: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 163451330738306646}
   - component: {fileID: 6710321108206623827}
   m_Layer: 8
-  m_Name: MeleeBullet
+  m_Name: WalerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

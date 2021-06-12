@@ -19,6 +19,6 @@ public class Bullet : MonoBehaviour
         {
             hit.GetHit(damageAmount);
         }
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 0.25f);
     }
 }

@@ -133,6 +133,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1700293764896474489}
     m_Modifications:
+    - target: {fileID: 175505584174194396, guid: 97948df64ce6553498aadec13e805494, type: 3}
+      propertyPath: weaponHeldDistanceModifier
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4056038177932096045, guid: 97948df64ce6553498aadec13e805494, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -176,6 +180,18 @@ PrefabInstance:
     - target: {fileID: 4056038177932096045, guid: 97948df64ce6553498aadec13e805494, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181162060667970255, guid: 97948df64ce6553498aadec13e805494, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181162060667970255, guid: 97948df64ce6553498aadec13e805494, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181162060667970255, guid: 97948df64ce6553498aadec13e805494, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8235295
       objectReference: {fileID: 0}
     - target: {fileID: 6117751005628930058, guid: 97948df64ce6553498aadec13e805494, type: 3}
       propertyPath: m_Name

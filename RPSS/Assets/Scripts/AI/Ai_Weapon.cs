@@ -80,17 +80,17 @@ public class Ai_Weapon : MonoBehaviour
 
             case Enemies.WALK:
                 {
-                    //Debug.Log("firing walk proj");
                     float distance = 0;
                     while (distance < projRange)
                     {
-                        //projectile.transform.Translate(projectile.transform.right * projSpeed * -1);
+                        if (projectile == null)
+                        {
+                            yield break;
+                        }
                         projectile.transform.Translate(Vector3.right * projSpeed * -1);
                         distance = Vector3.Distance(projectile.transform.position, relativeSpawnPoint.position);
-                        //Debug.Log("updating walk proj " + distance);
                         yield return new WaitForSeconds(0.01f);
                     }
-                    //Debug.Log("destroying walk proj");
                     Destroy(projectile);
                 }
                 break;
@@ -100,12 +100,20 @@ public class Ai_Weapon : MonoBehaviour
                     float distance = 0;
                     while (distance < projRange)
                     {
+                        if (projectile == null)
+                        {
+                            yield break;
+                        }
                         projectile.transform.Translate(Vector3.up * projSpeed);
                         distance = Vector3.Distance(projectile.transform.position, relativeSpawnPoint.position);
                         yield return new WaitForSeconds(0.01f);
                     }
                     while (distance > 0)
                     {
+                        if (projectile == null)
+                        {
+                            yield break;
+                        }
                         projectile.transform.Translate(Vector3.down * projSpeed);
                         distance -= projSpeed;
                         yield return new WaitForSeconds(0.05f);
