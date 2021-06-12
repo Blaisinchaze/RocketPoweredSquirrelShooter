@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RocketFistControls : MonoBehaviour
+public class RocketFistControls : MonoBehaviour, IHittable
 {
     Vector2 mousePos;
     public float moveSpeed = 0.5f;
@@ -65,5 +65,10 @@ public class RocketFistControls : MonoBehaviour
         {
             firing = false;
         }
+    }
+
+    public void GetHit(int damageAmount)
+    {
+        Debug.Log("plAyer hit");
     }
 }
