@@ -30,6 +30,7 @@ public class AiUnit:Combatant
 
     private float timer = 0;
     private GameObject targetPlayer;
+    private Ai_Weapon weapon;
 
     private List<Collider2D> colliders = new List<Collider2D>();
 
@@ -73,57 +74,64 @@ public class AiUnit:Combatant
 
         anim = GetComponent<Animator>();
         prevPos = transform.position;
+
+        weapon = GetComponentInChildren<Ai_Weapon>();
     }
 
     private void UpdateDirection()
+    {
+        moving = true;
+
+        float x;
+        float xClamped;
+        float y;
+        float yClamped;
+        if (currentRoute.Count <= 0)
         {
-            moving = true;
-
-            float x;
-            float y;
-            if (currentRoute.Count <= 0)
-            {
-                Vector3 diff = transform.position - targetPlayer.transform.position;
-                x = Mathf.Clamp(diff.x, -1, 1);
-                y = Mathf.Clamp(diff.y, -1, 1);
-            }
-            else
-            {
-                Vector2Int diff = currentGridPosition - currentRoute[0].gridPosition;
-                x = Mathf.Clamp(diff.x, -1, 1);
-                y = Mathf.Clamp(diff.y, -1, 1);
-            }
-
-            if (Mathf.Abs(x) > Mathf.Abs(y))
-            {
-                if (x > 0)
-                {
-                    direction = Facing.LEFT;
-                }
-                else if (x < 0)
-                {
-                    direction = Facing.RIGHT;
-                }
-            }
-            else
-            {
-                if (y > 0)
-                {
-                    direction = Facing.DOWN;
-                }
-                else if (y < 0)
-                {
-                    direction = Facing.UP;
-                }
-            }
-
-            //anim.SetInteger("Direction", (int)direction);
-
-            //if (ph.transform != this.transform)
-            //{
-            //    ph.transform.localRotation = Quaternion.LookRotation(new Vector3(x,y,0) , transform.forward);
-            //}
+            Vector3 diff = transform.position - targetPlayer.transform.position;
+            x = diff.x;
+            y = diff.y;
         }
+        else
+        {
+            Vector2Int diff = currentGridPosition - currentRoute[0].gridPosition;
+            x = diff.x;
+            y = diff.y;
+        }
+
+        xClamped = Mathf.Clamp(x, -1, 1);
+        yClamped = Mathf.Clamp(y, -1, 1);
+
+        if (Mathf.Abs(xClamped) > Mathf.Abs(yClamped))
+        {
+            if (xClamped > 0)
+            {
+                direction = Facing.LEFT;
+            }
+            else if (xClamped < 0)
+            {
+                direction = Facing.RIGHT;
+            }
+        }
+        else
+        {
+            if (yClamped > 0)
+            {
+                direction = Facing.DOWN;
+            }
+            else if (yClamped < 0)
+            {
+                direction = Facing.UP;
+            }
+        }
+
+        //anim.SetInteger("Direction", (int)direction);
+
+        //if (ph.transform != this.transform)
+        //{
+        //    ph.transform.localRotation = Quaternion.LookRotation(new Vector3(x,y,0) , transform.forward);
+        //}
+    }
 
     void Update()
     {
@@ -206,18 +214,7 @@ public class AiUnit:Combatant
                     break;
                 }
 
-                switch (enemyType)
-                {
-                    case Enemies.NULL:
-                        Debug.Log("NULL ENEMY TYPE IN ATTACK");
-                        break;
-                    case Enemies.WALK:
-                        break;
-                    case Enemies.SHIELD:
-                        break;
-                    case Enemies.GUN:
-                        break;
-                }
+                weapon.Fire();
 
                 attackTimer = attackDelay;
                 break;
@@ -472,7 +469,7 @@ public class AiUnit:Combatant
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Temp")
         {
             Die();
         }
