@@ -22,13 +22,14 @@ public class Combatant : MonoBehaviour
    public bool kill;
    public bool invulnerable;
 
+
    private void Awake()
    {
       myRenderer = GetComponent<Renderer>();
       myTransform = GetComponent<Transform>();
    }
 
-   void Update()
+   private void Update()
    {
       CheckToggles();
    }
@@ -42,7 +43,7 @@ public class Combatant : MonoBehaviour
    /// <summary>
    /// Modify this to kill the unit. By default, destroys gameObject
    /// </summary>
-   public virtual void Die()
+   protected virtual void Die()
    {
       Destroy(gameObject);
    }
