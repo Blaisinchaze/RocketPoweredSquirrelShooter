@@ -125,7 +125,7 @@ public class Ai_Weapon : MonoBehaviour
 
             case Enemies.GUN:
                 {
-                    projectile.GetComponent<Rigidbody2D>().AddForce(playerDirection * projSpeed);
+                    projectile.GetComponent<Rigidbody2D>().AddForce(transform.up * projSpeed, ForceMode2D.Impulse);
                 }
                 break;
         }

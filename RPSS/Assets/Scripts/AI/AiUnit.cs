@@ -190,6 +190,11 @@ public class AiUnit:Combatant
                 }
                 else
                 {
+                    if (currentRoute.Count <= 0)
+                    {
+                        break;
+                    }
+
                     if (Vector3.Distance(transform.position, currentRoute[0].worldPosition) < minDistance)
                     {
                         currentRoute.RemoveAt(0);
