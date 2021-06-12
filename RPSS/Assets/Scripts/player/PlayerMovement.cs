@@ -58,6 +58,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleAnimation()
     {
+        if (movementDirection == Vector2.zero)
+        {
+            return;
+        }
         bodyAnimator.SetFloat("Horizontal", movementDirection.x);
         bodyAnimator.SetFloat("Vertical", movementDirection.y);
         bodyAnimator.SetFloat("Speed", movementDirection.sqrMagnitude);
