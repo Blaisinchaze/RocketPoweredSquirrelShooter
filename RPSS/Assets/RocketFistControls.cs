@@ -18,6 +18,7 @@ public class RocketFistControls : MonoBehaviour, IHittable
     private float firingDelay = 0.1f;
     private float timer = 0;
 
+    public Player player;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,17 +47,27 @@ public class RocketFistControls : MonoBehaviour, IHittable
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + forwardVector * moveSpeed * Time.deltaTime);
+        switch (player.currentState)
+        {
+            case Player.PlayerStates.Combined:
+                break;
+            case Player.PlayerStates.Split:
+                rb.MovePosition(rb.position + forwardVector * moveSpeed * Time.deltaTime);
 
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnSpeed * Time.deltaTime);
-        //rb.rotation = Mathf.MoveTowards(rb.rotation,angle, 1f);
+                Vector2 lookDir = mousePos - rb.position;
+                float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnSpeed * Time.deltaTime);
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void Shoot(InputAction.CallbackContext context)
     {
+        Debug.Log("PEW");
         if (context.started)
         {
             firing = true;
@@ -71,4 +82,6 @@ public class RocketFistControls : MonoBehaviour, IHittable
     {
         Debug.Log("plAyer hit");
     }
+
+
 }

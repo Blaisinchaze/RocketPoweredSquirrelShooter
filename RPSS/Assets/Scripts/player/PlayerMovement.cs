@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     /// Direction the player moves tracked via input
     /// </summary>
     private Vector2 movementDirection;
+    /// Controls the current sprite state of main body
+    /// </summary>
+    [SerializeField]
+    private Animator bodyAnimator;
 
     /// <summary>
     /// The maximum distance the player and hand can be apart and still combine
@@ -52,18 +56,28 @@ public class PlayerMovement : MonoBehaviour
         Movement();
     }
 
+    private void HandleAnimation()
+    {
+        if (movementDirection == Vector2.zero)
+        {
+            return;
+        }
+        bodyAnimator.SetFloat("Horizontal", movementDirection.x);
+        bodyAnimator.SetFloat("Vertical", movementDirection.y);
+        bodyAnimator.SetFloat("Speed", movementDirection.sqrMagnitude);
+    }
 
     /// <summary>
     /// Handles player movement based on the input vector2.
     /// </summary>
     private void Movement()
     {
+        HandleAnimation();
         if (movementDirection == Vector2.zero) return;
         
         var controller = player.Components.PlayerController;
         var adjustedSpeed = moveSpeed * Time.deltaTime;
         controller.Move(movementDirection * adjustedSpeed);
-        //transform.position += new Vector3(movementDirection.x/moveSpeed,movementDirection.y/moveSpeed,0);
     }
     
     /// <summary>
