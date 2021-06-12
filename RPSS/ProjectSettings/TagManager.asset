@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawnpoint
   - MainCanvas
+  - GameManager
   layers:
   - Default
   - TransparentFX

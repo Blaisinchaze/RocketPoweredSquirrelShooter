@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637591109833577407
+  lastModified: 637591092475556315
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -42,7 +42,7 @@ MonoBehaviour:
   - {fileID: 58449918053137111}
   StringsBanks:
   - {fileID: -4223686881194566996}
-  stringsBankWriteTime: 637591109833577407
+  stringsBankWriteTime: 637591092475556315
   cacheVersion: 6
 --- !u!114 &58449918053137111
 MonoBehaviour:
@@ -59,7 +59,7 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637591109833572440
+  lastModified: 637591092475386159
   LoadResult: 0
   FileSizes: []
   Exists: 1
