@@ -27,9 +27,9 @@ public class Player : MonoBehaviour
     {
         Components.PlayerController = GetComponent<CharacterController>();
         Components.PlayerTransform = transform;
-        Components.Inputs = GetComponent<PlayerInput>();
-        Components.RocketHand = Instantiate(rocketHandPrefab, rocketHandSpawnPoint.position, rocketHandPrefab.transform.rotation);
-        Components.RocketHand.GetComponent<RocketFistControls>().player = this;
+        Components.Inputs = GetComponentInParent<PlayerInput>();
+        //Components.RocketHand = Instantiate(rocketHandPrefab, rocketHandSpawnPoint.position, rocketHandPrefab.transform.rotation);
+        //Components.RocketHand.GetComponent<RocketFistControls>().player = this;
         Components.playerMovement = GetComponent<PlayerMovement>();
         Components.playerCombat = GetComponent<PlayerCombatant>();
     }
