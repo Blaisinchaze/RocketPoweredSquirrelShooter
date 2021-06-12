@@ -44,10 +44,9 @@ GameObject:
   - component: {fileID: 8193017389098234291}
   - component: {fileID: 8193017389098234290}
   - component: {fileID: 4867754295077741842}
-  - component: {fileID: 757927169}
   m_Layer: 0
   m_Name: RocketFist
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,6 +160,7 @@ MonoBehaviour:
   firing: 0
   BulletPrefab: {fileID: 0}
   bulletSpawnPoint: {fileID: 0}
+  player: {fileID: 0}
 --- !u!50 &8193017389098234290
 Rigidbody2D:
   serializedVersion: 4
