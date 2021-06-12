@@ -32,6 +32,7 @@ public class Combatant : MonoBehaviour
    private void Update()
    {
       CheckToggles();
+      CheckHealth();
    }
 
    internal void CheckToggles()
@@ -40,6 +41,11 @@ public class Combatant : MonoBehaviour
       if (invulnerable) health = maxHealth;
    }
 
+   private void CheckHealth()
+   {
+      if (health <= 0 && !invulnerable)
+         Die();
+   }
    /// <summary>
    /// Modify this to kill the unit. By default, destroys gameObject
    /// </summary>
@@ -47,4 +53,19 @@ public class Combatant : MonoBehaviour
    {
       Destroy(gameObject);
    }
+   
+   /// <summary>
+   /// What happens when I'm hit by a projectile or melee
+   /// </summary>
+   public virtual void GetHit(int damageValue)
+   {
+      if (invulnerable) return;
+      health -= damageValue;
+   }
+   public void GetHit(Bullet bullet)
+   {
+      if (invulnerable) return;
+      health -= bullet.damageAmount;
+   }
+
 }
