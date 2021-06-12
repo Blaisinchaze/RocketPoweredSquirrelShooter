@@ -18,6 +18,7 @@ public class RocketFistControls : MonoBehaviour, IHittable
     private float firingDelay = 0.1f;
     private float timer = 0;
 
+    public Player player;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -71,4 +72,6 @@ public class RocketFistControls : MonoBehaviour, IHittable
     {
         Debug.Log("plAyer hit");
     }
+
+
 }

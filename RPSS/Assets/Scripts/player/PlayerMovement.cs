@@ -54,24 +54,26 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
+    }
 
+    private void HandleAnimation()
+    {
         bodyAnimator.SetFloat("Horizontal", movementDirection.x);
         bodyAnimator.SetFloat("Vertical", movementDirection.y);
         bodyAnimator.SetFloat("Speed", movementDirection.sqrMagnitude);
     }
-
 
     /// <summary>
     /// Handles player movement based on the input vector2.
     /// </summary>
     private void Movement()
     {
+        HandleAnimation();
         if (movementDirection == Vector2.zero) return;
         
         var controller = player.Components.PlayerController;
         var adjustedSpeed = moveSpeed * Time.deltaTime;
         controller.Move(movementDirection * adjustedSpeed);
-        //transform.position += new Vector3(movementDirection.x/moveSpeed,movementDirection.y/moveSpeed,0);
     }
     
     /// <summary>
