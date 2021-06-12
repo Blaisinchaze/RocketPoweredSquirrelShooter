@@ -23,7 +23,7 @@ public struct SpawnChances
     {
         float total = walkers + shielders + gunners;
 
-        if (total % 0.1f != 0)
+        if (total % 1 != 0)
         {
             Debug.LogError("SPAWN CHANCE SET UP WITH TOO HIGH ACCURACY - CAN ONLY BE TENTHS, NO HUNDREDTHS OR LOWER");
             return;
@@ -35,7 +35,7 @@ public struct SpawnChances
             {
                 walkers -= 1;
             }
-            while (walkers + shielders + gunners < 101)
+            while (walkers + shielders + gunners < 101 && walkers + shielders + gunners > 100)
             {
                 walkers -= 0.1f;
             }
@@ -47,7 +47,7 @@ public struct SpawnChances
             {
                 walkers += 1;
             }
-            while (walkers + shielders + gunners > 99)
+            while (walkers + shielders + gunners > 99 && walkers + shielders + gunners < 100)
             {
                 walkers += 0.1f;
             }
@@ -80,7 +80,9 @@ public class AiController : MonoBehaviour
     private int currentWave = 0;
     private float timeBetweenSpawns = 0;
     private int totalEnemiesThisWave = 0;
+    [SerializeField]
     private float waveTimer = 0;
+    [SerializeField]
     private float spawnTimer = 0;
 
     private List<AiUnit> enemies = new List<AiUnit>();
@@ -108,12 +110,19 @@ public class AiController : MonoBehaviour
             enemiesToSpawn = -1;
         }
 
-        spawnTimer -= Time.deltaTime;
-        waveTimer -= Time.deltaTime;
+        if (spawnTimer > 0)
+        {
+            spawnTimer -= Time.deltaTime;
+        }
+        if (waveTimer > 0)
+        {
+            waveTimer -= Time.deltaTime;
+        }
 
         if (spawnTimer <= 0 && enemiesToSpawn > 0)
         {
             SpawnEnemy();
+            spawnTimer = timeBetweenSpawns;
         }
 
         if (waveTimer <= 0)
@@ -128,6 +137,7 @@ public class AiController : MonoBehaviour
 
         // Calc wave specific values
         totalEnemiesThisWave = baseEnemycount + (currentWave * incrementPerWave) + enemies.Count;
+        enemiesToSpawn = totalEnemiesThisWave;
         timeBetweenSpawns = secondsForWaveSpawn / totalEnemiesThisWave;
 
         // Reset Timers
