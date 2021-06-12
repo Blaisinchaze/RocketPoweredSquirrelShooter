@@ -1912,7 +1912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109df92d31308f245a15ff7b8a0e2ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitNodeRatio: 1
+  unitNodeRatio: 1.25
   displayGrid: 0
   tilemap: {fileID: 1296062382}
 --- !u!4 &1148008643
