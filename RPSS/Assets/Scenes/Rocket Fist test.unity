@@ -263,112 +263,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &757927163 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-  m_PrefabInstance: {fileID: 8193017388478856526}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &757927165 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-  m_PrefabInstance: {fileID: 8193017388478856526}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757927163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca66c1a53b5ca24885176ea191b51e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &757927169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757927163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 338dc389f1f7e57448b80d29e8b15965, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 21eaef50-9dc1-4b8c-a74f-3795b0f290f1
-    m_ActionName: Gameplay Combined/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5538cc5c-e334-4578-bbc4-b04441e9da0c
-    m_ActionName: Gameplay Combined/Firing[/Mouse/delta/y,/Mouse/delta/y,/Mouse/delta/x,/Mouse/delta/x]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d5611321-3481-4a34-9714-ffdad8954eac
-    m_ActionName: Gameplay Combined/Interact[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2a6725ef-f3fb-4c2f-8546-b9646e6d4815
-    m_ActionName: Gameplay Combined/Separate[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6cfe8397-89d5-4b01-97fc-7a1a6323a3cd
-    m_ActionName: Gameplay Separate/Movement A[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 16985a9b-b7e9-4156-8151-ed24b11f45f2
-    m_ActionName: Gameplay Separate/Movement B[/Mouse/delta/y,/Mouse/delta/y,/Mouse/delta/x,/Mouse/delta/x,/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f0a0f259-040b-4854-9bda-a6119c34e60e
-    m_ActionName: Gameplay Separate/Interact[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2984f87a-f206-45ac-bc12-e15944529782
-    m_ActionName: Gameplay Separate/Separate[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 13bc1fe6-f39a-4c77-b5bb-11e5e4d780ae
-    m_ActionName: Menu/Target
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 33aec749-e939-4edc-ab5e-c795844047a3
-    m_ActionName: Menu/Accept[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 46b21631-3a44-4f9b-a3c7-ba1f43dba1d5
-    m_ActionName: Menu/Back[/Keyboard/escape,/Mouse/backButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 757927165}
-        m_TargetAssemblyTypeName: RocketFistControls, Assembly-CSharp
-        m_MethodName: Shoot
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b4950e1d-a8d9-4328-955e-5e1bf4c6c599
-    m_ActionName: Gameplay Separate/Fist Firing[/Mouse/leftButton]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard + Mouse
-  m_DefaultActionMap: Gameplay Separate
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1001 &832206329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,11 +320,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f441b0a0679de3b4ba407dcb8998136f, type: 3}
---- !u!1 &1068159668 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 639150115156405520, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-  m_PrefabInstance: {fileID: 8193017388478856526}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8193017388478856526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -438,14 +327,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2389371708491372806, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.462
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389371708491372806, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.067
-      objectReference: {fileID: 0}
     - target: {fileID: 8193017389098233934, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -490,18 +371,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90.164
       objectReference: {fileID: 0}
-    - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: moveSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: BulletPrefab
-      value: 
-      objectReference: {fileID: 4524077618682415037, guid: f441b0a0679de3b4ba407dcb8998136f, type: 3}
-    - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: bulletSpawnPoint
-      value: 
-      objectReference: {fileID: 1068159668}
     - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_Name
       value: RocketFist
