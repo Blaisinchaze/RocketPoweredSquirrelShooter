@@ -11,9 +11,13 @@ public class CanvasManager : MonoBehaviour
     private List<GameObject> canvases = new List<GameObject>();
 
     [SerializeField] private TransitionController transitionController;
+    [SerializeField] private GameManager gameManager;
 
     private void Start()
     {
+        if (gameManager == null)
+            Debug.LogError("Gamemanager not configured");
+
         canvases.Add(MainMenuCanvas);
         canvases.Add(InGameCanvas);
         canvases.Add(GameOverCanvas);
@@ -52,5 +56,29 @@ public class CanvasManager : MonoBehaviour
     public void Transition(TransitionStates states)
     {
         transitionController.transitionChange(states);
+    }
+
+    public void ChangeGameState(GameStates state)
+    {
+        gameManager.ChangeState(state);
+    }    
+    public void ChangeGameState(int state)
+    {
+        gameManager.ChangeState((GameStates)state);
+    }
+    public void ChangeGameStateTransition(int state)
+    {
+        gameManager.ChangeStateWithTransition((GameStates)state);
+
+    }    
+    public void ChangeGameStateTransition(GameStates state)
+    {
+        gameManager.ChangeStateWithTransition(state);
+
+    }
+
+    public void QuitGame()
+    {
+        gameManager.QuitGame();
     }
 }

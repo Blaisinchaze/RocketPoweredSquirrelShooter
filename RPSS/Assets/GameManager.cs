@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
         currentState = stateToChangeTo;
         MainCanvas.ChangeCanvas(currentState);
 
+    }    
+    public void ChangeState(int stateToChangeTo)
+    {
+        currentState = (GameStates)stateToChangeTo;
+        MainCanvas.ChangeCanvas(currentState);
+
     }
 
     public void ChangeStateWithTransition(GameStates stateToChangeTo)
@@ -50,6 +56,16 @@ public class GameManager : MonoBehaviour
         if (waitingForTimer)
             return;
         waitingStateToChangeTo = stateToChangeTo;
+        waitingForTimer = true;
+        timer = 2f;
+        MainCanvas.Transition(TransitionStates.FADEOUT);
+    }    
+    
+    public void ChangeStateWithTransition(int stateToChangeTo)
+    {
+        if (waitingForTimer)
+            return;
+        waitingStateToChangeTo = (GameStates)stateToChangeTo;
         waitingForTimer = true;
         timer = 2f;
         MainCanvas.Transition(TransitionStates.FADEOUT);
