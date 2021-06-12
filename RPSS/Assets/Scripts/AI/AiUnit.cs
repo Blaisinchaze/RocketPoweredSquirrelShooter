@@ -22,6 +22,8 @@ public class AiUnit:Combatant
     [Space]
     public float minDistance = 0.05f;
     public float pathUpdateRate;
+    public float colliderRadius;
+    public int maxNodesToSimplify;
 
     private Vector2Int currentGridPosition;
     private List<GridNode> currentRoute = new List<GridNode>();
@@ -184,6 +186,7 @@ public class AiUnit:Combatant
                     {
                         currentRoute.RemoveAt(0);
                     }
+                    SimplifyPath();
                     moveToPos = currentRoute[0].worldPosition;
                 }
 
@@ -283,7 +286,7 @@ public class AiUnit:Combatant
 
                 if (neighbourNode.gridPosition.x != currentNode.gridPosition.x && neighbourNode.gridPosition.y != currentNode.gridPosition.y)
                 {
-                    newMovementCostToNeighbour += 1;
+                    newMovementCostToNeighbour += 2;
                 }
 
                 if (newMovementCostToNeighbour < neighbourNode.gCost || !open.Contains(neighbourNode))
@@ -331,44 +334,44 @@ public class AiUnit:Combatant
         }
 
     private void SimplifyPath()
+    {
+        int nodeCount = currentRoute.Count;
+
+        if (nodeCount <= 1)
         {
-            int nodeCount = currentRoute.Count;
-
-            if (nodeCount <= 1)
-            {
-                return;
-            }
-
-            //SetCollidersActive(false);
-
-            for (int i = 0; i < nodeCount; i++)
-            {
-                bool cleanHit = false;
-                int j = nodeCount - 1;
-                RaycastHit2D hit;
-                int layerMask = ~(1 << LayerMask.NameToLayer("Background"));
-                layerMask = layerMask & ~(1 << LayerMask.NameToLayer("Guards"));
-
-                while (cleanHit == false && j > i)
-                {
-
-                    if (hit = Physics2D.BoxCast(transform.position, navGrid.nodeSize * 0.75f, 0,
-                        currentRoute[j].worldPosition - transform.position,
-                        Vector3.Distance(transform.position, currentRoute[j].worldPosition), layerMask))
-                    {
-                        j--;
-                    }
-                    else
-                    {
-                        cleanHit = true;
-                    }
-                }
-                currentRoute.RemoveRange(i, j - i);
-                nodeCount = currentRoute.Count;
-            }
-
-            //SetCollidersActive(true);
+            return;
         }
+
+        //SetCollidersActive(false);
+
+        for (int i = 0; i < nodeCount; i++)
+        {
+            bool cleanHit = false;
+            int j = nodeCount - 1;
+
+            RaycastHit2D hit;
+            int layerMask = ~(1 << LayerMask.NameToLayer("Player"));
+            layerMask = layerMask & ~(1 << LayerMask.NameToLayer("AI"));
+
+            while (cleanHit == false && j > i)
+            {
+                if (hit = Physics2D.CircleCast(transform.position, colliderRadius, currentRoute[j].worldPosition - transform.position, Vector3.Distance(transform.position, currentRoute[j].worldPosition), layerMask))
+
+                {
+                    j--;
+                }
+                else
+                {
+                    cleanHit = true;
+                }
+            }
+
+            currentRoute.RemoveRange(i, j - i);
+            nodeCount = currentRoute.Count;
+        }
+
+        //SetCollidersActive(true);
+    }
 
     private List<GridNode> GetNeighbouringGridSpaces(GridNode node)
     {
@@ -413,12 +416,19 @@ public class AiUnit:Combatant
         int layerMask = 1 << LayerMask.NameToLayer("Walls");
 
         RaycastHit2D hit;
-        if (hit = Physics2D.Raycast(transform.position, position,
-            Vector3.Distance(transform.position, position), layerMask))
+
+        if (hit = Physics2D.CircleCast(transform.position, colliderRadius, transform.position - position, Vector3.Distance(transform.position, position), layerMask))
         {
-            //Debug.Log(hit.collider.gameObject);
             return false;
         }
+
+        //if (hit = Physics2D.Raycast(transform.position, position,
+        //    Vector3.Distance(transform.position, position), layerMask))
+        //{
+        //    //Debug.Log(hit.collider.gameObject);
+        //    return false;
+        //}
+
         return true;
     }
 
@@ -439,7 +449,6 @@ public class AiUnit:Combatant
 
     public void OnDrawGizmosSelected()
     {
-        return;
 
         if (currentRoute == null)
         {
@@ -450,8 +459,8 @@ public class AiUnit:Combatant
         {
             foreach (GridNode node in currentRoute)
             {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawSphere(node.worldPosition, 0.5f);
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(node.worldPosition, 0.1f);
             }
         }
     }

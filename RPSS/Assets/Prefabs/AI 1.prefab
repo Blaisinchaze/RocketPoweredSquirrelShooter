@@ -104,9 +104,11 @@ MonoBehaviour:
   enemyType: 1
   range: 0.45
   attackDelay: 0.75
-  moveSpeed: 3
-  minDistance: 0.5
-  pathUpdateRate: 0
+  moveSpeed: 0.5
+  minDistance: 0.1
+  pathUpdateRate: 0.05
+  colliderRadius: 0.25
+  maxNodesToSimplify: 4
 --- !u!58 &1700293764896474490
 CircleCollider2D:
   m_ObjectHideFlags: 0
