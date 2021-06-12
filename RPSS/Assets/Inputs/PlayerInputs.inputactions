@@ -384,6 +384,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Fist Firing",
+                    "type": "Button",
+                    "id": "b4950e1d-a8d9-4328-955e-5e1bf4c6c599",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -692,6 +700,17 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Separate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c2e7fe1-ce56-4ec1-a82d-d0b66d65cbb5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Keyboard + Mouse",
+                    "action": "Fist Firing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

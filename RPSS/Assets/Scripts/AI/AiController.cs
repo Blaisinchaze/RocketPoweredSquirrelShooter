@@ -21,11 +21,13 @@ public struct SpawnChances
 
     public void Check()
     {
+        return;
+
         float total = walkers + shielders + gunners;
 
         if (total % 1 != 0)
         {
-            Debug.LogError("SPAWN CHANCE SET UP WITH TOO HIGH ACCURACY - CAN ONLY BE TENTHS, NO HUNDREDTHS OR LOWER");
+            Debug.LogError("SPAWN CHANCE SET UP WITH TOO HIGH ACCURACY - CAN ONLY BE whole numbers, NO decimels");
             return;
         }
 
@@ -77,9 +79,10 @@ public class AiController : MonoBehaviour
     public List<SpawnChances> chances = new List<SpawnChances>();
 
     private int enemiesToSpawn = 0;
-    private int currentWave = 0;
     private float timeBetweenSpawns = 0;
     private int totalEnemiesThisWave = 0;
+    [SerializeField]
+    private int currentWave = 0;
     [SerializeField]
     private float waveTimer = 0;
     [SerializeField]
@@ -136,9 +139,10 @@ public class AiController : MonoBehaviour
         currentWave++;
 
         // Calc wave specific values
-        totalEnemiesThisWave = baseEnemycount + (currentWave * incrementPerWave) + enemies.Count;
+        totalEnemiesThisWave = baseEnemycount + (currentWave * incrementPerWave);
         enemiesToSpawn = totalEnemiesThisWave;
-        timeBetweenSpawns = secondsForWaveSpawn / totalEnemiesThisWave;
+        timeBetweenSpawns = Mathf.Clamp(secondsForWaveSpawn / totalEnemiesThisWave, 1, 10);
+
 
         // Reset Timers
         waveTimer = minTimeUntilNextWave;
@@ -147,8 +151,8 @@ public class AiController : MonoBehaviour
 
     private void SpawnEnemy(Enemies type = Enemies.NULL)
     {
-        int chanceRef = currentWave;
-        if (chanceRef > chances.Count)
+        int chanceRef = currentWave - 1;
+        if (chanceRef >= chances.Count)
         {
             chanceRef = chances.Count - 1;
         }
@@ -172,8 +176,9 @@ public class AiController : MonoBehaviour
         }
 
         float rnd = Random.Range(0, 100);
-        int spawnRef = Random.Range(0, spawnPoints.Count - 1);
+        int spawnRef = Random.Range(0, spawnPoints.Count);
         int enemyRef = -1;
+
 
         if (rnd <= percentages.walkers)
         {
@@ -188,16 +193,25 @@ public class AiController : MonoBehaviour
             enemyRef = (int)Enemies.GUN;
         }
 
+        //Debug.Log((Enemies)enemyRef + " " + rnd + " " + percentages.walkers + " " + percentages.shielders + " " + percentages.gunners);
+
         enemies.Add(Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>());
 
         enemiesToSpawn--;
+    }
+
+    public void KillEnemy(AiUnit enemy)
+    {
+        enemies.Remove(enemy);
+        Destroy(enemy.gameObject);
     }
 
     private void OnValidate()
     {
         foreach (SpawnChances chance in chances)
         {
-            chance.Check();
+            // Check needs a change to fix it
+            //chance.Check();
         }
     }
 }
