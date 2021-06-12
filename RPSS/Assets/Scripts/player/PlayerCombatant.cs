@@ -8,8 +8,12 @@ public class PlayerCombatant : Combatant
 
     private void Awake()
     {
-        player = GetComponent<Player>();
+        GameObject.FindWithTag("Player");
     }
+    
+    /// <summary>
+    /// Override here to make custom death stuff
+    /// </summary>
     public override void Die()
     {
         base.Die();
