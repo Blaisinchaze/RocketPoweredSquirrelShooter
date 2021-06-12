@@ -21,6 +21,8 @@ public struct SpawnChances
 
     public void Check()
     {
+        return;
+
         float total = walkers + shielders + gunners;
 
         if (total % 1 != 0)
@@ -77,9 +79,10 @@ public class AiController : MonoBehaviour
     public List<SpawnChances> chances = new List<SpawnChances>();
 
     private int enemiesToSpawn = 0;
-    private int currentWave = 0;
     private float timeBetweenSpawns = 0;
     private int totalEnemiesThisWave = 0;
+    [SerializeField]
+    private int currentWave = 0;
     [SerializeField]
     private float waveTimer = 0;
     [SerializeField]
@@ -138,7 +141,8 @@ public class AiController : MonoBehaviour
         // Calc wave specific values
         totalEnemiesThisWave = baseEnemycount + (currentWave * incrementPerWave);
         enemiesToSpawn = totalEnemiesThisWave;
-        timeBetweenSpawns = secondsForWaveSpawn / totalEnemiesThisWave;
+        timeBetweenSpawns = Mathf.Clamp(secondsForWaveSpawn / totalEnemiesThisWave, 1, 10);
+
 
         // Reset Timers
         waveTimer = minTimeUntilNextWave;
@@ -148,7 +152,7 @@ public class AiController : MonoBehaviour
     private void SpawnEnemy(Enemies type = Enemies.NULL)
     {
         int chanceRef = currentWave;
-        if (chanceRef > chances.Count)
+        if (chanceRef >= chances.Count)
         {
             chanceRef = chances.Count - 1;
         }
@@ -203,7 +207,8 @@ public class AiController : MonoBehaviour
     {
         foreach (SpawnChances chance in chances)
         {
-            chance.Check();
+            // Check needs a change to fix it
+            //chance.Check();
         }
     }
 }

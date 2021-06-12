@@ -33,7 +33,7 @@ public class Combatant : MonoBehaviour
       CheckToggles();
    }
 
-   private void CheckToggles()
+   internal void CheckToggles()
    {
       if (kill) Die();
       if (invulnerable) health = maxHealth;

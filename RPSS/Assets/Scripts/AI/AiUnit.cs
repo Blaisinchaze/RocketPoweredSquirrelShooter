@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class AiUnit:MonoBehaviour
+public class AiUnit:Combatant
 {
-    public bool KILL;
-    [Space]
     NavGrid navGrid;
     public float chaseSpeed;
     [Space]
@@ -112,10 +110,9 @@ public class AiUnit:MonoBehaviour
 
     void Update()
     {
-        if (KILL){ Die(); }
+        CheckToggles();
 
         currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
-
 
         if (timer > 0)
         {
@@ -357,8 +354,10 @@ public class AiUnit:MonoBehaviour
             return true;
         }
 
-    private void Die()
+    public override void Die()
     {
+        Debug.Log("DIE");
+
         AiController cont;
         if (transform.parent.TryGetComponent(out cont))
         {
