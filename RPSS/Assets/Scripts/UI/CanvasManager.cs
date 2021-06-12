@@ -8,6 +8,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject InGameCanvas;
     [SerializeField] private GameObject GameOverCanvas;
     [SerializeField] private GameObject HowToCanvas;
+    [SerializeField] public GameObject TempCanvas;
     private List<GameObject> canvases = new List<GameObject>();
 
     [SerializeField] private TransitionController transitionController;
