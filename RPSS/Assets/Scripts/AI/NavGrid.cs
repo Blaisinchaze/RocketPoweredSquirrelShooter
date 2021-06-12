@@ -52,7 +52,7 @@ public class NavGrid : MonoBehaviour
         gridWorldSize.x = gridSize.x * (1/nodeSize.x);
         gridWorldSize.y = gridSize.y * (1/nodeSize.y);
 
-        Debug.Log(nodeSize + " " + gridSize + " " + gridWorldSize);
+        //Debug.Log(nodeSize + " " + gridSize + " " + gridWorldSize);
 
 
         CreateGrid();
@@ -107,7 +107,7 @@ public class NavGrid : MonoBehaviour
 
                 if (grid[i,j].pathable)
                 {
-                    Debug.Log(i + " " + j + " " + gridV3 + " " + worldPoint);
+                    //Debug.Log(i + " " + j + " " + gridV3 + " " + worldPoint);
                     if (Physics2D.BoxCast(worldPoint, nodeSize * unitNodeRatio, 0, Vector2.up, 0.01f, 1 << LayerMask.NameToLayer("Walls")))
                     {
                         grid[i, j].pathable = false;
@@ -123,7 +123,6 @@ public class NavGrid : MonoBehaviour
             gridY = (int)worldBottomLeft.y;
             j = 0;
         }
-        Debug.Log("done creating grid");
     }
 
     internal GridNode NodeFromGridSpace(Vector2Int gridSpace)
