@@ -357,7 +357,7 @@ public class AiUnit:Combatant
         if (hit = Physics2D.Raycast(transform.position, position,
             Vector3.Distance(transform.position, position), layerMask))
         {
-            Debug.Log(hit.collider.gameObject);
+            //Debug.Log(hit.collider.gameObject);
             return false;
         }
         return true;

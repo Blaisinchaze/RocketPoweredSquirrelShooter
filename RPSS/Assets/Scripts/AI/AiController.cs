@@ -193,7 +193,7 @@ public class AiController : MonoBehaviour
             enemyRef = (int)Enemies.GUN;
         }
 
-        Debug.Log((Enemies)enemyRef + " " + rnd + " " + percentages.walkers + " " + percentages.shielders + " " + percentages.gunners);
+        //Debug.Log((Enemies)enemyRef + " " + rnd + " " + percentages.walkers + " " + percentages.shielders + " " + percentages.gunners);
 
         enemies.Add(Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>());
 
