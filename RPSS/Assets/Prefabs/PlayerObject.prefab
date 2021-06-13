@@ -267,6 +267,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 3776475601556671561, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776475601556671561, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671562, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: fistControls
       value: 
