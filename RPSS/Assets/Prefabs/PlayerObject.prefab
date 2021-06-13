@@ -261,12 +261,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 408715924, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: -144
       objectReference: {fileID: 0}
     - target: {fileID: 1071594589, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_SortingOrder
-      value: -5
+      value: -150
       objectReference: {fileID: 0}
+    - target: {fileID: 3776475601556671562, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: fistControls
+      value: 
+      objectReference: {fileID: 5119819758659856931}
     - target: {fileID: 3776475601556671563, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: Components.RocketHand
       value: 
@@ -414,6 +418,10 @@ PrefabInstance:
     - target: {fileID: 8193017389098233934, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193017389098234289, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -145
       objectReference: {fileID: 0}
     - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: player
