@@ -81,7 +81,6 @@ public class RocketFistControls : Combatant, IHittable
                 break;
         }
 
-
         mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         forwardVector = transform.right;
         timer += Time.deltaTime;
@@ -99,7 +98,6 @@ public class RocketFistControls : Combatant, IHittable
                             Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                             rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                             FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
-
                         }
 
                         break;
