@@ -43,12 +43,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(currentState == GameStates.PREGAME)
-        {
-            preGameTimer -= Time.deltaTime;
-            if (preGameTimer <= 0)
-                ChangeState(GameStates.INGAME);
-        }
+        if (currentState != GameStates.PREGAME) return;
+        preGameTimer -= Time.deltaTime;
+        
+        if (preGameTimer > 0) return;
+        preGameTimer = 4.5f;
+        ChangeState(GameStates.INGAME);
+        
+
 
     }
 
@@ -73,6 +75,10 @@ public class GameManager : MonoBehaviour
         waitingForTimer = true;
         timer = 1f;
         MainCanvas.Transition(TransitionStates.FADEOUT);
+        
+        if (currentState == GameStates.PREGAME)
+            GameObject.FindWithTag("Player").GetComponent<Player>().Setup();
+
     }    
     
     public void ChangeStateWithTransition(int stateToChangeTo)
@@ -83,6 +89,9 @@ public class GameManager : MonoBehaviour
         waitingForTimer = true;
         timer = 2f;
         MainCanvas.Transition(TransitionStates.FADEOUT);
+        
+        if (currentState == GameStates.PREGAME)
+            GameObject.FindWithTag("Player").GetComponent<Player>().Setup();
     }
 
     public void PauseGameSpeed(bool pause)
