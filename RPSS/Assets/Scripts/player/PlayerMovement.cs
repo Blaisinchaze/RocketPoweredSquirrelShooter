@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Customisable")] 
     public float moveSpeed;
+    public float shootingSlowModifier;
     
     [SerializeField] float tiltAmount = 0;
 
@@ -78,7 +79,14 @@ public class PlayerMovement : MonoBehaviour
         SnapMovementToNeutral();
         if (movementDirection == Vector2.zero) return;
         var rb  = player.Components.PlayerRb;
-        var adjustedSpeed = moveSpeed * Time.deltaTime;
+        var adjustedSpeed = moveSpeed;
+
+        if (fistControls.firing && player.currentState == Player.PlayerStates.Combined)
+        {
+            adjustedSpeed *= shootingSlowModifier;
+        }
+
+        adjustedSpeed *= Time.deltaTime;
         rb.velocity = movementDirection * adjustedSpeed;
     }
 
