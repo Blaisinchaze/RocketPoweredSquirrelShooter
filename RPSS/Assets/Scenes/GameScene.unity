@@ -768,6 +768,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 661450434360385495, guid: a4ce67991ad986f41899c473b811fbf6, type: 3}
+      propertyPath: chances.Array.data[4].gunners
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 661450434360385495, guid: a4ce67991ad986f41899c473b811fbf6, type: 3}
+      propertyPath: chances.Array.data[4].walkers
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 661450434360385495, guid: a4ce67991ad986f41899c473b811fbf6, type: 3}
+      propertyPath: chances.Array.data[4].shielders
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ce67991ad986f41899c473b811fbf6, type: 3}
 --- !u!1001 &6278581209968740608

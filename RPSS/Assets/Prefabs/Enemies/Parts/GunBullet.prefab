@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 163451330738306646}
   - component: {fileID: 6710321108206623827}
   - component: {fileID: -4359843087669740297}
+  - component: {fileID: 1224958381096337507}
   m_Layer: 8
   m_Name: GunBullet
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 20
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 0.10734272, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.085289, a: 0.7490196}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -136,3 +137,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 1
   enemyBullet: 1
+--- !u!114 &1224958381096337507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524077618682415037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e426af39ef1e740a06f12c8829e1e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constantlyUpdate: 1
+  offset: 0
+  sprites:
+  - {fileID: 7892363705128652123}

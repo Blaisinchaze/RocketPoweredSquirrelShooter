@@ -54,12 +54,11 @@ MonoBehaviour:
   invulnerable: 0
   enemyType: 0
   range: 0.75
-  attackDelay: 2
-  moveSpeed: 2
+  attackDelay: 1
+  moveSpeed: 2.5
   minDistance: 0.1
   pathUpdateRate: 0.05
   colliderRadius: 0.125
-  maxNodesToSimplify: 4
   bodyAnimator: {fileID: 3323864219793342870}
 --- !u!58 &1700293764896474490
 CircleCollider2D:
