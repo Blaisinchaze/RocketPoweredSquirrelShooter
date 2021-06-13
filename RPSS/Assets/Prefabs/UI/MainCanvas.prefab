@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 817, y: -94}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &229373096
 CanvasRenderer:
@@ -59,15 +59,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8584906, g: 0.82360274, b: 0.14173192, a: 1}
+  m_Color: {r: 1, g: 0.6627451, b: 0.2784314, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5021023175183114498, guid: 303c3a48c720eb8489c2339d3008aa9e, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 60b3d10f55756c14faec164e0c063280, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1471,9 +1471,6 @@ MonoBehaviour:
   healthBar: {fileID: 1723312183}
   RoundNumber: {fileID: 910957850}
   AmmoNumber: {fileID: 1995681626}
-  Player: {fileID: 0}
-  rocketFist: {fileID: 0}
-  roundController: {fileID: 0}
 --- !u!1 &1041100600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,7 +3041,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 51.8, y: 47.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1995681627
 CanvasRenderer:
@@ -3101,10 +3098,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 27.45
+  m_fontSizeBase: 21.4
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

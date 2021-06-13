@@ -11,11 +11,14 @@ public class PlayerHudManager : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI RoundNumber;
     [SerializeField] private TextMeshProUGUI AmmoNumber;
-    [SerializeField] private Player Player;
-    [SerializeField] private RocketFistControls rocketFist;
-    [SerializeField] private AiController roundController;
+    private Player Player;
+    private RocketFistControls rocketFist;
+    private AiController roundController;
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        rocketFist = GameObject.FindGameObjectWithTag("Hand").GetComponent<RocketFistControls>();
+        roundController = FindObjectOfType<AiController>();
         ResetHud();
     }
 
@@ -32,7 +35,7 @@ public class PlayerHudManager : MonoBehaviour
                 AmmoNumber.text = "Max";
                 break;
             case Player.PlayerStates.Split:
-                AmmoNumber.text = rocketFist.currentAmountOfBullets.ToString();
+                AmmoNumber.text = (rocketFist.currentAmountOfBullets.ToString() + " / " + (rocketFist.MaxAmountOfBullets.ToString()));
                 break;
             default:
                 break;
