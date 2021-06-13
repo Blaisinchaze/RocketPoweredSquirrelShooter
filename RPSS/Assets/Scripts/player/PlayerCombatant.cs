@@ -23,6 +23,5 @@ public class PlayerCombatant : Combatant
     {
         base.GetHit(damageValue);
         FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/Hit");
-
     }
 }
