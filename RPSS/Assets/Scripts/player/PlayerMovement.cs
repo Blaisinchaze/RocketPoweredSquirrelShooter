@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float combineDistance = 10f;
     
     [Header("Customisable")] 
-    public float moveSpeed = 40f;
+    public float moveSpeed;
     
     private void CheckInitialisedValues()
     {
