@@ -24,7 +24,7 @@ public class Combatant : MonoBehaviour
    public bool invulnerable;
 
    // Audio
-   private string hitSound = "event:/Enemies/Hit2";
+   private string hitSound = "event:/Enemies/Hit";
    private List<EventInstance> hitSoundsInstances = new List<EventInstance>();
    private int hiterator = 0;
 
@@ -85,6 +85,7 @@ public class Combatant : MonoBehaviour
    public virtual void GetHit(int damageValue)
    {
       PlaySound();
+  
       if (invulnerable) return;
       health -= damageValue;
    }
