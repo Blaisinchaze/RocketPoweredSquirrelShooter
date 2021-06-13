@@ -12,7 +12,6 @@ public class Combatant : MonoBehaviour
    
    // Combat stats
    
-   [HideInInspector]
    public bool isAlive;
    public int health;
    public int maxHealth = 5;
