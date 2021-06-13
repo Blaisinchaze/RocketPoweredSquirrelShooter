@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] float tiltAmount = 0;
 
-    private void CheckInitialisedValues()
+    public void CheckInitialisedValues()
     {
         if (moveSpeed.Equals(0))
         {
@@ -51,12 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         player = GetComponent<Player>();
     }
-
-    private void Start()
-    {
-        CheckInitialisedValues();
-    }
-
+    
     private void FixedUpdate()
     {
         Movement();
