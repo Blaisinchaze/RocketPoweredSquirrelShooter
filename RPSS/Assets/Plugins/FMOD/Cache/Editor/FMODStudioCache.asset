@@ -57,7 +57,11 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
+<<<<<<< HEAD
   lastModified: 637591957280863994
+=======
+  lastModified: 637591955905368502
+>>>>>>> main
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -219,7 +223,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 145
+  Length: 109
 --- !u!114 &-5750028497945809668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +446,11 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
+<<<<<<< HEAD
   lastModified: 637591735426298647
+=======
+  lastModified: 637591955905397777
+>>>>>>> main
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -609,7 +617,11 @@ MonoBehaviour:
   - {fileID: -7521232649787677637}
   StringsBanks:
   - {fileID: -1684722795546874789}
+<<<<<<< HEAD
   stringsBankWriteTime: 637591735426298647
+=======
+  stringsBankWriteTime: 637591955905397777
+>>>>>>> main
   cacheVersion: 6
 --- !u!114 &175254342591727306
 MonoBehaviour:
@@ -633,7 +645,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 136
+  Length: 200
 --- !u!114 &336982032965293109
 MonoBehaviour:
   m_ObjectHideFlags: 0

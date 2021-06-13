@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float combineDistance = 10f;
     
     [Header("Customisable")] 
-    public float moveSpeed = 40f;
+    public float moveSpeed;
     
     private void CheckInitialisedValues()
     {
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
     public void ReloadGun()
     {
         player.Components.RocketHand.GetComponent<RocketFistControls>().fixGun();
-        player.TogglePlayerState();
+        player.SetPlayerState(Player.PlayerStates.Combined);
     }
     
     #region InputEvents
