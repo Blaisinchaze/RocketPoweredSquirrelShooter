@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -147,6 +148,16 @@ public class PlayerMovement : MonoBehaviour
         Quaternion q = Quaternion.Euler(desiredTilt);
         transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * 5);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Pickup"))
+        {
+            player.Components.playerCombat.health += 2;
+            other.gameObject.SetActive(false);
+        }
+    }
+
     #region InputEvents
     
     public void Move(InputAction.CallbackContext movement)
