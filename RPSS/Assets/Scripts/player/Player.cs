@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         {
             case PlayerStates.Combined:
                 Components.Inputs.SwitchCurrentActionMap("Gameplay Combined");
+                Components.RocketHand.GetComponent<RocketFistControls>().Reload();
                 break;
             case PlayerStates.Split:
                 Components.Inputs.SwitchCurrentActionMap("Gameplay Separate");
@@ -83,6 +84,7 @@ public class Player : MonoBehaviour
     }
     
 }
+[Serializable]
 public struct PlayerComponents
 {
     public Transform PlayerTransform;
