@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public Transform rocketHandSpawnPoint;
     private void Awake()
     {
-        Components.PlayerController = GetComponent<CharacterController>();
+        Components.PlayerRb = GetComponent<Rigidbody2D>();
         Components.PlayerTransform = transform;
         Components.Inputs = GetComponentInParent<PlayerInput>();
         //Components.RocketHand = Instantiate(rocketHandPrefab, rocketHandSpawnPoint.position, rocketHandPrefab.transform.rotation);
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
 public struct PlayerComponents
 {
     public Transform PlayerTransform;
-    public CharacterController PlayerController;
+    public Rigidbody2D PlayerRb;
     public GameObject RocketHand;
     public PlayerInput Inputs;
     public PlayerCombatant playerCombat;
