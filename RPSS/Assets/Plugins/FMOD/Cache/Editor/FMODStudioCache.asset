@@ -13,16 +13,12 @@ MonoBehaviour:
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
   Path: event:/PlayerRobot/Body/Explosion
-  guid: 3e7c29fc37350142a2829752584120d7
-  Banks:
-  - {fileID: 7034585265365826209}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 1300
+  Name: 
+  StudioPath: 
+  lastModified: 0
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-8168985193700835376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,8 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PlayerRobot/Hand/Shot
   guid: 12b493f5c96c1c40b9b3188170a1a202
-  Banks:
-  - {fileID: 7034585265365826209}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -132,7 +127,7 @@ MonoBehaviour:
   - {fileID: 7034585265365826209}
   EditorEvents:
   - {fileID: -7536442575383428934}
-  - {fileID: -8313971862180025908}
+  - {fileID: 0}
   - {fileID: 3980900784080468873}
   - {fileID: -6880445116434709899}
   - {fileID: -8168985193700835376}
@@ -143,7 +138,7 @@ MonoBehaviour:
   - {fileID: 7034585265365826209}
   StringsBanks:
   - {fileID: 1370142958068590592}
-  stringsBankWriteTime: 637592055799599155
+  stringsBankWriteTime: 637592062847269291
   cacheVersion: 6
 --- !u!114 &1370142958068590592
 MonoBehaviour:
@@ -160,7 +155,7 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637592055799599155
+  lastModified: 637592062847269291
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -204,7 +199,7 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637592055799569880
+  lastModified: 637592062847230251
   LoadResult: 0
   FileSizes: []
   Exists: 1

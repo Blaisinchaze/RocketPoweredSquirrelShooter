@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        music = FMODUnity.RuntimeManager.CreateInstance(musicPath);
     }
 
     void Start()
     {
+        music = FMODUnity.RuntimeManager.CreateInstance(musicPath);
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>();
         ChangeState(GameStates.INMENU);
         music.start();
