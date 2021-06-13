@@ -31,6 +31,7 @@ public class AiUnit:Combatant
     //private float timer = 0;
     private GameObject targetPlayer;
     private Ai_Weapon weapon;
+    private Animator bodyAnimator;
 
     private List<Collider2D> colliders = new List<Collider2D>();
 
@@ -76,6 +77,7 @@ public class AiUnit:Combatant
         prevPos = transform.position;
 
         weapon = GetComponentInChildren<Ai_Weapon>();
+        bodyAnimator = GetComponentInChildren<Animator>();
     }
 
     private void UpdateDirection()
@@ -83,54 +85,38 @@ public class AiUnit:Combatant
         moving = true;
 
         float x;
-        float xClamped;
         float y;
-        float yClamped;
+
         if (currentRoute.Count <= 0)
         {
-            Vector3 diff = transform.position - targetPlayer.transform.position;
+            Vector3 diff = targetPlayer.transform.position - transform.position;
             x = diff.x;
             y = diff.y;
         }
         else
         {
-            Vector2Int diff = currentGridPosition - currentRoute[0].gridPosition;
+            Vector2Int diff = currentRoute[0].gridPosition - currentGridPosition;
             x = diff.x;
             y = diff.y;
         }
-
-        xClamped = Mathf.Clamp(x, -1, 1);
-        yClamped = Mathf.Clamp(y, -1, 1);
-
-        if (Mathf.Abs(xClamped) > Mathf.Abs(yClamped))
-        {
-            if (xClamped > 0)
-            {
-                direction = Facing.LEFT;
-            }
-            else if (xClamped < 0)
-            {
-                direction = Facing.RIGHT;
-            }
-        }
-        else
-        {
-            if (yClamped > 0)
-            {
-                direction = Facing.DOWN;
-            }
-            else if (yClamped < 0)
-            {
-                direction = Facing.UP;
-            }
-        }
-
-        //anim.SetInteger("Direction", (int)direction);
 
         //if (ph.transform != this.transform)
         //{
         //    ph.transform.localRotation = Quaternion.LookRotation(new Vector3(x,y,0) , transform.forward);
         //}
+
+        Vector2 movementDirection = new Vector2(x, y);
+
+        if (movementDirection == Vector2.zero)
+        {
+            return;
+        }
+
+        bodyAnimator.SetFloat("Horizontal", movementDirection.x);
+        bodyAnimator.SetFloat("Vertical", movementDirection.y);
+        bodyAnimator.SetFloat("Speed", movementDirection.sqrMagnitude);
+
+        
     }
 
     void Update()
@@ -143,6 +129,7 @@ public class AiUnit:Combatant
         UpdateAction();
 
         UpdateDirection();
+
         //if (moving == false)
         //{
         //    ph.SetVariable(0);
