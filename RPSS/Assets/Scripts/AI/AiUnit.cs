@@ -19,6 +19,7 @@ public class AiUnit:Combatant
     public float range;
     public float attackDelay;
     public float moveSpeed;
+    public GameObject deathExplosion;
     [Space]
     public float minDistance = 0.05f;
     public float pathUpdateRate;
@@ -405,6 +406,8 @@ public class AiUnit:Combatant
     public override void Die()
     {
         Debug.Log("DIE");
+        Instantiate(deathExplosion, transform.position, Quaternion.identity);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Body/Explosion");
 
         AiController cont;
         if (transform.parent.TryGetComponent(out cont))

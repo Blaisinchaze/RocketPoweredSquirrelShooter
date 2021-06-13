@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameStates{INMENU, HOWTO, PREGAME, INGAME, PAUSED, GAMELOSE, NULL }
 public class GameManager : MonoBehaviour
@@ -20,11 +21,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        music = FMODUnity.RuntimeManager.CreateInstance(musicPath);
     }
 
     void Start()
     {
+        music = FMODUnity.RuntimeManager.CreateInstance(musicPath);
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>();
         ChangeState(GameStates.INMENU);
         music.start();
@@ -107,5 +108,11 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }
