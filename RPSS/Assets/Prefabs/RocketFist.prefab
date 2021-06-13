@@ -106,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 556cebe7c15d9b7408de5e58b3f1dcb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,12 +156,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca66c1a53b5ca24885176ea191b51e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlive: 0
+  health: 0
+  maxHealth: 0
+  kill: 0
+  invulnerable: 0
+  MaxAmountOfBullets: 100
   moveSpeed: 7
   turnSpeed: 250
+  currentTurnSpeed: 2
   firing: 0
+  ratPrefab: {fileID: 2644632401168029385, guid: acb4dfe0a3c56c942a86af31b4087935, type: 3}
+  fistExplosion: {fileID: 21834783198813013, guid: ef8142d7d49c3cd4abd85af089d04a14, type: 3}
   BulletPrefab: {fileID: 4524077618682415037, guid: f441b0a0679de3b4ba407dcb8998136f, type: 3}
   bulletSpawnPoint: {fileID: 639150115156405520}
+  firingClip: {fileID: 0}
   player: {fileID: 0}
+  attachmentCircle: {fileID: 0}
+  attachmentPoint: {fileID: 0}
 --- !u!50 &8193017389098234290
 Rigidbody2D:
   serializedVersion: 4
@@ -284,6 +296,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 46b21631-3a44-4f9b-a3c7-ba1f43dba1d5
     m_ActionName: Menu/Back[/Keyboard/escape,/Mouse/backButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e4724b3-87dc-4016-9d5f-5c3ad98f83cb
+    m_ActionName: Gameplay Combined/Fist Firing[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a7948fa8-2193-401b-b937-6c00e3f3a555
+    m_ActionName: Gameplay Separate/Detonate Fist[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard + Mouse
   m_DefaultActionMap: Gameplay Separate
