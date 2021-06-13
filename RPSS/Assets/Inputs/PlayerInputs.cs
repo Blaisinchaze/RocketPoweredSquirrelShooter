@@ -424,6 +424,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Detonate Fist"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7948fa8-2193-401b-b937-6c00e3f3a555"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -745,6 +753,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Fist Firing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72107f33-2c14-4d68-bd28-b6ed8bbf7901"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Detonate Fist"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -890,6 +909,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_GameplaySeparate_Interact = m_GameplaySeparate.FindAction("Interact", throwIfNotFound: true);
         m_GameplaySeparate_Separate = m_GameplaySeparate.FindAction("Separate", throwIfNotFound: true);
         m_GameplaySeparate_FistFiring = m_GameplaySeparate.FindAction("Fist Firing", throwIfNotFound: true);
+        m_GameplaySeparate_DetonateFist = m_GameplaySeparate.FindAction("Detonate Fist", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Target = m_Menu.FindAction("Target", throwIfNotFound: true);
@@ -1014,6 +1034,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_GameplaySeparate_Interact;
     private readonly InputAction m_GameplaySeparate_Separate;
     private readonly InputAction m_GameplaySeparate_FistFiring;
+    private readonly InputAction m_GameplaySeparate_DetonateFist;
     public struct GameplaySeparateActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1023,6 +1044,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_GameplaySeparate_Interact;
         public InputAction @Separate => m_Wrapper.m_GameplaySeparate_Separate;
         public InputAction @FistFiring => m_Wrapper.m_GameplaySeparate_FistFiring;
+        public InputAction @DetonateFist => m_Wrapper.m_GameplaySeparate_DetonateFist;
         public InputActionMap Get() { return m_Wrapper.m_GameplaySeparate; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1047,6 +1069,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @FistFiring.started -= m_Wrapper.m_GameplaySeparateActionsCallbackInterface.OnFistFiring;
                 @FistFiring.performed -= m_Wrapper.m_GameplaySeparateActionsCallbackInterface.OnFistFiring;
                 @FistFiring.canceled -= m_Wrapper.m_GameplaySeparateActionsCallbackInterface.OnFistFiring;
+                @DetonateFist.started -= m_Wrapper.m_GameplaySeparateActionsCallbackInterface.OnDetonateFist;
+                @DetonateFist.performed -= m_Wrapper.m_GameplaySeparateActionsCallbackInterface.OnDetonateFist;
+                @DetonateFist.canceled -= m_Wrapper.m_GameplaySeparateActionsCallbackInterface.OnDetonateFist;
             }
             m_Wrapper.m_GameplaySeparateActionsCallbackInterface = instance;
             if (instance != null)
@@ -1066,6 +1091,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @FistFiring.started += instance.OnFistFiring;
                 @FistFiring.performed += instance.OnFistFiring;
                 @FistFiring.canceled += instance.OnFistFiring;
+                @DetonateFist.started += instance.OnDetonateFist;
+                @DetonateFist.performed += instance.OnDetonateFist;
+                @DetonateFist.canceled += instance.OnDetonateFist;
             }
         }
     }
@@ -1152,6 +1180,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSeparate(InputAction.CallbackContext context);
         void OnFistFiring(InputAction.CallbackContext context);
+        void OnDetonateFist(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

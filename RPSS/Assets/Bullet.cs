@@ -34,13 +34,20 @@ public class Bullet : MonoBehaviour
         }
 
         var hit = collision.GetComponent<Combatant>();
-        Debug.Log("Bullet hit " + collision.gameObject);
         if (hit != null)
         {
-            Debug.Log("Bullet hit " + collision.gameObject);
             hit.GetHit(damageAmount);
         }
 
-        Destroy(this.gameObject, 0.25f);
+
+        if (enemyBullet)
+        {
+            Destroy(GetComponent<Collider>());
+            Destroy(gameObject, 0.05f);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

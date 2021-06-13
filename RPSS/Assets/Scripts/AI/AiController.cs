@@ -111,7 +111,7 @@ public class AiController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (gm.currentState != GameStates.INGAME)
+        if (gm != null && gm.currentState != GameStates.INGAME)
         {
             return;
         }
