@@ -15,7 +15,7 @@ public class starMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float width = (starSpeed + stars.size.x);
+        float width = ((starSpeed * Time.deltaTime) + stars.size.x);
         stars.size = new Vector2(width,stars.size.y);
     }
 }
