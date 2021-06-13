@@ -411,6 +411,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Detonate Fist",
+                    "type": "Button",
+                    "id": "a7948fa8-2193-401b-b937-6c00e3f3a555",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -730,6 +738,17 @@
                     "processors": "",
                     "groups": "Keyboard + Mouse",
                     "action": "Fist Firing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72107f33-2c14-4d68-bd28-b6ed8bbf7901",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard + Mouse",
+                    "action": "Detonate Fist",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

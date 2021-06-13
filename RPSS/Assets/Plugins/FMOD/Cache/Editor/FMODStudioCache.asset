@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637591096637199950
+  lastModified: 637591456907720933
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -34,12 +34,35 @@ MonoBehaviour:
   Path: RPSS fMod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637591096637199950
+  lastModified: 637591456907750204
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 700
+    Value: 1012
   Exists: 1
+--- !u!114 &-4221305498778859164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Explosion
+  guid: 47a447c00ae1b540bcd9d17a3aa2dcbd
+  Banks:
+  - {fileID: -8396614807278445077}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 275
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,11 +78,132 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: -5794567531542706361}
   - {fileID: -8396614807278445077}
-  EditorEvents: []
+  EditorEvents:
+  - {fileID: 9058941537081173530}
+  - {fileID: 86452132200855042}
+  - {fileID: -4221305498778859164}
+  - {fileID: 7362603019085460775}
+  - {fileID: 2485808046357840039}
+  - {fileID: 5595837950616526070}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8396614807278445077}
   StringsBanks:
   - {fileID: -5794567531542706361}
-  stringsBankWriteTime: 637591096637199950
+  stringsBankWriteTime: 637591456907750204
   cacheVersion: 6
+--- !u!114 &86452132200855042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerRobot/Body/Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerRobot/Body/Explosion
+  guid: 3e7c29fc37350142a2829752584120d7
+  Banks:
+  - {fileID: -8396614807278445077}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 190
+--- !u!114 &2485808046357840039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Hit2
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Hit2
+  guid: b3e3a975e8fe974e83f63ffe9bd8aa66
+  Banks:
+  - {fileID: -8396614807278445077}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 220
+--- !u!114 &5595837950616526070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Hit
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Hit
+  guid: b9847bcc25bfa04f9812df7f484ae609
+  Banks:
+  - {fileID: -8396614807278445077}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 145
+--- !u!114 &7362603019085460775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerRobot/Hand/Laser
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerRobot/Hand/Laser
+  guid: 9898c92ee8fa404981af7d65b5b48203
+  Banks:
+  - {fileID: -8396614807278445077}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 190
+--- !u!114 &9058941537081173530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerRobot/Hand/Shot
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerRobot/Hand/Shot
+  guid: 12b493f5c96c1c40b9b3188170a1a202
+  Banks:
+  - {fileID: -8396614807278445077}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 91

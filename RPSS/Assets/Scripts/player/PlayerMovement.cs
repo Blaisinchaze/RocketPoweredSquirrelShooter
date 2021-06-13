@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
 
-        var check = true; //Vector3.Distance(transform.position, player.Components.RocketHand.transform.position) < combineDistance;
+        var check = Vector3.Distance(transform.position, player.Components.RocketHand.transform.position) < combineDistance;
         if (check)
         {
             player.TogglePlayerState();
@@ -99,6 +99,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void ReloadGun()
+    {
+        player.Components.RocketHand.GetComponent<RocketFistControls>().fixGun();
+        player.TogglePlayerState();
     }
     
     #region InputEvents
