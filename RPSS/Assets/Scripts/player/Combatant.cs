@@ -62,12 +62,15 @@ public class Combatant : MonoBehaviour
    {
       if (invulnerable) return;
       health -= damageValue;
+      FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/Hit2");
    }
 
    public void GetHit(Bullet bullet)
    {
       if (invulnerable) return;
       health -= bullet.damageAmount;
+      FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/Hit2");
+
    }
 
 }
