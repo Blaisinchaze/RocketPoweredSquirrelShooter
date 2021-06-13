@@ -8,14 +8,7 @@ public class RotateAttachmentCircle : MonoBehaviour
 {
     Vector2 mousePos;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 lookDir = mousePos - new Vector2(transform.position.x, transform.position.y);
