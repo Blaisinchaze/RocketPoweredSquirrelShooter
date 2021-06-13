@@ -23,6 +23,7 @@ public class RocketFistControls : Combatant, IHittable
     public GameObject ratPrefab;
     public GameObject fistExplosion;
     public GameObject jetFlame;
+    public GameObject muzzleFlash;
 
     public GameObject BulletPrefab;
     [SerializeField]
@@ -172,10 +173,12 @@ public class RocketFistControls : Combatant, IHittable
         if (context.started)
         {
             firing = true;
+            muzzleFlash.SetActive(true);
         }
         if (context.canceled)
         {
             firing = false;
+            muzzleFlash.SetActive(false);
         }
     }
 
