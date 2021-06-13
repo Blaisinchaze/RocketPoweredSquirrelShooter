@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// The maximum distance the player and hand can be apart and still combine
     /// </summary>
-    [SerializeField] private float combineDistance = 10f;
+    [SerializeField] private float combineDistance = 5f;
     
     [Header("Customisable")] 
     public float moveSpeed;
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (combineDistance.Equals(0))
         {
-            combineDistance = 10f;
+            combineDistance = 5f;
             Debug.LogWarning("Player combineDistance not assigned! Resetting to default value...");
         }
 
@@ -54,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
-        Movement();
+        if (GameManager.instance.currentState == GameStates.INGAME)
+            Movement();
     }
 
     private void HandleAnimation()
