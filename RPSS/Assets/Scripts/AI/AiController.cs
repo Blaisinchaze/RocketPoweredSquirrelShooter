@@ -74,12 +74,17 @@ public class AiController : MonoBehaviour
     public int secondsForWaveSpawn;
     public int minTimeUntilNextWave;
     [Space]
+    public int hpIncrement;
+    public float speedIncrement;
+    public int speedIncrementFrequency;
+    [Space]
     public List<GameObject> prefabs = new List<GameObject>();
     [Space]
     public List<SpawnChances> chances = new List<SpawnChances>();
 
     private int enemiesToSpawn = 0;
     private float timeBetweenSpawns = 0;
+    private float currentSpeedBoost = 0;
     private int totalEnemiesThisWave = 0;
     [SerializeField]
     public int currentWave = 0;
@@ -212,7 +217,16 @@ public class AiController : MonoBehaviour
     {
         spawnPoints[spawnRef].transform.parent.GetComponent<Animator>().SetTrigger("Play");
         yield return new WaitForSeconds(1);
-        enemies.Add(Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>());
+        AiUnit enemy = Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>();
+
+        enemy.maxHealth += hpIncrement * currentWave;
+        enemy.health = enemy.maxHealth;
+        if (currentWave % speedIncrementFrequency == 0 && currentWave != 0)
+        {
+            enemy.moveSpeed += speedIncrement * (currentWave / speedIncrementFrequency);
+        }
+
+        enemies.Add(enemy);
 
     }
 

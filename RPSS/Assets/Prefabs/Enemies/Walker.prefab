@@ -56,9 +56,9 @@ MonoBehaviour:
   range: 1
   attackDelay: 1
   moveSpeed: 3.5
-  minDistance: 0.1
-  pathUpdateRate: 0.5
-  colliderRadius: 0.05
+  minDistance: 0.05
+  pathUpdateRate: 1.25
+  colliderRadius: 0.1
   bodyAnimator: {fileID: 3323864219793342870}
   state: 0
 --- !u!58 &1700293764896474490
