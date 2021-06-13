@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// The maximum distance the player and hand can be apart and still combine
     /// </summary>
-    [SerializeField] private float combineDistance = 10f;
+    [SerializeField] private float combineDistance = 5f;
     
     [Header("Customisable")] 
     public float moveSpeed;
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (combineDistance.Equals(0))
         {
-            combineDistance = 10f;
+            combineDistance = 5f;
             Debug.LogWarning("Player combineDistance not assigned! Resetting to default value...");
         }
 
@@ -55,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
-        Movement();
+        if (GameManager.instance.currentState == GameStates.INGAME)
+            Movement();
     }
 
     private void HandleAnimation()
@@ -154,6 +156,16 @@ public class PlayerMovement : MonoBehaviour
         Quaternion q = Quaternion.Euler(desiredTilt);
         transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * 5);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Pickup"))
+        {
+            player.Components.playerCombat.health += 2;
+            other.gameObject.SetActive(false);
+        }
+    }
+
     #region InputEvents
     
     public void Move(InputAction.CallbackContext movement)
