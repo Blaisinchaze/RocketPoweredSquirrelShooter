@@ -2081,8 +2081,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyBar: {fileID: 993122446}
   healthBar: {fileID: 1723312183}
+  energyBarColor: {fileID: 1590514791}
   RoundNumber: {fileID: 910957850}
   AmmoNumber: {fileID: 1995681626}
+  dangerColor: {r: 0.8207547, g: 0.034843344, b: 0.034843344, a: 1}
 --- !u!1 &1041100600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,8 +2922,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.9999847, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: 2.5, y: 0}
+  m_SizeDelta: {x: -5.0000076, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1590514789
 GameObject:
@@ -4207,8 +4209,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: 2.5, y: 0}
+  m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &74628704523552161
 GameObject:
