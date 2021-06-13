@@ -8,8 +8,10 @@ public class PlayerHudManager : MonoBehaviour
 {
 
     [SerializeField] private Slider energyBar;
+    [SerializeField] private Slider energyBar2;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Image energyBarColor;
+    [SerializeField] private Image energyBar2Color;
     [SerializeField] private TextMeshProUGUI RoundNumber;
     [SerializeField] private TextMeshProUGUI AmmoNumber;
     private Player Player;
@@ -30,10 +32,17 @@ public class PlayerHudManager : MonoBehaviour
     {
         RoundNumber.text = roundController.currentWave.ToString();
         energyBar.value = rocketFist.currentEnergyValue;
+        energyBar2.value = rocketFist.currentEnergyValue;
         if (energyBar.value < energyBar.maxValue/2)
+        {
             energyBarColor.color = dangerColor;
+            energyBar2Color.color = dangerColor;
+        }
         else
+        {
             energyBarColor.color = startingColor;
+            energyBar2Color.color = startingColor;
+        }
 
         if (healthBar.value != Player.Components.playerCombat.health)
         {
@@ -43,8 +52,10 @@ public class PlayerHudManager : MonoBehaviour
         {
             case Player.PlayerStates.Combined:            
                 AmmoNumber.text = "Max";
+                energyBar2.gameObject.SetActive(false);
                 break;
             case Player.PlayerStates.Split:
+                energyBar2.gameObject.SetActive(true);
                 AmmoNumber.text = (rocketFist.currentAmountOfBullets.ToString() + " / " + (rocketFist.MaxAmountOfBullets.ToString()));
                 break;
             default:
@@ -57,6 +68,8 @@ public class PlayerHudManager : MonoBehaviour
         healthBar.maxValue = Player.Components.playerCombat.maxHealth;
         healthBar.value = healthBar.maxValue;
         energyBar.maxValue = rocketFist.maxEnergyValue;
+        energyBar2.maxValue = rocketFist.maxEnergyValue;
         energyBar.value = rocketFist.maxEnergyValue;
+        energyBar2.value = rocketFist.maxEnergyValue;
     }
 }
