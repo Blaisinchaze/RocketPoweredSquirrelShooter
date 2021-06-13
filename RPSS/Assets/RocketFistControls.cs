@@ -58,6 +58,7 @@ public class RocketFistControls : Combatant, IHittable
                             Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                             rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                             FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
                         }
 
                         break;
@@ -70,6 +71,8 @@ public class RocketFistControls : Combatant, IHittable
                                 Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                                 rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
+                                //FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                                 currentAmountOfBullets--;
                             }
                         }
@@ -139,6 +142,7 @@ public class RocketFistControls : Combatant, IHittable
     public override void Die()
     {
         GameObject go = Instantiate(fistExplosion, transform.position, Quaternion.identity);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Body/Explosion");
         Destroy(go, 10);
         Instantiate(ratPrefab, transform.position, Quaternion.identity);
         GetComponent<SpriteRenderer>().enabled = false;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 public class Combatant : MonoBehaviour
@@ -14,7 +15,7 @@ public class Combatant : MonoBehaviour
    [HideInInspector]
    public bool isAlive;
    public int health;
-   public int maxHealth;
+   public int maxHealth = 5;
    
    // For testing and messing around
    
@@ -22,19 +23,42 @@ public class Combatant : MonoBehaviour
    public bool kill;
    public bool invulnerable;
 
+   // Audio
+   private string hitSound = "event:/Enemies/Hit";
+   private List<EventInstance> hitSoundsInstances = new List<EventInstance>();
+   private int hiterator = 0;
 
-   private void Awake()
+   protected void Awake()
    {
       myRenderer = GetComponent<Renderer>();
       myTransform = GetComponent<Transform>();
-   }
+      if (health > maxHealth) maxHealth = health;
 
-   private void Update()
+   }
+   
+   protected virtual void Update()
    {
       CheckToggles();
       CheckHealth();
+      InitSounds();
    }
 
+   private void InitSounds()
+   {
+      if (hitSoundsInstances.Count > 0) return;
+      for (int i = 0; i < maxHealth; i++)
+      {
+         var sound = FMODUnity.RuntimeManager.CreateInstance(hitSound);
+         hitSoundsInstances.Add(sound);
+      }
+   }
+
+   private void PlaySound()
+   {
+      if (hiterator > hitSoundsInstances.Count - 1) hiterator = 0;
+      hitSoundsInstances[hiterator].start();
+      hiterator++;
+   }
    internal void CheckToggles()
    {
       if (kill) Die();
@@ -60,14 +84,18 @@ public class Combatant : MonoBehaviour
    /// </summary>
    public virtual void GetHit(int damageValue)
    {
+      PlaySound();
+  
       if (invulnerable) return;
       health -= damageValue;
    }
 
    public void GetHit(Bullet bullet)
    {
+      PlaySound();
       if (invulnerable) return;
       health -= bullet.damageAmount;
+
    }
 
 }

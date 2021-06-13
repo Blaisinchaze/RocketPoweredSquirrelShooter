@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float combineDistance = 10f;
     
     [Header("Customisable")] 
-    public float moveSpeed = 10f;
+    public float moveSpeed = 40f;
     
     [SerializeField] float tiltAmount = 0;
 
@@ -32,15 +32,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveSpeed.Equals(0))
         {
-            moveSpeed = 10f;
+            moveSpeed = 40f;
             Debug.LogWarning("Player moveSpeed not assigned! Resetting to default value...");
         }
-
         if (combineDistance.Equals(0))
         {
             combineDistance = 10f;
             Debug.LogWarning("Player combineDistance not assigned! Resetting to default value...");
         }
+
+        moveSpeed *= 10f;
     }
 
     private void Awake()
@@ -76,13 +77,30 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         HandleAnimation();
+        SnapMovementToNeutral();
         if (movementDirection == Vector2.zero) return;
-        
-        var controller = player.Components.PlayerController;
+        var rb  = player.Components.PlayerRb;
         var adjustedSpeed = moveSpeed * Time.deltaTime;
-        controller.Move(movementDirection * adjustedSpeed);
+        rb.velocity = movementDirection * adjustedSpeed;
     }
-    
+
+    /// <summary>
+    /// Resets velocity to neutral when opposing inputs are pressed to prevent sliding
+    /// </summary>
+    private void SnapMovementToNeutral()
+    {
+        var rb = player.Components.PlayerRb;
+        if (rb.velocity.x < 0 && movementDirection.x > 0) 
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        if (rb.velocity.y < 0 && movementDirection.y > 0) 
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        if (!rb.velocity.x.Equals(0) && movementDirection.x.Equals(0)) 
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        if (!rb.velocity.y.Equals(0) && movementDirection.y.Equals(0)) 
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        
+
+    }
     /// <summary>
     /// If the player is combined, swap states. Otherwise, make sure they are close enough before they combine.
     /// </summary>
@@ -107,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
     public void ReloadGun()
     {
         player.Components.RocketHand.GetComponent<RocketFistControls>().fixGun();
-        player.TogglePlayerState();
+        player.SetPlayerState(Player.PlayerStates.Combined);
     }
     
     public void TiltBot(Vector2 tilt)

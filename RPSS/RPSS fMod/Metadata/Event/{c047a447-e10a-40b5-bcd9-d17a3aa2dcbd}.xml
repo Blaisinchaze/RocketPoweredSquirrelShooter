@@ -90,13 +90,13 @@
 	<object class="MixerBusPanner" id="{8d53bb77-9268-4540-917f-03eb7e832666}" />
 	<object class="SingleSound" id="{00d1f796-6bd7-41fe-b732-284639e84011}">
 		<property name="length">
-			<value>0.27500000000000002</value>
+			<value>0.48499999999999999</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>12.400905077326653</value>
 		</property>
 		<property name="pitch">
-			<value>13.5</value>
+			<value>-8</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{020842b7-45ba-42b3-8e74-cd9ebd668bce}</destination>
@@ -111,7 +111,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{bdd95200-4966-47ce-9fd2-dac4edec542c}">
 		<property name="volume">
-			<value>-13</value>
+			<value>-28.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -138,7 +138,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>5</value>
+			<value>15</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{cef1aaab-ce0f-4d8c-9618-084c22c9c1eb}">
@@ -166,7 +166,7 @@
 	<object class="MixerBusFader" id="{be88716e-bfb1-4c3d-9346-214e898b38a0}" />
 	<object class="AutomationPoint" id="{6f0dabfa-0010-42fe-8594-4243ba2c9840}">
 		<property name="position">
-			<value>0.065000000000000002</value>
+			<value>0.27500000000000002</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -177,7 +177,7 @@
 	</object>
 	<object class="AutomationPoint" id="{f366e1cd-1519-41ca-b013-861092c18800}">
 		<property name="position">
-			<value>0.27500000000000002</value>
+			<value>0.48499999999999999</value>
 		</property>
 		<property name="value">
 			<value>0</value>
