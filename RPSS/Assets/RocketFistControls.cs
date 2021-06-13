@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class RocketFistControls : Combatant, IHittable
 {
     public int MaxAmountOfBullets = 100;
-    private int currentAmountOfBullets;
+    public int currentAmountOfBullets;
     Vector2 mousePos;
     public float moveSpeed = 0.5f;
     public float turnSpeed = 2;
