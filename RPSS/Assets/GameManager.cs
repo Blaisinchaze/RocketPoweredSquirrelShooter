@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public enum GameStates{INMENU, HOWTO, PREGAME, INGAME, PAUSED, GAMELOSE, NULL }
 public class GameManager : MonoBehaviour
@@ -18,13 +19,19 @@ public class GameManager : MonoBehaviour
 
     private EventInstance music;
     private string musicPath = "event:/Ambience/Music/Music";
+    public TextMeshProUGUI roundNumber;
+    public AiController aiController;
+
+
     private void Awake()
     {
-        instance = this;
+        if (instance == null) instance = this;
+        else if (instance != this) Destroy(gameObject);
     }
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         music = FMODUnity.RuntimeManager.CreateInstance(musicPath);
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>();
         ChangeState(GameStates.INMENU);
@@ -55,6 +62,9 @@ public class GameManager : MonoBehaviour
         if (preGameTimer > 0) return;
         preGameTimer = 4.5f;
         ChangeState(GameStates.INGAME);
+        
+        roundNumber.text = aiController.currentWave.ToString();
+
     }
 
     public void ChangeState(GameStates stateToChangeTo)
