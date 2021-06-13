@@ -80,6 +80,9 @@ MonoBehaviour:
   - walkers: 0
     shielders: 0
     gunners: 100
-  currentWave: 4
+  - walkers: 34
+    shielders: 33
+    gunners: 33
+  currentWave: 0
   waveTimer: 0
   spawnTimer: 0

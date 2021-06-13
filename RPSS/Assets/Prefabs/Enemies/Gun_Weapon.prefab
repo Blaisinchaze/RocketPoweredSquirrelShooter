@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   projRange: 10
-  projSpeed: 0.001
+  projSpeed: -0.5
   turnSpeed: 5
   weaponHeldDistanceModifier: 0
   relativeSpawnPoint: {fileID: 5035154873277011537}

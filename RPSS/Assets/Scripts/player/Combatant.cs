@@ -41,7 +41,7 @@ public class Combatant : MonoBehaviour
       if (invulnerable) health = maxHealth;
    }
 
-   private void CheckHealth()
+   internal void CheckHealth()
    {
       if (health <= 0 && !invulnerable)
          Die();
