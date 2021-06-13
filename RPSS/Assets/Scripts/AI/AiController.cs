@@ -203,10 +203,17 @@ public class AiController : MonoBehaviour
         }
 
         //Debug.Log((Enemies)enemyRef + " " + rnd + " " + percentages.walkers + " " + percentages.shielders + " " + percentages.gunners);
-
-        enemies.Add(Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>());
+        StartCoroutine(MakeTheEnemy(enemyRef, spawnRef));
 
         enemiesToSpawn--;
+    }
+
+    IEnumerator MakeTheEnemy(int enemyRef, int spawnRef)
+    {
+        spawnPoints[spawnRef].transform.parent.GetComponent<Animator>().SetTrigger("Play");
+        yield return new WaitForSeconds(1);
+        enemies.Add(Instantiate(prefabs[enemyRef], spawnPoints[spawnRef].position, Quaternion.identity, transform).GetComponent<AiUnit>());
+
     }
 
     public void KillEnemy(AiUnit enemy)

@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         }
 
         var hit = collision.GetComponent<Combatant>();
-        if (hit != null)
+        if (hit != null && hit.tag != "Hand")
         {
             hit.GetHit(damageAmount);
         }
