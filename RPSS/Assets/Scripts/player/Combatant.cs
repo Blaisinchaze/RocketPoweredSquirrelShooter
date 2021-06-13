@@ -62,6 +62,7 @@ public class Combatant : MonoBehaviour
    {
       if (invulnerable) return;
       health -= damageValue;
+      print("ligma");
       FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/Hit2");
    }
 
