@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4056038177932096045}
   - component: {fileID: 5181162060667970255}
   - component: {fileID: 175505584174194396}
-  - component: {fileID: 6592516710953203854}
-  m_Layer: 7
-  m_Name: Shield_Weapon
-  m_TagString: Shield
+  m_Layer: 0
+  m_Name: Gun_Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6117751005628930058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5035154873277011537}
   m_Father: {fileID: 0}
@@ -74,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.36320752, g: 0.9512128, b: 1, a: 0.53333336}
+  m_Sprite: {fileID: 21300000, guid: 6a93e1f322d7eb34bb6829238f046076, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,41 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309608dd8eb8d9245a5221aae3d45979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  projRange: 0.5
-  projSpeed: 0.125
+  type: 2
+  projRange: 10
+  projSpeed: 1
   turnSpeed: 5
-  weaponHeldDistanceModifier: 0.75
+  weaponHeldDistanceModifier: 0.6
   relativeSpawnPoint: {fileID: 5035154873277011537}
-  spawnPrefab: {fileID: 4524077618682415037, guid: 775ca7a8570a954499a5dec59e8ae9e6, type: 3}
-  lookRotToPlayer: {x: 0, y: 0, z: 0, w: 0}
+  spawnPrefab: {fileID: 4524077618682415037, guid: a12b9f2242806284184a47b5bdd1bd27, type: 3}
   firingDirection: {x: 0, y: 0, z: 0}
---- !u!61 &6592516710953203854
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6117751005628930058}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &6352894244844192323
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5035154873277011537}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
