@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 0
-  health: 0
-  maxHealth: 0
+  health: 1
+  maxHealth: 1
   kill: 0
   invulnerable: 0
   enemyType: 1
@@ -126,7 +126,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
 --- !u!114 &-1633376829964322314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,12 +151,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4056038177932096045, guid: e034328133994b9449c16d1a408be44c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056038177932096045, guid: e034328133994b9449c16d1a408be44c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056038177932096045, guid: e034328133994b9449c16d1a408be44c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4056038177932096045, guid: e034328133994b9449c16d1a408be44c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.56
+      value: 0.637
       objectReference: {fileID: 0}
     - target: {fileID: 4056038177932096045, guid: e034328133994b9449c16d1a408be44c, type: 3}
       propertyPath: m_LocalPosition.z

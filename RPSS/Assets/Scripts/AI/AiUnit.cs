@@ -136,6 +136,7 @@ public class AiUnit:Combatant
     void Update()
     {
         CheckToggles();
+        CheckHealth();
 
         currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
 

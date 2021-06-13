@@ -215,80 +215,6 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay Combined
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &4542227383315892680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3747088058963248485}
-  - component: {fileID: 1214936984}
-  m_Layer: 3
-  m_Name: AttachmentCircle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3747088058963248485
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4542227383315892680}
-  m_LocalRotation: {x: -0.5735764, y: -0, z: -0, w: 0.8191521}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 3836028625125023873}
-  m_Father: {fileID: 3944644310216465361}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -70, y: 0, z: 0}
---- !u!114 &1214936984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4542227383315892680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0e7aa9dfe6bc24fbb93879bd3d9cfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &5648815130415376453
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3836028625125023873}
-  m_Layer: 3
-  m_Name: AttachmentPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3836028625125023873
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5648815130415376453}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3747088058963248485}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &204506502940120964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -296,22 +222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3944644310023028208}
     m_Modifications:
-    - target: {fileID: 408715922, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071594587, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071594590, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2071937952, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671563, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: Components.RocketHand
       value: 
@@ -319,10 +229,6 @@ PrefabInstance:
     - target: {fileID: 3776475601556671569, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776475601556671569, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_RootOrder
@@ -397,6 +303,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063f176b4b0cb9c409c405f622d01d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4458482447383289420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4542227383315892680, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+  m_PrefabInstance: {fileID: 204506502940120964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5526500557759610817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5648815130415376453, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+  m_PrefabInstance: {fileID: 204506502940120964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3944644310946683792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,11 +387,11 @@ PrefabInstance:
     - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: attachmentPoint
       value: 
-      objectReference: {fileID: 5648815130415376453}
+      objectReference: {fileID: 5526500557759610817}
     - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: attachmentCircle
       value: 
-      objectReference: {fileID: 4542227383315892680}
+      objectReference: {fileID: 4458482447383289420}
     - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_Name
       value: RocketFist

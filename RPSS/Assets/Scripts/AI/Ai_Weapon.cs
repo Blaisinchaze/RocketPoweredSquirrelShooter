@@ -63,7 +63,7 @@ public class Ai_Weapon : MonoBehaviour
 
     IEnumerator Activate()
     {
-        GameObject projectile = Instantiate(spawnPrefab, relativeSpawnPoint.position, Quaternion.Euler(0,0,0), body);
+        GameObject projectile = Instantiate(spawnPrefab, relativeSpawnPoint.position, Quaternion.Euler(0,0,0), body.parent);
 
         firingDirection = player.transform.position - transform.position;
         float targetAngle = Mathf.Atan2(firingDirection.y, firingDirection.x) * Mathf.Rad2Deg;
