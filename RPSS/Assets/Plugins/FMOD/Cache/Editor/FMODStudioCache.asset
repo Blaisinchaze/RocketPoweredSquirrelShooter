@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7318286955958075349
+--- !u!114 &-8313971862180025908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,35 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: RPSS fMod/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637591962714320190
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-6724746444478674271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: RPSS fMod/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637591466707958871
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 1012
-  Exists: 1
---- !u!114 &-3624096543940249184
+  Path: event:/PlayerRobot/Body/Explosion
+  guid: 3e7c29fc37350142a2829752584120d7
+  Banks:
+  - {fileID: 7034585265365826209}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1300
+--- !u!114 &-8168985193700835376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,20 +33,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerRobot/Body/Explosion
+  m_Name: event:/Enemies/Hit2
   m_EditorClassIdentifier: 
-  Path: event:/PlayerRobot/Body/Explosion
-  guid: 3e7c29fc37350142a2829752584120d7
+  Path: event:/Enemies/Hit2
+  guid: b3e3a975e8fe974e83f63ffe9bd8aa66
   Banks:
-  - {fileID: -7318286955958075349}
-  IsStream: 0
+  - {fileID: 7034585265365826209}
+  IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 1300
---- !u!114 &-807269041331867202
+  Length: 200
+--- !u!114 &-7536442575383428934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,7 +61,7 @@ MonoBehaviour:
   Path: event:/PlayerRobot/Hand/Shot
   guid: 12b493f5c96c1c40b9b3188170a1a202
   Banks:
-  - {fileID: -7318286955958075349}
+  - {fileID: 7034585265365826209}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -86,7 +69,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 91
---- !u!114 &-205545469045285870
+--- !u!114 &-6880445116434709899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +84,7 @@ MonoBehaviour:
   Path: event:/PlayerRobot/Hand/Laser
   guid: 9898c92ee8fa404981af7d65b5b48203
   Banks:
-  - {fileID: -7318286955958075349}
+  - {fileID: 7034585265365826209}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -122,23 +105,23 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -6724746444478674271}
-  - {fileID: -7318286955958075349}
+  - {fileID: 1370142958068590592}
+  - {fileID: 7034585265365826209}
   EditorEvents:
-  - {fileID: -807269041331867202}
-  - {fileID: -3624096543940249184}
-  - {fileID: 4720932348452951779}
-  - {fileID: -205545469045285870}
-  - {fileID: 1309153841231106442}
-  - {fileID: 1133697271725889149}
+  - {fileID: -7536442575383428934}
+  - {fileID: -8313971862180025908}
+  - {fileID: 3980900784080468873}
+  - {fileID: -6880445116434709899}
+  - {fileID: -8168985193700835376}
+  - {fileID: 8465614432417091938}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7318286955958075349}
+  - {fileID: 7034585265365826209}
   StringsBanks:
-  - {fileID: -6724746444478674271}
-  stringsBankWriteTime: 637591466707958871
+  - {fileID: 1370142958068590592}
+  stringsBankWriteTime: 637591735426298647
   cacheVersion: 6
---- !u!114 &1133697271725889149
+--- !u!114 &1370142958068590592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,44 +130,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Enemies/Hit
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: event:/Enemies/Hit
-  guid: b9847bcc25bfa04f9812df7f484ae609
-  Banks:
-  - {fileID: -7318286955958075349}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 109
---- !u!114 &1309153841231106442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Enemies/Hit2
-  m_EditorClassIdentifier: 
-  Path: event:/Enemies/Hit2
-  guid: b3e3a975e8fe974e83f63ffe9bd8aa66
-  Banks:
-  - {fileID: -7318286955958075349}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 200
---- !u!114 &4720932348452951779
+  Path: RPSS fMod/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637591735426298647
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1012
+  Exists: 1
+--- !u!114 &3980900784080468873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +157,7 @@ MonoBehaviour:
   Path: event:/Enemies/Explosion
   guid: 47a447c00ae1b540bcd9d17a3aa2dcbd
   Banks:
-  - {fileID: -7318286955958075349}
+  - {fileID: 7034585265365826209}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -207,3 +165,45 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 485
+--- !u!114 &7034585265365826209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: RPSS fMod/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637591966665072898
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &8465614432417091938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Hit
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Hit
+  guid: b9847bcc25bfa04f9812df7f484ae609
+  Banks:
+  - {fileID: 7034585265365826209}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 109

@@ -80,10 +80,12 @@ public class PlayerMovement : MonoBehaviour
         if (movementDirection == Vector2.zero) return;
         var rb  = player.Components.PlayerRb;
         var adjustedSpeed = moveSpeed;
-        if (fistControls.firing)
+
+        if (fistControls.firing && player.currentState == Player.PlayerStates.Combined)
         {
             adjustedSpeed *= shootingSlowModifier;
         }
+
         adjustedSpeed *= Time.deltaTime;
         rb.velocity = movementDirection * adjustedSpeed;
     }
