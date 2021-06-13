@@ -222,6 +222,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3944644310023028208}
     m_Modifications:
+    - target: {fileID: 3776475601556671562, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: fistControls
+      value: 
+      objectReference: {fileID: 5119819758659856931}
     - target: {fileID: 3776475601556671563, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: Components.RocketHand
       value: 
@@ -376,6 +380,10 @@ PrefabInstance:
       propertyPath: attachmentCircle
       value: 
       objectReference: {fileID: 4458482447383289420}
+    - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+      propertyPath: explosionLayerMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_Name
       value: RocketFist
