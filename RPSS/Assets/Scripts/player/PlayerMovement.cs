@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         CheckInitialisedValues();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
     }

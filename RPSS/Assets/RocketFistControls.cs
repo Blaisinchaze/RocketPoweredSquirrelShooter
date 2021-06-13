@@ -15,6 +15,7 @@ public class RocketFistControls : Combatant, IHittable
     Vector2 forwardVector = new Vector2(0, 0);
     public bool firing = false;
     public GameObject ratPrefab;
+    public GameObject fistExplosion;
 
     public GameObject BulletPrefab;
     [SerializeField]
@@ -44,7 +45,7 @@ public class RocketFistControls : Combatant, IHittable
         forwardVector = transform.right;
         timer += Time.deltaTime;
         Mathf.Clamp(timer, 0, 2);
-        if (firing)
+        if (firing && GameManager.instance.currentState == GameStates.INGAME)
         {
             if (timer >= firingDelay)
             {
@@ -56,7 +57,7 @@ public class RocketFistControls : Combatant, IHittable
                             GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, firingAngle);
                             Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                             rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
-                            currentAmountOfBullets--;
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                         }
 
                         break;
@@ -68,6 +69,7 @@ public class RocketFistControls : Combatant, IHittable
                                 GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, firingAngle);
                                 Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                                 rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
+                                FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                                 currentAmountOfBullets--;
                             }
                         }
@@ -75,7 +77,7 @@ public class RocketFistControls : Combatant, IHittable
                     default:
                         break;
                 }
-                FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
                 timer = 0;
 
 
@@ -136,7 +138,8 @@ public class RocketFistControls : Combatant, IHittable
 
     public override void Die()
     {
-        //Instantiate explosion
+        GameObject go = Instantiate(fistExplosion, transform.position, Quaternion.identity);
+        Destroy(go, 10);
         Instantiate(ratPrefab, transform.position, Quaternion.identity);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
