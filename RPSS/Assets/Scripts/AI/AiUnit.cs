@@ -23,21 +23,19 @@ public class AiUnit:Combatant
     public float minDistance = 0.05f;
     public float pathUpdateRate;
     public float colliderRadius;
-    public int maxNodesToSimplify;
-
+    [Space]
     private Vector2Int currentGridPosition;
     private List<GridNode> currentRoute = new List<GridNode>();
 
     //private float timer = 0;
     private GameObject targetPlayer;
     private Ai_Weapon weapon;
-    private Animator bodyAnimator;
+    public Animator bodyAnimator;
 
     private List<Collider2D> colliders = new List<Collider2D>();
 
     //public ParticleHandle ph;
     //public ParticleHandle chasePh;
-    private Animator anim;
 
     public enum Facing
         {
@@ -73,11 +71,9 @@ public class AiUnit:Combatant
 
         navGrid = FindObjectOfType<NavGrid>();
 
-        anim = GetComponent<Animator>();
         prevPos = transform.position;
 
         weapon = GetComponentInChildren<Ai_Weapon>();
-        bodyAnimator = GetComponentInChildren<Animator>();
     }
 
     private void UpdateDirection()
