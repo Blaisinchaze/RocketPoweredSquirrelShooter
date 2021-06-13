@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (MainCanvas == null)
-            Debug.LogError("Canvas hasn't been set");
+        MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>();
         ChangeState(GameStates.INMENU);
         MainCanvas.Transition(TransitionStates.FADEIN);
     }
@@ -57,7 +56,7 @@ public class GameManager : MonoBehaviour
             return;
         waitingStateToChangeTo = stateToChangeTo;
         waitingForTimer = true;
-        timer = 2f;
+        timer = 1f;
         MainCanvas.Transition(TransitionStates.FADEOUT);
     }    
     

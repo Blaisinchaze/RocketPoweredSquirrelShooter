@@ -102,7 +102,7 @@ MonoBehaviour:
   turnSpeed: 5
   weaponHeldDistanceModifier: 0.5
   relativeSpawnPoint: {fileID: 5035154873277011537}
-  spawnPrefab: {fileID: 4524077618682415037, guid: 9c15ec8d2e06806418d68720e3a99ae0, type: 3}
+  spawnPrefab: {fileID: 4524077618682415037, guid: 775ca7a8570a954499a5dec59e8ae9e6, type: 3}
   lookRotToPlayer: {x: 0, y: 0, z: 0, w: 0}
   firingDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &6352894244844192323

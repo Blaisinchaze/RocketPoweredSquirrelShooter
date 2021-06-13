@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &661450434360385494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661450434360385481}
+  - component: {fileID: 661450434360385480}
+  - component: {fileID: 661450434360385495}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661450434360385481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661450434360385494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &661450434360385480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661450434360385494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109df92d31308f245a15ff7b8a0e2ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitNodeRatio: 2.72
+  displayGrid: 1
+  tilemap: {fileID: 0}
+--- !u!114 &661450434360385495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661450434360385494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e5166cf5d3a2d48a7c716f8ff36c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  incrementPerWave: 2
+  baseEnemycount: 3
+  secondsForWaveSpawn: 10
+  minTimeUntilNextWave: 30
+  prefabs:
+  - {fileID: 1700293764896474494, guid: 4c4763185fce8a54ea1676eede0039f5, type: 3}
+  - {fileID: 1700293764896474494, guid: 78596ca1c9d1a304587dc0915c85acdb, type: 3}
+  - {fileID: 1700293764896474494, guid: 0862bb064d11ef24589ba9aaf1b48b29, type: 3}
+  chances:
+  - walkers: 100
+    shielders: 0
+    gunners: 0
+  - walkers: 50
+    shielders: 50
+    gunners: 0
+  - walkers: 50
+    shielders: 40
+    gunners: 10
+  - walkers: 0
+    shielders: 0
+    gunners: 100
+  currentWave: 4
+  waveTimer: 0
+  spawnTimer: 0

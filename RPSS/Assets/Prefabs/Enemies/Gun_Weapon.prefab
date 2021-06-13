@@ -98,10 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   projRange: 10
-  projSpeed: 10
+  projSpeed: 0.001
   turnSpeed: 5
+  weaponHeldDistanceModifier: 0
   relativeSpawnPoint: {fileID: 5035154873277011537}
-  spawnPrefab: {fileID: 4524077618682415037, guid: f441b0a0679de3b4ba407dcb8998136f, type: 3}
+  spawnPrefab: {fileID: 4524077618682415037, guid: a12b9f2242806284184a47b5bdd1bd27, type: 3}
   lookRotToPlayer: {x: 0, y: 0, z: 0, w: 0}
   firingDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &6352894244844192323
