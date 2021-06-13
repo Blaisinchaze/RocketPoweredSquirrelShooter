@@ -33,6 +33,10 @@ public class HealthBarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ai.health < maxHealth)
+        {
+            bar.gameObject.SetActive(true);
+        }
         if(ai == null)
         {
             Destroy(this.gameObject);
