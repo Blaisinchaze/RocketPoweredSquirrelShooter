@@ -23,6 +23,7 @@ public class RocketFistControls : Combatant, IHittable
     public GameObject ratPrefab;
     public GameObject fistExplosion;
     public GameObject jetFlame;
+    public GameObject muzzleFlash;
 
     public GameObject BulletPrefab;
     [SerializeField]
@@ -80,7 +81,6 @@ public class RocketFistControls : Combatant, IHittable
                 break;
         }
 
-
         mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         forwardVector = transform.right;
         timer += Time.deltaTime;
@@ -98,7 +98,6 @@ public class RocketFistControls : Combatant, IHittable
                             Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                             rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                             FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
-
                         }
 
                         break;
@@ -172,10 +171,12 @@ public class RocketFistControls : Combatant, IHittable
         if (context.started)
         {
             firing = true;
+            muzzleFlash.SetActive(true);
         }
         if (context.canceled)
         {
             firing = false;
+            muzzleFlash.SetActive(false);
         }
     }
 
