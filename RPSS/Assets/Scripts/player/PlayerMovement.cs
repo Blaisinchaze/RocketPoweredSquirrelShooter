@@ -18,13 +18,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Animator bodyAnimator;
 
+    [SerializeField]
+    private RocketFistControls fistControls;
+
     /// <summary>
     /// The maximum distance the player and hand can be apart and still combine
     /// </summary>
     [SerializeField] private float combineDistance = 10f;
     
     [Header("Customisable")] 
-    public float moveSpeed = 40f;
+    public float moveSpeed;
     
     [SerializeField] float tiltAmount = 0;
 
@@ -158,6 +161,13 @@ public class PlayerMovement : MonoBehaviour
     public void Separate(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (player.currentState == Player.PlayerStates.Combined)
+        {
+            if (fistControls.currentEnergyValue < fistControls.maxEnergyValue / 2)
+            {
+                return;
+            }
+        }
         TryTogglePlayerState();
     }
     
