@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &37698010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 37698013}
+  - component: {fileID: 37698012}
+  - component: {fileID: 37698011}
+  m_Layer: 3
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &37698013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37698010}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.39, y: 0.1261287, z: -9.005775}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3944644310216465361}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &37698012
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37698010}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 8.37
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &37698011
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37698010}
+  m_Enabled: 1
 --- !u!1 &3944644310023028210
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3944644310023028208}
   - component: {fileID: 3944644310023028209}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,6 +265,22 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5119819758659856931}
         m_TargetAssemblyTypeName: RocketFistControls, Assembly-CSharp
+        m_MethodName: DetonateFist
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a7948fa8-2193-401b-b937-6c00e3f3a555
+    m_ActionName: Gameplay Separate/Detonate Fist[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5119819758659856931}
+        m_TargetAssemblyTypeName: RocketFistControls, Assembly-CSharp
         m_MethodName: Shoot
         m_Mode: 0
         m_Arguments:
@@ -209,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3747088058963248485}
   - component: {fileID: 1214936984}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttachmentCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3836028625125023873}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttachmentPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,13 +379,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3944644310023028208}
     m_Modifications:
+    - target: {fileID: 408715922, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071594587, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1071594590, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2071937952, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776475601556671563, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: Components.RocketHand
+      value: 
+      objectReference: {fileID: 5119819758659856933}
     - target: {fileID: 3776475601556671569, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776475601556671569, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671573, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_RootOrder
@@ -368,6 +487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3944644310023028208}
     m_Modifications:
+    - target: {fileID: 639150115156405520, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5223026249171550505, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -425,6 +548,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3944644310216465359}
     - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+      propertyPath: ratPrefab
+      value: 
+      objectReference: {fileID: 2644632401168029385, guid: acb4dfe0a3c56c942a86af31b4087935, type: 3}
+    - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: attachmentPoint
       value: 
       objectReference: {fileID: 5648815130415376453}
@@ -437,12 +564,21 @@ PrefabInstance:
       value: RocketFist
       objectReference: {fileID: 0}
     - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5223026249171550505, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+--- !u!1 &5119819758659856933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+  m_PrefabInstance: {fileID: 3944644310946683792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5119819758659857374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8193017389098233934, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
@@ -453,7 +589,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
   m_PrefabInstance: {fileID: 3944644310946683792}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5119819758659856933}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ca66c1a53b5ca24885176ea191b51e1, type: 3}
