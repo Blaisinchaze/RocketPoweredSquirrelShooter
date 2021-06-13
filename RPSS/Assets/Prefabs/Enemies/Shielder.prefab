@@ -89,8 +89,9 @@ MonoBehaviour:
   invulnerable: 0
   enemyType: 1
   range: 1.5
-  attackDelay: 1
+  attackDelay: 0.25
   moveSpeed: 3.5
+  deathExplosion: {fileID: 21834783198813013, guid: 195d1ad5eee502842aed2d5563cedf5b, type: 3}
   minDistance: 0.05
   pathUpdateRate: 1.25
   colliderRadius: 0.1
