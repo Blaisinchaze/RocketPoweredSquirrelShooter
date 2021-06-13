@@ -28,7 +28,7 @@ public class AiUnit:Combatant
     private Vector2Int currentGridPosition;
     private List<GridNode> currentRoute = new List<GridNode>();
 
-    private float timer = 0;
+    //private float timer = 0;
     private GameObject targetPlayer;
     private Ai_Weapon weapon;
 
@@ -49,7 +49,7 @@ public class AiUnit:Combatant
     internal Facing direction;
     internal bool moving;
 
-    private float stepTimer = 0f;
+    //private float stepTimer = 0f;
     private Vector2 prevPos;
 
     bool findingPath = false;
