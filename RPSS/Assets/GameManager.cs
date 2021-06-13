@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
         if (preGameTimer > 0) return;
         preGameTimer = 4.5f;
         ChangeState(GameStates.INGAME);
+
+        roundNumber.text = aiController.currentWave.ToString();
     }
 
     public void ChangeState(GameStates stateToChangeTo)
@@ -114,5 +117,13 @@ public class GameManager : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public TextMeshProUGUI roundNumber;
+    public AiController aiController;
+
+    void UpdateRoundNum()
+    {
+        Debug.Log(roundNumber.text + " " + aiController.currentWave);
     }
 }
