@@ -148,10 +148,10 @@ public class RocketFistControls : Combatant, IHittable
 
     public void fixGun()
     {
-        GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<BoxCollider2D>().enabled = true;
         isAlive = true;
         Reload();
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void Reload()

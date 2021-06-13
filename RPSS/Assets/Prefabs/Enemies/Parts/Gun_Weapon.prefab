@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6117751005628930058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5035154873277011537}
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a93e1f322d7eb34bb6829238f046076, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,12 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   projRange: 10
-  projSpeed: -0.5
+  projSpeed: 10
   turnSpeed: 5
-  weaponHeldDistanceModifier: 0
+  weaponHeldDistanceModifier: 2
   relativeSpawnPoint: {fileID: 5035154873277011537}
   spawnPrefab: {fileID: 4524077618682415037, guid: a12b9f2242806284184a47b5bdd1bd27, type: 3}
-  lookRotToPlayer: {x: 0, y: 0, z: 0, w: 0}
   firingDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &6352894244844192323
 GameObject:

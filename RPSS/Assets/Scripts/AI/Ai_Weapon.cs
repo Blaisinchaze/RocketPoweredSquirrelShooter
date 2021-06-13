@@ -13,18 +13,18 @@ public class Ai_Weapon : MonoBehaviour
     public Transform relativeSpawnPoint;
     public GameObject spawnPrefab;
 
-    [SerializeField]
-    private Quaternion lookRotToPlayer;
     private Transform body;
     private Transform player;
     [SerializeField]
     private Vector3 firingDirection;
+    private Animator anim;
 
 
     // Start is called before the first frame update
     void Start()
     {
         body = transform.parent;
+        anim = GetComponentInChildren<Animator>();
         switch (type)
         {
             case Enemies.NULL:
@@ -54,6 +54,25 @@ public class Ai_Weapon : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetAngle + 270), turnSpeed);
 
+        //blend state update for rotating sprite
+        switch (type)
+        {
+            case Enemies.NULL:
+            case Enemies.WALK:
+            case Enemies.GUN:
+                break;
+
+            case Enemies.SHIELD:
+                if ((Vector2)firingDirection == Vector2.zero)
+                {
+                    return;
+                }
+
+                anim.SetFloat("Horizontal", firingDirection.x);
+                anim.SetFloat("Vertical", firingDirection.y);
+                anim.SetFloat("Speed", firingDirection.sqrMagnitude);
+                break;
+        }
     }
 
     public void Fire()
