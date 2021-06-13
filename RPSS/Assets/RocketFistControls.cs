@@ -98,6 +98,7 @@ public class RocketFistControls : Combatant, IHittable
                             Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                             rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                             FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
                         }
 
                         break;
@@ -110,6 +111,8 @@ public class RocketFistControls : Combatant, IHittable
                                 Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                                 rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
+                                //FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                                 currentAmountOfBullets--;
                             }
                         }
@@ -188,6 +191,7 @@ public class RocketFistControls : Combatant, IHittable
     {
         isAlive = false;
         GameObject go = Instantiate(fistExplosion, transform.position, Quaternion.identity);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Body/Explosion");
         var colliders = Physics2D.OverlapCircleAll(go.transform.position, explosionRadius, explosionLayerMask);
         foreach (var itemCOllided in colliders)
         {
