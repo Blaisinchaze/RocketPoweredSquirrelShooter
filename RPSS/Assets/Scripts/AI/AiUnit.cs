@@ -52,6 +52,7 @@ public class AiUnit:Combatant
     private Vector2 prevPos;
 
     bool findingPath = false;
+    [SerializeField]
     private State state;
     private float attackTimer;
 
@@ -74,6 +75,8 @@ public class AiUnit:Combatant
         prevPos = transform.position;
 
         weapon = GetComponentInChildren<Ai_Weapon>();
+
+        findingPath = false;
     }
 
     private void UpdateDirection()
@@ -161,6 +164,7 @@ public class AiUnit:Combatant
                 break;
 
             case State.MOVE:
+                //Debug.Log("Moving - Canseeplayer = " + canSeePlayer);
                 if (canSeePlayer)
                 {
                     moveToPos = targetPlayer.transform.position;
@@ -168,21 +172,8 @@ public class AiUnit:Combatant
                 }
                 else if (!findingPath)
                 {
+                    //Debug.Log("Moving - Canseeplayer = " + canSeePlayer);
                     StartCoroutine(FindPath(navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition));
-                }
-                else
-                {
-                    if (currentRoute.Count <= 0)
-                    {
-                        break;
-                    }
-
-                    if (Vector3.Distance(transform.position, currentRoute[0].worldPosition) < minDistance)
-                    {
-                        currentRoute.RemoveAt(0);
-                    }
-                    SimplifyPath();
-                    moveToPos = currentRoute[0].worldPosition;
                 }
 
                 if (currentRoute.Count > 0)
@@ -401,17 +392,10 @@ public class AiUnit:Combatant
 
         RaycastHit2D hit;
 
-        if (hit = Physics2D.CircleCast(transform.position, colliderRadius, transform.position - position, Vector3.Distance(transform.position, position), layerMask))
+        if (hit = Physics2D.CircleCast(transform.position, colliderRadius, position - transform.position, Vector3.Distance(transform.position, position), layerMask))
         {
             return false;
         }
-
-        //if (hit = Physics2D.Raycast(transform.position, position,
-        //    Vector3.Distance(transform.position, position), layerMask))
-        //{
-        //    //Debug.Log(hit.collider.gameObject);
-        //    return false;
-        //}
 
         return true;
     }

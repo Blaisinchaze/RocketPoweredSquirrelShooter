@@ -87,6 +87,8 @@ public class NavGrid : MonoBehaviour
         Vector3 worldBottomLeft = tilemap.CellToWorld(tilemap.cellBounds.min);
         Vector3 worldTopRight = tilemap.CellToWorld(tilemap.cellBounds.max);
 
+        Debug.Log(worldBottomLeft + " " + worldTopRight);
+
         int i = 0;
         int gridX = (int)worldBottomLeft.x;
         int j = 0;
@@ -150,6 +152,11 @@ public class NavGrid : MonoBehaviour
                 else if (item.pathable)
                 {
                     Gizmos.color = Color.blue;
+                    Gizmos.DrawCube(item.worldPosition, nodeSize * 0.8f);
+                }
+                else
+                {
+                    Gizmos.color = Color.red;
                     Gizmos.DrawCube(item.worldPosition, nodeSize * 0.8f);
                 }
             }
