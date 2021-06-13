@@ -10,7 +10,7 @@
 [LOG] DownMix::init                            : done.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001EEF998A8D8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001617F074108 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -19,18 +19,16 @@
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] SystemI::mixerSuspend                    : Suspending output.
-[LOG] SystemI::mixerResume                     : Resuming output.
-[LOG] SoundI::release                          :  (000001EE2B14AB58)
-[LOG] SoundI::release                          :     Shot (000001EE5425C9F8)
-[LOG] SoundI::release                          :  (000001EE2B14ACC8)
-[LOG] SoundI::release                          :     Grenade Explosion - Sound Effect (000001EE5425B4D8)
-[LOG] SoundI::release                          :  (000001EE2B14A878)
-[LOG] SoundI::release                          :     game jam soundz (000001EE5425FDF8)
-[LOG] SoundI::release                          :  (000001EE2B14A9E8)
-[LOG] SoundI::release                          :     Cymatics - Terror Closed Hi Hat 015 (000001EE5425C038)
-[LOG] SoundI::release                          :  (000001EE2B14AE38)
-[LOG] SoundI::release                          :     Hit (000001EE5425DF18)
+[LOG] SoundI::release                          :  (000001617EAF41D8)
+[LOG] SoundI::release                          :     Shot (00000160D7A0C348)
+[LOG] SoundI::release                          :  (000001617EAF4068)
+[LOG] SoundI::release                          :     Grenade Explosion - Sound Effect (00000160AD6B30E8)
+[LOG] SoundI::release                          :  (000001617EAF0578)
+[LOG] SoundI::release                          :     game jam soundz (00000160AD6B47A8)
+[LOG] SoundI::release                          :  (000001617EAF1268)
+[LOG] SoundI::release                          :     Cymatics - Terror Closed Hi Hat 015 (00000160AD6B3DE8)
+[LOG] SoundI::release                          :  (000001617EAF0E18)
+[LOG] SoundI::release                          :     Hit (00000160AD6B3288)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
