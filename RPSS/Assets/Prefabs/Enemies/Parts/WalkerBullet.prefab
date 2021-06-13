@@ -150,6 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   constantlyUpdate: 1
-  offset: 0
+  offset: 100
   sprites:
   - {fileID: 7892363705128652123}
