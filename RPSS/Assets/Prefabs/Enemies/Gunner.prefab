@@ -53,11 +53,11 @@ MonoBehaviour:
   kill: 0
   invulnerable: 0
   enemyType: 2
-  range: 10
+  range: 20
   attackDelay: 1
   moveSpeed: 2.5
   minDistance: 0.1
-  pathUpdateRate: 0.01
+  pathUpdateRate: 0.5
   colliderRadius: 0.05
   bodyAnimator: {fileID: 5896757443214677145}
   state: 0

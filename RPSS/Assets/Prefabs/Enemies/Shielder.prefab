@@ -90,9 +90,9 @@ MonoBehaviour:
   enemyType: 1
   range: 0.75
   attackDelay: 1
-  moveSpeed: 3
+  moveSpeed: 3.5
   minDistance: 0.1
-  pathUpdateRate: 0.01
+  pathUpdateRate: 0.5
   colliderRadius: 0.05
   bodyAnimator: {fileID: 8059680675339140709}
   state: 0
