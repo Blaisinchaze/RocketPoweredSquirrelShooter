@@ -320,21 +320,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3944644310023028208}
     m_Modifications:
-    - target: {fileID: 639150115156405520, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223026249171550505, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8193017389098233934, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8193017389098233934, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: 3.667
       objectReference: {fileID: 0}
     - target: {fileID: 8193017389098233934, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -372,18 +364,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8193017389098234289, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 3944644310216465359}
-    - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: ratPrefab
-      value: 
-      objectReference: {fileID: 2644632401168029385, guid: acb4dfe0a3c56c942a86af31b4087935, type: 3}
     - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: attachmentPoint
       value: 
@@ -396,16 +380,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: RocketFist
       objectReference: {fileID: 0}
-    - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5223026249171550505, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
 --- !u!1 &5119819758659856933 stripped
 GameObject:

@@ -16,6 +16,7 @@ public class RocketFistControls : Combatant, IHittable
     public bool firing = false;
     public GameObject ratPrefab;
     public GameObject fistExplosion;
+    public GameObject jetFlame;
 
     public GameObject BulletPrefab;
     [SerializeField]
@@ -96,12 +97,20 @@ public class RocketFistControls : Combatant, IHittable
         switch (player.currentState)
         {
             case Player.PlayerStates.Combined:
+                if (jetFlame.active)
+                {
+                    jetFlame.SetActive(false);
+                }
                 transform.position = attachmentPoint.transform.position;
                 currentTurnSpeed = turnSpeed * 10;
                 lookDir = mousePos - new Vector2(attachmentCircle.transform.position.x, attachmentCircle.transform.position.y);
 
                 break;
             case Player.PlayerStates.Split:
+                if (!jetFlame.active)
+                {
+                    jetFlame.SetActive(true);
+                }
                 rb.MovePosition(rb.position + forwardVector * moveSpeed * Time.deltaTime);
                 currentTurnSpeed = turnSpeed;        
                 lookDir = mousePos - rb.position;
@@ -143,6 +152,7 @@ public class RocketFistControls : Combatant, IHittable
         Instantiate(ratPrefab, transform.position, Quaternion.identity);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
+        jetFlame.SetActive(false);
         isAlive = false;
     }
 
