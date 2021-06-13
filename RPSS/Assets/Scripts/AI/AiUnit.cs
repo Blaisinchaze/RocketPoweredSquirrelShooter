@@ -106,6 +106,8 @@ public class AiUnit:Combatant
 
         Vector2 movementDirection = new Vector2(x, y);
 
+        TiltBot(movementDirection);
+
         if (movementDirection == Vector2.zero)
         {
             return;
@@ -444,5 +446,26 @@ public class AiUnit:Combatant
         {
             Die();
         }
+    }
+
+    public void TiltBot(Vector2 tilt)
+    {
+        float tiltAmount = 0;
+        if (tilt.x > 0)
+        {
+            tiltAmount = -15;
+            if (tilt.y != 0)
+                tiltAmount = -5;
+
+        }
+        if (tilt.x < 0)
+        {
+            tiltAmount = 15;
+            if (tilt.y != 0)
+                tiltAmount = 5;
+        }
+        Vector3 desiredTilt = new Vector3(0, 0, tiltAmount);
+        Quaternion q = Quaternion.Euler(desiredTilt);
+        transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * 5);
     }
 }

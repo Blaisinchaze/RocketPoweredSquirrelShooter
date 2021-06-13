@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Customisable")] 
     public float moveSpeed;
     
+    [SerializeField] float tiltAmount = 0;
+
     private void CheckInitialisedValues()
     {
         if (moveSpeed.Equals(0))
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleAnimation()
     {
+        TiltBot(movementDirection);
         if (movementDirection == Vector2.zero)
         {
             return;
@@ -128,6 +131,26 @@ public class PlayerMovement : MonoBehaviour
         player.SetPlayerState(Player.PlayerStates.Combined);
     }
     
+    public void TiltBot(Vector2 tilt)
+    {
+        tiltAmount = 0;
+        if(tilt.x > 0)
+        {            
+            tiltAmount = -15;
+            if (tilt.y != 0)
+                tiltAmount = -5;
+
+        }
+        if (tilt.x < 0)
+        {
+            tiltAmount = 15;
+            if (tilt.y != 0)
+                tiltAmount = 5;
+        }
+        Vector3 desiredTilt = new Vector3(0,0,tiltAmount);
+        Quaternion q = Quaternion.Euler(desiredTilt);
+        transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * 5);
+    }
     #region InputEvents
     
     public void Move(InputAction.CallbackContext movement)
