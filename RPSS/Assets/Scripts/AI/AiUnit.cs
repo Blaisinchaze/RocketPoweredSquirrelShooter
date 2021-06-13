@@ -118,11 +118,9 @@ public class AiUnit:Combatant
         
     }
 
-    void Update()
+    protected override void Update()
     {
-        CheckToggles();
-        CheckHealth();
-
+        base.Update();
         currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
 
         UpdateAction();

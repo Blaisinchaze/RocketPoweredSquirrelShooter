@@ -58,6 +58,7 @@ public class RocketFistControls : Combatant, IHittable
                             Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                             rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                             FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
                         }
 
                         break;
@@ -70,6 +71,8 @@ public class RocketFistControls : Combatant, IHittable
                                 Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                                 rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
                                 FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
+                                //FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                                 currentAmountOfBullets--;
                             }
                         }
@@ -148,10 +151,10 @@ public class RocketFistControls : Combatant, IHittable
 
     public void fixGun()
     {
-        GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<BoxCollider2D>().enabled = true;
         isAlive = true;
         Reload();
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void Reload()
