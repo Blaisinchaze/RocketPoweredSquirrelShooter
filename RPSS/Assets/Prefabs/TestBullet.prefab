@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 163451330738306646}
   - component: {fileID: 6710321108206623827}
   - component: {fileID: 6172879521654047345}
+  - component: {fileID: 6212908339271535764}
   m_Layer: 8
   m_Name: TestBullet
   m_TagString: Untagged
@@ -48,7 +49,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.4, y: 0.4}
   m_Direction: 0
 --- !u!50 &6710321108206623827
 Rigidbody2D:
@@ -85,6 +86,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 5
   enemyBullet: 0
+--- !u!114 &6212908339271535764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524077618682415037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e426af39ef1e740a06f12c8829e1e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constantlyUpdate: 1
+  offset: 0
+  sprites:
+  - {fileID: 8778226318279136119}
 --- !u!1 &6642096460445145535
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 0
   m_Sprite: {fileID: -5440465148032722484, guid: ab7b5d3d1598f1442b3cac68e23aa6b9, type: 3}
   m_Color: {r: 1, g: 0.6627451, b: 0.2784314, a: 1}
   m_FlipX: 0
