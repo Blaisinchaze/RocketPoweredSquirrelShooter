@@ -44,7 +44,7 @@ public class RocketFistControls : Combatant, IHittable
         forwardVector = transform.right;
         timer += Time.deltaTime;
         Mathf.Clamp(timer, 0, 2);
-        if (firing)
+        if (firing && GameManager.instance.currentState == GameStates.INGAME)
         {
             if (timer >= firingDelay)
             {
@@ -56,7 +56,7 @@ public class RocketFistControls : Combatant, IHittable
                             GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, firingAngle);
                             Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                             rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
-                            currentAmountOfBullets--;
+                            FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                         }
 
                         break;
@@ -68,6 +68,7 @@ public class RocketFistControls : Combatant, IHittable
                                 GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, firingAngle);
                                 Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                                 rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
+                                FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                                 currentAmountOfBullets--;
                             }
                         }
@@ -75,7 +76,7 @@ public class RocketFistControls : Combatant, IHittable
                     default:
                         break;
                 }
-                FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
                 timer = 0;
 
 
