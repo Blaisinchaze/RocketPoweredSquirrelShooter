@@ -83,17 +83,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 0
-  health: 1
-  maxHealth: 1
+  health: 20
+  maxHealth: 20
   kill: 0
   invulnerable: 0
   enemyType: 1
   range: 1.5
   attackDelay: 1
   moveSpeed: 3.5
-  minDistance: 0.1
-  pathUpdateRate: 0.5
-  colliderRadius: 0.05
+  minDistance: 0.05
+  pathUpdateRate: 1.25
+  colliderRadius: 0.1
   bodyAnimator: {fileID: 8059680675339140709}
   state: 0
 --- !u!58 &1700293764896474490

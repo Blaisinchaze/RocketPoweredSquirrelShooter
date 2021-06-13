@@ -167,7 +167,7 @@ public class AiUnit:Combatant
 
             case State.MOVE:
                 //Debug.Log("Moving - Canseeplayer = " + canSeePlayer);
-                if (canSeePlayer)
+                if (canSeePlayer && Vector3.Distance(transform.position, targetPlayer.transform.position) < 3)
                 {
                     moveToPos = targetPlayer.transform.position;
                     currentRoute.Clear();

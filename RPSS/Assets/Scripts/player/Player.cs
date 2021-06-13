@@ -39,16 +39,10 @@ public class Player : MonoBehaviour
         Setup();
     }
 
-    private void Setup()
+    public void Setup()
     {
-        var combatstats = Components.playerCombat;
-        if (combatstats.maxHealth > 0)
-            combatstats.health = combatstats.maxHealth;
-        else
-        {
-            combatstats.maxHealth = 3;
-            combatstats.health = 3;
-        }
+        Components.playerCombat.Reset(); 
+        Components.playerMovement.CheckInitialisedValues();
     }
     /// <summary>
     /// Use this if you want to set swap between player modes.
