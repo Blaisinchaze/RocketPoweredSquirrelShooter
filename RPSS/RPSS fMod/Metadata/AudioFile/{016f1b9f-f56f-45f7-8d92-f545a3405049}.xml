@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{016f1b9f-f56f-45f7-8d92-f545a3405049}">
+		<property name="assetPath">
+			<value>Electro_Cabello.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>190.82448979591837</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{07274bc6-39e2-48be-8fbf-4da56f87a949}</destination>
+		</relationship>
+	</object>
+</objects>

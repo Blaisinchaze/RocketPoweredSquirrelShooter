@@ -92,6 +92,9 @@
 		<property name="length">
 			<value>0.091224489795918365</value>
 		</property>
+		<property name="startOffset">
+			<value>0.5</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{03c0ae44-8d6f-4071-8694-62cdbd59ccb7}</destination>
 			<destination>{649037ec-14f5-4b25-baae-290c541b4797}</destination>
@@ -101,6 +104,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{60aabdfc-329d-49bb-a30d-bc2c9e6b852c}">
+		<property name="volume">
+			<value>-16.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -126,7 +132,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>2</value>
+			<value>11.5</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{649037ec-14f5-4b25-baae-290c541b4797}">
@@ -139,21 +145,35 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{388cb2e4-a6f9-442a-8cf0-6de1f0d970ee}">
 		<relationship name="effects">
+			<destination>{aa25bf09-b58d-44de-a751-95a7bcd9ee7c}</destination>
 			<destination>{465f11aa-98fe-4116-9d35-d549faf191ec}</destination>
 			<destination>{7ac4475c-f097-4682-8442-d935a2d20535}</destination>
+			<destination>{9454c170-14e7-47c7-acba-21a3a3e1e37c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{8ff1fa45-5220-4db7-a6f4-5fa9d77b1a9b}" />
 	<object class="MixerBusFader" id="{722bd110-74ec-44e2-af04-a25a9eef95ca}" />
+	<object class="LimiterEffect" id="{aa25bf09-b58d-44de-a751-95a7bcd9ee7c}">
+		<property name="boost">
+			<value>1.60000002</value>
+		</property>
+		<property name="ceiling">
+			<value>-6.30000019</value>
+		</property>
+		<property name="release">
+			<value>2.4000001</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{465f11aa-98fe-4116-9d35-d549faf191ec}" />
 	<object class="DistortionEffect" id="{7ac4475c-f097-4682-8442-d935a2d20535}">
 		<property name="level">
-			<value>0.545000017</value>
+			<value>0.555000007</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{85c5eb00-8bb8-46b1-98d8-7c5a42202b07}</destination>
 		</relationship>
 	</object>
+	<object class="FlangerEffect" id="{9454c170-14e7-47c7-acba-21a3a3e1e37c}" />
 	<object class="RandomizerModulator" id="{85c5eb00-8bb8-46b1-98d8-7c5a42202b07}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>level</value>

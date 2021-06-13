@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    private EventInstance music;
+    private string musicPath = "event:/Ambience/Music/Music";
     private void Awake()
     {
         instance = this;
@@ -22,8 +25,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        music = FMODUnity.RuntimeManager.CreateInstance(musicPath);
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>();
         ChangeState(GameStates.INMENU);
+        music.start();
         MainCanvas.Transition(TransitionStates.FADEIN);
     }
 
@@ -46,13 +51,10 @@ public class GameManager : MonoBehaviour
 
         if (currentState != GameStates.PREGAME) return;
         preGameTimer -= Time.deltaTime;
-        
+
         if (preGameTimer > 0) return;
         preGameTimer = 4.5f;
         ChangeState(GameStates.INGAME);
-        
-
-
     }
 
     public void ChangeState(GameStates stateToChangeTo)
