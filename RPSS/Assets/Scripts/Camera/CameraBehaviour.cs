@@ -32,11 +32,11 @@ public class CameraBehaviour : MonoBehaviour
     }
     private void CheckPositions()
     {
-        if (playerManager.currentState == Player.PlayerStates.Combined)
-        {
-            cam.Follow = player.transform;
-            return;
-        };
+        //if (playerManager.currentState == Player.PlayerStates.Combined)
+        //{
+        //    cam.Follow = player.transform;
+        //    return;
+        //};
         var a = player.transform.position;
         var b = rocketHand.transform.position;
         var dist = (a + b) * 0.5f;
