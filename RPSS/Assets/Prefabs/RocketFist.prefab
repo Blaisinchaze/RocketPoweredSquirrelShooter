@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5223026249171550505}
   m_Layer: 0
   m_Name: RocketFist
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
