@@ -19,6 +19,7 @@ public class RocketFistControls : MonoBehaviour, IHittable
     private float firingDelay = 0.1f;
     private float timer = 0;
 
+    public FMODUnity.RuntimeManager firingClip;
     public Player player;
 
     [SerializeField] GameObject attachmentCircle;
@@ -38,11 +39,12 @@ public class RocketFistControls : MonoBehaviour, IHittable
         {
             if (timer >= firingDelay)
             {
-
                 Quaternion firingAngle = transform.rotation * Quaternion.Euler(0,0,90);
                 GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, firingAngle);
                 Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                 rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+
                 timer = 0;
             }
         }
