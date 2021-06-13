@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameStates currentState;
     private GameStates waitingStateToChangeTo;
     private float timer = 0f;
+    private float preGameTimer = 4.5f;
     private bool waitingForTimer;
     [SerializeField] CanvasManager MainCanvas;
 
@@ -33,6 +34,13 @@ public class GameManager : MonoBehaviour
             {
                 timer -= Time.deltaTime;
             }
+        }
+
+        if(currentState == GameStates.PREGAME)
+        {
+            preGameTimer -= Time.deltaTime;
+            if (preGameTimer <= 0)
+                ChangeState(GameStates.INGAME);
         }
 
     }
