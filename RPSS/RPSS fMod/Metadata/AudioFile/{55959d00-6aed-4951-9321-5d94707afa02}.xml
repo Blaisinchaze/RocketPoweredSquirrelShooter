@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{55959d00-6aed-4951-9321-5d94707afa02}">
+		<property name="assetPath">
+			<value>Cartoon Bomb Drop and Explosion - Sound Effect for editing.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>11.039999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{07274bc6-39e2-48be-8fbf-4da56f87a949}</destination>
+		</relationship>
+	</object>
+</objects>

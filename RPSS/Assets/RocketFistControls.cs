@@ -22,6 +22,7 @@ public class RocketFistControls : Combatant, IHittable
     private float firingDelay = 0.1f;
     private float timer = 0;
 
+    public FMODUnity.RuntimeManager firingClip;
     public Player player;
 
     [SerializeField] GameObject attachmentCircle;
@@ -74,6 +75,7 @@ public class RocketFistControls : Combatant, IHittable
                     default:
                         break;
                 }
+                FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                 timer = 0;
 
 
