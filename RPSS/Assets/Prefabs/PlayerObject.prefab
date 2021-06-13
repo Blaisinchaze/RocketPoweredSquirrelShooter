@@ -261,11 +261,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 408715924, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_SortingOrder
-      value: -144
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1071594589, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: m_SortingOrder
-      value: -150
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3776475601556671562, guid: f7ebed32e241c1742949cde9ffa7d032, type: 3}
       propertyPath: fistControls
@@ -419,10 +419,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8193017389098234289, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: m_SortingOrder
-      value: -145
-      objectReference: {fileID: 0}
     - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: player
       value: 
@@ -435,10 +431,6 @@ PrefabInstance:
       propertyPath: attachmentCircle
       value: 
       objectReference: {fileID: 4458482447383289420}
-    - target: {fileID: 8193017389098234291, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
-      propertyPath: explosionLayerMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 8193017389098234293, guid: 7dba78b8db62a2a4093b15c766b62ef0, type: 3}
       propertyPath: m_Name
       value: RocketFist
