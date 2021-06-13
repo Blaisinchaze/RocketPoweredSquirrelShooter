@@ -8,13 +8,13 @@ public class GameManager : MonoBehaviour
     public GameStates currentState;
     private GameStates waitingStateToChangeTo;
     private float timer = 0f;
+    private float preGameTimer = 4.5f;
     private bool waitingForTimer;
     [SerializeField] CanvasManager MainCanvas;
 
     void Start()
     {
-        if (MainCanvas == null)
-            Debug.LogError("Canvas hasn't been set");
+        MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>();
         ChangeState(GameStates.INMENU);
         MainCanvas.Transition(TransitionStates.FADEIN);
     }
@@ -34,6 +34,13 @@ public class GameManager : MonoBehaviour
             {
                 timer -= Time.deltaTime;
             }
+        }
+
+        if(currentState == GameStates.PREGAME)
+        {
+            preGameTimer -= Time.deltaTime;
+            if (preGameTimer <= 0)
+                ChangeState(GameStates.INGAME);
         }
 
     }
@@ -57,7 +64,7 @@ public class GameManager : MonoBehaviour
             return;
         waitingStateToChangeTo = stateToChangeTo;
         waitingForTimer = true;
-        timer = 2f;
+        timer = 1f;
         MainCanvas.Transition(TransitionStates.FADEOUT);
     }    
     

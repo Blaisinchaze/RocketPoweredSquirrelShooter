@@ -46,6 +46,7 @@ public class Combatant : MonoBehaviour
       if (health <= 0 && !invulnerable)
          Die();
    }
+
    /// <summary>
    /// Modify this to kill the unit. By default, destroys gameObject
    /// </summary>
@@ -62,6 +63,7 @@ public class Combatant : MonoBehaviour
       if (invulnerable) return;
       health -= damageValue;
    }
+
    public void GetHit(Bullet bullet)
    {
       if (invulnerable) return;

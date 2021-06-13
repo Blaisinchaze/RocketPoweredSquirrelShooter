@@ -88,6 +88,8 @@ public class AiController : MonoBehaviour
     [SerializeField]
     private float spawnTimer = 0;
 
+    private GameManager gm;
+
     private List<AiUnit> enemies = new List<AiUnit>();
     private List<Transform> spawnPoints = new List<Transform>();
 
@@ -101,12 +103,19 @@ public class AiController : MonoBehaviour
 
         }
 
+        gm = FindObjectOfType<GameManager>();
+
         StartNewWave();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (gm.currentState != GameStates.INGAME)
+        {
+            return;
+        }
+
         if (enemies.Count == 0 && enemiesToSpawn == 0)
         {
             waveTimer = 2;

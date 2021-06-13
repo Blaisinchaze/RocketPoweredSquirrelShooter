@@ -5,25 +5,26 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] private GameObject MainMenuCanvas;
+    [SerializeField] private GameObject PreGameCanvas;
     [SerializeField] private GameObject InGameCanvas;
     [SerializeField] private GameObject GameOverCanvas;
     [SerializeField] private GameObject HowToCanvas;
+    [SerializeField] public GameObject TempCanvas;
     private List<GameObject> canvases = new List<GameObject>();
 
     [SerializeField] private TransitionController transitionController;
-    [SerializeField] private GameManager gameManager;
+    private GameManager gameManager;
 
     private void Start()
     {
-        if (gameManager == null)
-            Debug.LogError("Gamemanager not configured");
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         canvases.Add(MainMenuCanvas);
         canvases.Add(InGameCanvas);
         canvases.Add(GameOverCanvas);
         canvases.Add(HowToCanvas);
+        canvases.Add(PreGameCanvas);
     }
-
     public void ChangeCanvas(GameStates state)
     {
         foreach (var item in canvases)
@@ -39,6 +40,7 @@ public class CanvasManager : MonoBehaviour
                 MainMenuCanvas.gameObject.SetActive(true);
                 break;
             case GameStates.PREGAME:
+                PreGameCanvas.gameObject.SetActive(true);
                 break;
             case GameStates.INGAME:
                 InGameCanvas.gameObject.SetActive(true);

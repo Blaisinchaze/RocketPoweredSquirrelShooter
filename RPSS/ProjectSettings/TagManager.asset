@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Spawnpoint
+  - MainCanvas
+  - GameManager
+  - Hand
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Walls

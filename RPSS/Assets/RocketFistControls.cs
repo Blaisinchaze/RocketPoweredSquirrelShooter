@@ -10,6 +10,7 @@ public class RocketFistControls : Combatant, IHittable
     Vector2 mousePos;
     public float moveSpeed = 0.5f;
     public float turnSpeed = 2;
+    public float currentTurnSpeed = 2;
     Rigidbody2D rb;
     Vector2 forwardVector = new Vector2(0, 0);
     public bool firing = false;
@@ -22,6 +23,9 @@ public class RocketFistControls : Combatant, IHittable
     private float timer = 0;
 
     public Player player;
+
+    [SerializeField] GameObject attachmentCircle;
+    [SerializeField] GameObject attachmentPoint;
     private void Start()
     {
         isAlive = true;
@@ -84,25 +88,27 @@ public class RocketFistControls : Combatant, IHittable
         {
             return;
         }
+        Vector2 lookDir = Vector2.zero;
         switch (player.currentState)
         {
             case Player.PlayerStates.Combined:
+                transform.position = attachmentPoint.transform.position;
+                currentTurnSpeed = turnSpeed * 10;
+                lookDir = mousePos - new Vector2(attachmentCircle.transform.position.x, attachmentCircle.transform.position.y);
+
                 break;
             case Player.PlayerStates.Split:
-                if (isAlive)
-                {
-                    rb.MovePosition(rb.position + forwardVector * moveSpeed * Time.deltaTime);
-
-                    Vector2 lookDir = mousePos - rb.position;
-                    float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-                    Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnSpeed * Time.deltaTime);
-                }
+                rb.MovePosition(rb.position + forwardVector * moveSpeed * Time.deltaTime);
+                currentTurnSpeed = turnSpeed;        
+                lookDir = mousePos - rb.position;
                 break;
             default:
                 break;
         }
 
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, currentTurnSpeed * Time.deltaTime);
     }
 
     public void Shoot(InputAction.CallbackContext context)
