@@ -17,9 +17,9 @@ public class RotateAttachmentCircle : MonoBehaviour
         transform.rotation = rotation;
         //transform.rotation = Quaternion.Euler(-70, transform.eulerAngles.x, transform.eulerAngles.y);
         transform.eulerAngles = new Vector3(
-    transform.eulerAngles.x - 55,
-    transform.eulerAngles.y,
-    transform.eulerAngles.z
+        transform.eulerAngles.x - 55,
+        transform.eulerAngles.y,
+        transform.eulerAngles.z
 );
     }
 }

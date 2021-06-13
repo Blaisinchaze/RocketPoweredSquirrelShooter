@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
     private bool waitingForTimer;
     [SerializeField] CanvasManager MainCanvas;
 
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>();
