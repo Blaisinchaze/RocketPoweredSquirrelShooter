@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class RocketFistControls : Combatant, IHittable
 {
     public int MaxAmountOfBullets = 100;
-    private int currentAmountOfBullets;
+    public int currentAmountOfBullets;
     Vector2 mousePos;
     public float moveSpeed = 0.5f;
     public float turnSpeed = 2;
@@ -15,6 +15,7 @@ public class RocketFistControls : Combatant, IHittable
     Vector2 forwardVector = new Vector2(0, 0);
     public bool firing = false;
     public GameObject ratPrefab;
+    public GameObject fistExplosion;
 
     public GameObject BulletPrefab;
     [SerializeField]
@@ -137,7 +138,8 @@ public class RocketFistControls : Combatant, IHittable
 
     public override void Die()
     {
-        //Instantiate explosion
+        GameObject go = Instantiate(fistExplosion, transform.position, Quaternion.identity);
+        Destroy(go, 10);
         Instantiate(ratPrefab, transform.position, Quaternion.identity);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
