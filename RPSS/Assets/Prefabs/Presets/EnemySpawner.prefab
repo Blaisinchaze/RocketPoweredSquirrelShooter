@@ -61,8 +61,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incrementPerWave: 2
   baseEnemycount: 3
-  secondsForWaveSpawn: 10
-  minTimeUntilNextWave: 30
+  secondsForWaveSpawn: 15
+  minTimeUntilNextWave: 300
+  hpIncrement: 1
+  speedIncrement: 0.5
+  speedIncrementFrequency: 3
   prefabs:
   - {fileID: 1700293764896474494, guid: 4c4763185fce8a54ea1676eede0039f5, type: 3}
   - {fileID: 1700293764896474494, guid: 78596ca1c9d1a304587dc0915c85acdb, type: 3}
