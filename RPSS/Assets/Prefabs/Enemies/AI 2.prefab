@@ -134,6 +134,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1700293764896474489}
     m_Modifications:
     - target: {fileID: 175505584174194396, guid: 97948df64ce6553498aadec13e805494, type: 3}
+      propertyPath: projSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 175505584174194396, guid: 97948df64ce6553498aadec13e805494, type: 3}
       propertyPath: weaponHeldDistanceModifier
       value: 0.25
       objectReference: {fileID: 0}
