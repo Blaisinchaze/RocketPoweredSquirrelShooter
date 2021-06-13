@@ -41,7 +41,7 @@ public class CameraBehaviour : MonoBehaviour
         var b = rocketHand.transform.position;
         var dist = (a + b) * 0.5f;
         meanTarget.position = dist;
-        print(dist.ToString());
+        //print(dist.ToString());
         cam.Follow = meanTarget;
     }
 }

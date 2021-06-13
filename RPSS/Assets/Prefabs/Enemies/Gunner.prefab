@@ -57,9 +57,10 @@ MonoBehaviour:
   attackDelay: 1
   moveSpeed: 2.5
   minDistance: 0.1
-  pathUpdateRate: 0.05
-  colliderRadius: 0.125
+  pathUpdateRate: 0.01
+  colliderRadius: 0.05
   bodyAnimator: {fileID: 5896757443214677145}
+  state: 0
 --- !u!58 &1700293764896474490
 CircleCollider2D:
   m_ObjectHideFlags: 0
