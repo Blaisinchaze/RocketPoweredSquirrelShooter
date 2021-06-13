@@ -28,11 +28,20 @@ public class HealthBarController : MonoBehaviour
         bar.maxValue = maxHealth;
         bar.value = maxHealth;
         fillArea.color = standardHealthColour;
+        bar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(ai.health < maxHealth)
+        {
+            bar.gameObject.SetActive(true);
+        }
+        else
+        {
+            return;
+        }
         if(ai == null)
         {
             Destroy(this.gameObject);
