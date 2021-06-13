@@ -83,17 +83,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 0
-  health: 1
-  maxHealth: 1
+  health: 20
+  maxHealth: 20
   kill: 0
   invulnerable: 0
   enemyType: 1
-  range: 0.75
+  range: 1.5
   attackDelay: 1
   moveSpeed: 3.5
-  minDistance: 0.1
-  pathUpdateRate: 0.5
-  colliderRadius: 0.05
+  minDistance: 0.05
+  pathUpdateRate: 1.25
+  colliderRadius: 0.1
   bodyAnimator: {fileID: 8059680675339140709}
   state: 0
 --- !u!58 &1700293764896474490
@@ -147,6 +147,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1700293764896474489}
     m_Modifications:
+    - target: {fileID: 175505584174194396, guid: e034328133994b9449c16d1a408be44c, type: 3}
+      propertyPath: projRange
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 175505584174194396, guid: e034328133994b9449c16d1a408be44c, type: 3}
       propertyPath: weaponHeldDistanceModifier
       value: 1.2
@@ -206,6 +210,10 @@ PrefabInstance:
     - target: {fileID: 6117751005628930058, guid: e034328133994b9449c16d1a408be44c, type: 3}
       propertyPath: m_Name
       value: Shield_Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592516710953203854, guid: e034328133994b9449c16d1a408be44c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5181162060667970255, guid: e034328133994b9449c16d1a408be44c, type: 3}

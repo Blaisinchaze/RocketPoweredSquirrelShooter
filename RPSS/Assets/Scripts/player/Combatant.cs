@@ -14,7 +14,7 @@ public class Combatant : MonoBehaviour
    
    public bool isAlive;
    public int health;
-   public int maxHealth = 5;
+   public int maxHealth;
    
    // For testing and messing around
    
@@ -42,6 +42,18 @@ public class Combatant : MonoBehaviour
       InitSounds();
    }
 
+   public void Reset()
+   {
+      if (maxHealth > 0)
+         health = maxHealth;
+      else
+      {
+         maxHealth = 5;
+         health = 5;
+      }
+
+      isAlive = true;
+   }
    private void InitSounds()
    {
       if (hitSoundsInstances.Count > 0) return;
