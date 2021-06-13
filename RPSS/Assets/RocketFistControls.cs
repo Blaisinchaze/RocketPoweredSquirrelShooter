@@ -142,6 +142,7 @@ public class RocketFistControls : Combatant, IHittable
     public override void Die()
     {
         GameObject go = Instantiate(fistExplosion, transform.position, Quaternion.identity);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Body/Explosion");
         Destroy(go, 10);
         Instantiate(ratPrefab, transform.position, Quaternion.identity);
         GetComponent<SpriteRenderer>().enabled = false;
