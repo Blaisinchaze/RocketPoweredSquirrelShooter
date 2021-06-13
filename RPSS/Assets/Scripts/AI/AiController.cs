@@ -82,7 +82,7 @@ public class AiController : MonoBehaviour
     private float timeBetweenSpawns = 0;
     private int totalEnemiesThisWave = 0;
     [SerializeField]
-    private int currentWave = 0;
+    public int currentWave = 0;
     [SerializeField]
     private float waveTimer = 0;
     [SerializeField]

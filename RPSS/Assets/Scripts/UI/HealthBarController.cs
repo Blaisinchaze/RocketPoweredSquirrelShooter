@@ -52,7 +52,7 @@ public class HealthBarController : MonoBehaviour
             if (bar.value != ai.health)
             {
                 fillArea.color = hitHealthColour;
-                bar.value = Mathf.MoveTowards(bar.value, ai.health, Time.deltaTime * 5);
+                bar.value = Mathf.MoveTowards(bar.value, ai.health, Time.deltaTime * 50);
             }
             else
             {
