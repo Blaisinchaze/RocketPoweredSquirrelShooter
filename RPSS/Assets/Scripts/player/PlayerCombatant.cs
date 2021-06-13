@@ -18,4 +18,10 @@ public class PlayerCombatant : Combatant
     {
         base.Die();
     }
+
+    public override void GetHit(int damageValue)
+    {
+        base.GetHit(damageValue);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/Hit");
+    }
 }

@@ -262,6 +262,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3944644310023028208, guid: c222e1cad4c707c438a1ec68cb1db998, type: 3}
   m_PrefabInstance: {fileID: 597909938}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1155919606 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1950752487503756873, guid: 2b9545864efa6a644a7c2555082fe4a3, type: 3}
+  m_PrefabInstance: {fileID: 845501345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1155919609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155919606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 1
+  UnloadEvent: 2
+  Banks:
+  - Master
+  CollisionTag: 
+  PreloadSamples: 1
 --- !u!1001 &1194702692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -530,6 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1736734345}
   - component: {fileID: 1736734344}
+  - component: {fileID: 1736734346}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -587,6 +611,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736734346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736734343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!20 &1738391391 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4298080316109600013, guid: 4567b50ee5c0d704ca00787ca01b9f29, type: 3}
@@ -599,6 +637,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 983344637, guid: 80ce3e7e5c8e29b4f81345df28c5151f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983344637, guid: 80ce3e7e5c8e29b4f81345df28c5151f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1150643968, guid: 80ce3e7e5c8e29b4f81345df28c5151f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
@@ -607,6 +653,14 @@ PrefabInstance:
       propertyPath: m_Animation
       value: 
       objectReference: {fileID: 7400000, guid: 8b01aefae6dcc5c4a9085d24a2e3da3b, type: 2}
+    - target: {fileID: 1590514790, guid: 80ce3e7e5c8e29b4f81345df28c5151f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590514790, guid: 80ce3e7e5c8e29b4f81345df28c5151f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 282103402492904880, guid: 80ce3e7e5c8e29b4f81345df28c5151f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
