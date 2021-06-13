@@ -7,7 +7,7 @@ TagManager:
   - Spawnpoint
   - MainCanvas
   - GameManager
-  - Shield
+  - Hand
   layers:
   - Default
   - TransparentFX
