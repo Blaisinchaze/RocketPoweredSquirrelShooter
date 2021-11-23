@@ -8,9 +8,9 @@ public class GridNode
     public Vector3 worldPosition;
     public Vector2Int gridPosition;
 
-    public int gCost;
-    public int hCost;
-    public int fCost { get { return gCost + hCost; } }
+    public float gCost;
+    public float hCost;
+    public float fCost { get { return gCost + hCost; } }
     public bool pathable = true;
 
     public GridNode parent;

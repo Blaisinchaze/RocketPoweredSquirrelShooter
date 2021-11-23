@@ -55,7 +55,7 @@ public class RocketFistControls : Combatant, IHittable
         {
             case Player.PlayerStates.Combined:
                 {
-                    if (currentEnergyValue < maxEnergyValue)
+                    if (currentEnergyValue <= maxEnergyValue)
                     {
                         currentEnergyValue += energyRegenRate * Time.deltaTime; 
                     }

@@ -39,7 +39,7 @@ public class Combatant : MonoBehaviour
    {
       CheckToggles();
       CheckHealth();
-      InitSounds();
+      //InitSounds();
    }
 
    public void Reset()
@@ -95,7 +95,7 @@ public class Combatant : MonoBehaviour
    /// </summary>
    public virtual void GetHit(int damageValue)
    {
-      PlaySound();
+      //PlaySound();
   
       if (invulnerable) return;
       health -= damageValue;

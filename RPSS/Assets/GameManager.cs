@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        roundNumber.text = aiController.currentWave.ToString();
+
         if (currentState != GameStates.PREGAME) return;
         preGameTimer -= Time.deltaTime;
 
@@ -57,7 +59,6 @@ public class GameManager : MonoBehaviour
         preGameTimer = 4.5f;
         ChangeState(GameStates.INGAME);
 
-        roundNumber.text = aiController.currentWave.ToString();
     }
 
     public void ChangeState(GameStates stateToChangeTo)

@@ -53,15 +53,15 @@ MonoBehaviour:
   kill: 0
   invulnerable: 0
   enemyType: 2
-  range: 20
-  attackDelay: 1
-  moveSpeed: 2.5
   deathExplosion: {fileID: 21834783198813013, guid: 195d1ad5eee502842aed2d5563cedf5b, type: 3}
-  minDistance: 0.05
-  pathUpdateRate: 1.25
-  colliderRadius: 0.1
   bodyAnimator: {fileID: 5896757443214677145}
-  state: 0
+  range: 20
+  actionDelay: 0.75
+  moveSpeed: 2.5
+  minDistance: 0.05
+  pathUpdateRate: 1.5
+  colliderRadius: 0.1
+  maxStraightLineDistance: 5
 --- !u!58 &1700293764896474490
 CircleCollider2D:
   m_ObjectHideFlags: 0

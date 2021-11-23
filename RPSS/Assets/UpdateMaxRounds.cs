@@ -6,11 +6,12 @@ using TMPro;
 
 public class UpdateMaxRounds : MonoBehaviour
 {
-    public TextMeshProUGUI roundNumber;
     public AiController aiController;
 
-    void Update()
+    public TextMeshProUGUI roundNumber;
+    void UpdateRoundNum()
     {
         roundNumber.text = aiController.currentWave.ToString();
+        Debug.Log(roundNumber.text + " " + aiController.currentWave);
     }
 }

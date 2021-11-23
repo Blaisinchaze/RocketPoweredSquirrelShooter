@@ -52,10 +52,10 @@ public class PlayerHudManager : MonoBehaviour
         {
             case Player.PlayerStates.Combined:            
                 AmmoNumber.text = "Max";
-                energyBar2.gameObject.SetActive(false);
+                energyBar2.gameObject.SetActive(rocketFist.currentEnergyValue <= rocketFist.maxEnergyValue);
                 break;
             case Player.PlayerStates.Split:
-                energyBar2.gameObject.SetActive(true);
+                energyBar2.gameObject.SetActive(rocketFist.currentEnergyValue != 0);
                 AmmoNumber.text = (rocketFist.currentAmountOfBullets.ToString() + " / " + (rocketFist.MaxAmountOfBullets.ToString()));
                 break;
             default:

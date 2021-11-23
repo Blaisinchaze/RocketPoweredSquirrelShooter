@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109df92d31308f245a15ff7b8a0e2ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitNodeRatio: 2.72
-  displayGrid: 1
+  unitNodeRatio: 5
+  displayGrid: 0
   tilemap: {fileID: 0}
 --- !u!114 &661450434360385495
 MonoBehaviour:
@@ -78,14 +78,14 @@ MonoBehaviour:
     shielders: 50
     gunners: 0
   - walkers: 50
-    shielders: 40
-    gunners: 10
-  - walkers: 0
     shielders: 0
-    gunners: 100
-  - walkers: 34
-    shielders: 33
-    gunners: 33
+    gunners: 50
+  - walkers: 25
+    shielders: 25
+    gunners: 50
+  - walkers: 25
+    shielders: 35
+    gunners: 40
   currentWave: 0
   waveTimer: 0
   spawnTimer: 0

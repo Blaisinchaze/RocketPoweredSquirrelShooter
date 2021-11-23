@@ -145,7 +145,7 @@ public class Ai_Weapon : MonoBehaviour
             case Enemies.GUN:
                 {
                     projectile.GetComponent<Rigidbody2D>().AddForce(transform.up * projSpeed, ForceMode2D.Impulse);
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
                 }
                 break;
         }
