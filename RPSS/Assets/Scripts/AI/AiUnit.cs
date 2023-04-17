@@ -6,7 +6,6 @@ using UnityEditor;
 
 public class AiUnit:Combatant
 {
-
     [Space]
     public Enemies enemyType;
     public GameObject deathExplosion;
@@ -44,6 +43,7 @@ public class AiUnit:Combatant
 
     private bool findingPath = false;
     private Vector2Int currentGridPosition;
+    private Vector2 moveToPos;
     private List<GridNode> currentRoute = new List<GridNode>();
     private GameObject targetPlayer;
     private State state;
@@ -64,19 +64,25 @@ public class AiUnit:Combatant
     protected override void Update()
     {
         base.Update();
+        transform.position = Vector3.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
 
         //pathfinding updates
-        currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
-        UpdateAction();
+        //currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
+        //UpdateAction();
+        //UpdateDirection();
+    }
+
+    public void FixedUpdate()
+    {
         UpdateDirection();
     }
 
-    void UpdateAction()
+    public void UpdateAction()
     {
+        currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
+
         bool canSeeTarget = CheckLineToTarget(targetPlayer.transform.position);
         distanceToTarget = Vector3.Distance(transform.position, targetPlayer.transform.position);
-
-        Vector3 moveToPos = Vector3.zero;
 
         if (distanceToTarget <= range && canSeeTarget)
         {
@@ -99,9 +105,10 @@ public class AiUnit:Combatant
                     moveToPos = targetPlayer.transform.position;
                     currentRoute.Clear();
                 }
-                else if (!findingPath)
+                //else if (!findingPath)
+                else
                 {
-                    StartCoroutine(FindPath(navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition));
+                    FindPath(navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition);
                 }
 
                 if (currentRoute.Count > 0)
@@ -111,11 +118,11 @@ public class AiUnit:Combatant
                     {
                         currentRoute.RemoveAt(0);
                     }
-                    moveToPos = currentRoute[0].worldPosition;
+                    else
+                    {
+                        moveToPos = currentRoute[0].worldPosition;
+                    }
                 }
-
-                transform.position = Vector3.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
-
                 break;
 
             case State.ACTION:
@@ -184,7 +191,8 @@ public class AiUnit:Combatant
         return Mathf.Sqrt((dstX * dstX) + (dstY * dstY));
     }
 
-    IEnumerator FindPath(Vector2Int target)
+    //IEnumerator FindPath(Vector2Int target)
+    void FindPath(Vector2Int target)
     {
         findingPath = true;
 
@@ -213,9 +221,10 @@ public class AiUnit:Combatant
             if (currentNode == targetNode)
             {
                 RetracePath(startNode, targetNode);
-                yield return new WaitForSeconds(pathUpdateRate);
+                //yield return new WaitForSeconds(pathUpdateRate);
                 findingPath = false;
-                yield break;
+                return;
+                //yield break;
             }
 
             foreach (GridNode neighbourNode in GetNeighbouringGridSpaces(currentNode))
@@ -249,17 +258,18 @@ public class AiUnit:Combatant
                     if (neighbourNode == targetNode)
                     {
                         RetracePath(startNode, targetNode);
-                        yield return new WaitForSeconds(pathUpdateRate);
+                        //yield return new WaitForSeconds(pathUpdateRate);
                         findingPath = false;
-                        yield break;
+                        return;
+                        //yield break;
                     }
                 }
             }
         }
 
-        yield return new WaitForSeconds(pathUpdateRate);
+        //yield return new WaitForSeconds(pathUpdateRate);
         findingPath = false;
-        yield break;
+        //yield break;
     }
 
     private void RetracePath(GridNode startNode, GridNode targetNode)

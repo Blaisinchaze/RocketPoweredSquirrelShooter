@@ -92,6 +92,9 @@ public class AiController : MonoBehaviour
     private float waveTimer = 0;
     [SerializeField]
     private float spawnTimer = 0;
+    [Space]
+    public int enemiesToUpdate = 5;
+    public int currentEnemyIndex = 0;
 
     private GameManager gm;
 
@@ -146,6 +149,26 @@ public class AiController : MonoBehaviour
         {
             StartNewWave();
         }
+
+        UpdateEnemies();
+    }
+
+    private void UpdateEnemies()
+    {
+        if (enemies.Count == 0) return;
+        if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
+
+
+        int length = enemiesToUpdate;
+        if (enemiesToUpdate > enemies.Count) length = enemies.Count;
+
+        for (int i = 0; i < length; i++)
+        {
+            enemies[currentEnemyIndex].UpdateAction();
+            currentEnemyIndex++;
+            if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
+        }
+        
     }
 
     private void StartNewWave()
@@ -227,7 +250,6 @@ public class AiController : MonoBehaviour
         }
 
         enemies.Add(enemy);
-
     }
 
     public void KillEnemy(AiUnit enemy)
