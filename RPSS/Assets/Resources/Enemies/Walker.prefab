@@ -61,7 +61,7 @@ MonoBehaviour:
   minDistance: 0.05
   pathUpdateRate: 1.5
   colliderRadius: 0.1
-  maxStraightLineDistance: 5
+  maxStraightLineDistance: 20
 --- !u!58 &1700293764896474490
 CircleCollider2D:
   m_ObjectHideFlags: 0

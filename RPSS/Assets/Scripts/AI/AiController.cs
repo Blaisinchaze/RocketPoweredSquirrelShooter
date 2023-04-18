@@ -67,8 +67,11 @@ public enum Enemies
     GUN = 2
 }
 
-public class AiController : MonoBehaviour
+public class AiController : Singleton<AiController>
 {
+    public GameObject player;
+    public NavGrid navGrid;
+    [Space]
     public int incrementPerWave;
     public int baseEnemycount;
     public int secondsForWaveSpawn;
@@ -95,6 +98,7 @@ public class AiController : MonoBehaviour
     [Space]
     public int enemiesToUpdate = 5;
     public int currentEnemyIndex = 0;
+    private bool enemiesUpdating = false;
 
     private GameManager gm;
 
@@ -111,7 +115,7 @@ public class AiController : MonoBehaviour
 
         }
 
-        gm = FindObjectOfType<GameManager>();
+        gm = GameManager.Instance;
 
         StartNewWave();
     }
@@ -150,25 +154,46 @@ public class AiController : MonoBehaviour
             StartNewWave();
         }
 
-        UpdateEnemies();
+        if(gm.currentState == GameStates.INGAME && !enemiesUpdating) StartCoroutine(UpdateEnemies());
     }
 
-    private void UpdateEnemies()
+    private IEnumerator UpdateEnemies()
     {
-        if (enemies.Count == 0) return;
-        if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
-
-
-        int length = enemiesToUpdate;
-        if (enemiesToUpdate > enemies.Count) length = enemies.Count;
-
-        for (int i = 0; i < length; i++)
+        int enemyCount = 0;
+        enemiesUpdating = true;
+        while (gm.currentState == GameStates.INGAME)
         {
-            enemies[currentEnemyIndex].UpdateAction();
-            currentEnemyIndex++;
-            if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
+            if (enemies.Count == 0) 
+            {
+                yield return new WaitForSeconds(0.1f);
+                continue;
+            }
+
+            //if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
+
+            //int length = enemiesToUpdate;
+            //if (enemiesToUpdate > enemies.Count) length = enemies.Count;
+
+            //for (int i = 0; i < length; i++)
+            //{
+            //    enemies[currentEnemyIndex].UnitUpdate();
+            //    currentEnemyIndex++;
+            //    if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
+            //}
+            //yield return null;
+
+            enemyCount = enemies.Count;
+            for (int i = 0; i < enemyCount; i++)
+            {
+                if (i >= enemies.Count) break;
+                if (enemies[i].UnitUpdate())
+                {
+                    yield return null;
+                    break;
+                }
+            }
         }
-        
+        enemiesUpdating = false;
     }
 
     private void StartNewWave()

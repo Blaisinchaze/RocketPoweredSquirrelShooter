@@ -16,8 +16,8 @@ public class PlayerCombatant : Combatant
     /// </summary>
     public override void Die()
     {
-        GameManager.instance.ChangeState(GameStates.GAMELOSE);
-        print(GameManager.instance.currentState);
+        GameManager.Instance.ChangeState(GameStates.GAMELOSE);
+        //print(GameManager.Instance.currentState);
     }
 
     public override void GetHit(int damageValue)

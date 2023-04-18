@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GameStates{INMENU, HOWTO, PREGAME, INGAME, PAUSED, GAMELOSE, NULL }
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public GameStates currentState;
     private GameStates waitingStateToChangeTo;
@@ -15,14 +15,8 @@ public class GameManager : MonoBehaviour
     private bool waitingForTimer;
     [SerializeField] CanvasManager MainCanvas;
 
-    public static GameManager instance;
-
     private EventInstance music;
     private string musicPath = "event:/Ambience/Music/Music";
-    private void Awake()
-    {
-        instance = this;
-    }
 
     void Start()
     {

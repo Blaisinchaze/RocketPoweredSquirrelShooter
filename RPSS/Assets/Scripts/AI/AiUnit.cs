@@ -37,18 +37,18 @@ public class AiUnit:Combatant
     public float colliderRadius;
     public float maxStraightLineDistance = 3;
 
-    internal NavGrid navGrid;
+    private Pathfinder pathfinder;
+
     internal Facing direction;
     internal bool moving;
 
-    private bool findingPath = false;
     private Vector2Int currentGridPosition;
     private Vector2 moveToPos;
-    private List<GridNode> currentRoute = new List<GridNode>();
     private GameObject targetPlayer;
     private State state;
     private float actionTimer;
     float distanceToTarget;
+    bool canSeeTarget;
     #endregion
 
     public void Start()
@@ -56,32 +56,28 @@ public class AiUnit:Combatant
         weapon = GetComponentInChildren<Ai_Weapon>();
 
         //Pathfinding initialistion
-        targetPlayer = GameObject.FindGameObjectWithTag("Player");
-        navGrid = FindObjectOfType<NavGrid>();
-        findingPath = false;
+        targetPlayer = AiController.Instance.player;
+        pathfinder = new Pathfinder(colliderRadius, AiController.Instance.navGrid);
     }
 
     protected override void Update()
     {
         base.Update();
         transform.position = Vector3.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
-
-        //pathfinding updates
-        //currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
-        //UpdateAction();
-        //UpdateDirection();
-    }
-
-    public void FixedUpdate()
-    {
         UpdateDirection();
     }
 
-    public void UpdateAction()
+    //returns true if it runs pathfinding
+    public bool UnitUpdate() 
     {
-        currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
+        UpdateState();
+        return UpdateAction();
+    }
 
-        bool canSeeTarget = CheckLineToTarget(targetPlayer.transform.position);
+    private void UpdateState() 
+    {
+        currentGridPosition = pathfinder.navGrid.NodeFromWorld(transform.position).gridPosition;
+        canSeeTarget = CheckLineToTarget(targetPlayer.transform.position);
         distanceToTarget = Vector3.Distance(transform.position, targetPlayer.transform.position);
 
         if (distanceToTarget <= range && canSeeTarget)
@@ -92,7 +88,11 @@ public class AiUnit:Combatant
         {
             state = State.MOVE;
         }
+    }
 
+    //returns true if a delay is needed
+    private bool UpdateAction()
+    {
         switch (state)
         {
             case State.NULL:
@@ -102,44 +102,48 @@ public class AiUnit:Combatant
             case State.MOVE:
                 if (canSeeTarget && distanceToTarget < maxStraightLineDistance)
                 {
+                    Debug.Log("Straight lining it");
                     moveToPos = targetPlayer.transform.position;
-                    currentRoute.Clear();
+                    //pathfinder.currentRoute.Clear();
                 }
-                //else if (!findingPath)
                 else
                 {
-                    FindPath(navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition);
-                }
+                    Debug.Log("Pathfinding");
+                    pathfinder.FindPath(pathfinder.navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition, currentGridPosition);
+                    if (pathfinder.currentRoute.Count > 0)
+                    {
+                        if (Vector3.Distance(transform.position, pathfinder.currentRoute[0].worldPosition) <= minDistance)
+                        {
+                            pathfinder.currentRoute.RemoveAt(0);
+                        }
+                        else
+                        {
+                            moveToPos = pathfinder.currentRoute[0].worldPosition;
+                        }
+                    }
 
-                if (currentRoute.Count > 0)
-                {
-                    currentGridPosition = navGrid.NodeFromWorld(transform.position).gridPosition;
-                    if (Vector3.Distance(transform.position, currentRoute[0].worldPosition) <= minDistance)
-                    {
-                        currentRoute.RemoveAt(0);
-                    }
-                    else
-                    {
-                        moveToPos = currentRoute[0].worldPosition;
-                    }
+                    return true;
                 }
                 break;
 
             case State.ACTION:
+                Debug.Log("Action");
                 //This needs to be changed to whatever action needs to take place.
                 if (actionTimer > 0)
                 {
                     actionTimer -= Time.deltaTime;
-                    break;
+                }
+                else
+                {
+                    weapon.Fire();
+
+                    actionTimer = actionDelay;
                 }
 
-                weapon.Fire();
-
-                actionTimer = actionDelay;
                 break;
         }
 
-        
+        return false;
     }
 
     private void UpdateDirection()
@@ -149,7 +153,7 @@ public class AiUnit:Combatant
         float x;
         float y;
 
-        if (currentRoute.Count <= 0)
+        if (pathfinder.currentRoute.Count <= 0)
         {
             Vector3 diff = targetPlayer.transform.position - transform.position;
             x = diff.x;
@@ -157,7 +161,7 @@ public class AiUnit:Combatant
         }
         else
         {
-            Vector2Int diff = currentRoute[0].gridPosition - currentGridPosition;
+            Vector2Int diff = pathfinder.currentRoute[0].gridPosition - currentGridPosition;
             x = diff.x;
             y = diff.y;
         }
@@ -183,29 +187,96 @@ public class AiUnit:Combatant
 
     }
 
-    private float DistanceFrom(Vector2Int start, Vector2Int end)
+    private bool CheckLineToTarget(Vector3 position)
     {
-        int dstX = Mathf.Abs(end.x - start.x);
-        int dstY = Mathf.Abs(end.y - start.y);
+        int layerMask = 1 << LayerMask.NameToLayer("Walls");
 
-        return Mathf.Sqrt((dstX * dstX) + (dstY * dstY));
+        return !Physics2D.CircleCast(transform.position, colliderRadius, position - transform.position, Vector3.Distance(transform.position, position), layerMask);
     }
 
-    //IEnumerator FindPath(Vector2Int target)
-    void FindPath(Vector2Int target)
+    // not pathfinding related
+    public override void Die()
     {
-        findingPath = true;
+        Destroy(Instantiate(deathExplosion, transform.position, Quaternion.identity), 3);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Body/Explosion");
 
-        List<GridNode> open = new List<GridNode>();
-        HashSet<GridNode> closed = new HashSet<GridNode>();
+        if (AiController.Instance != null)
+        {
+            AiController.Instance.KillEnemy(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-        GridNode targetNode = navGrid.NodeFromGridSpace(target);
-        GridNode startNode = navGrid.NodeFromGridSpace(currentGridPosition);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Temp")
+        {
+            Die();
+        }
+    }
+
+    public void TiltBot(Vector2 tilt)
+    {
+        float tiltAmount = 0;
+        if (tilt.x > 0)
+        {
+            tiltAmount = -15;
+            if (tilt.y != 0)
+                tiltAmount = -5;
+
+        }
+        if (tilt.x < 0)
+        {
+            tiltAmount = 15;
+            if (tilt.y != 0)
+                tiltAmount = 5;
+        }
+        Vector3 desiredTilt = new Vector3(0, 0, tiltAmount);
+        Quaternion q = Quaternion.Euler(desiredTilt);
+        transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * 5);
+    }
+}
+
+public class Pathfinder 
+{
+    public List<GridNode> currentRoute = new List<GridNode>();
+    public NavGrid navGrid;
+    public Vector3 currentPos;
+    private float colliderRadius;
+
+    List<GridNode> open = new List<GridNode>();
+    HashSet<GridNode> closed = new HashSet<GridNode>();
+
+    GridNode targetNode;
+    GridNode startNode;
+
+    int layerMask;
+
+    public Pathfinder(float colliderRadius, NavGrid navGrid) 
+    {
+        this.colliderRadius = colliderRadius;
+        this.navGrid = navGrid;
+
+        layerMask = ~(1 << LayerMask.NameToLayer("Player"));
+        layerMask = layerMask & ~(1 << LayerMask.NameToLayer("AI"));
+    }
+
+    public void FindPath(Vector2Int target, Vector2Int start)
+    {
+        open.Clear();
+        closed.Clear();
+
+        targetNode = navGrid.NodeFromGridSpace(target);
+        startNode = navGrid.NodeFromGridSpace(start);
+        
         open.Add(startNode);
-
+        GridNode currentNode;
         while (open.Count > 0)
         {
-            GridNode currentNode = open[0];
+            currentNode = open[0];
 
             for (int i = 0; i < open.Count; i++)
             {
@@ -221,10 +292,7 @@ public class AiUnit:Combatant
             if (currentNode == targetNode)
             {
                 RetracePath(startNode, targetNode);
-                //yield return new WaitForSeconds(pathUpdateRate);
-                findingPath = false;
                 return;
-                //yield break;
             }
 
             foreach (GridNode neighbourNode in GetNeighbouringGridSpaces(currentNode))
@@ -258,18 +326,11 @@ public class AiUnit:Combatant
                     if (neighbourNode == targetNode)
                     {
                         RetracePath(startNode, targetNode);
-                        //yield return new WaitForSeconds(pathUpdateRate);
-                        findingPath = false;
                         return;
-                        //yield break;
                     }
                 }
             }
         }
-
-        //yield return new WaitForSeconds(pathUpdateRate);
-        findingPath = false;
-        //yield break;
     }
 
     private void RetracePath(GridNode startNode, GridNode targetNode)
@@ -286,7 +347,7 @@ public class AiUnit:Combatant
         path.Reverse();
 
         currentRoute = path;
-        SimplifyPath();
+        //SimplifyPath();
     }
 
     private void SimplifyPath()
@@ -303,13 +364,9 @@ public class AiUnit:Combatant
             bool cleanHit = false;
             int j = nodeCount - 1;
 
-            RaycastHit2D hit;
-            int layerMask = ~(1 << LayerMask.NameToLayer("Player"));
-            layerMask = layerMask & ~(1 << LayerMask.NameToLayer("AI"));
-
             while (cleanHit == false && j > i)
             {
-                if (hit = Physics2D.CircleCast(transform.position, colliderRadius, currentRoute[j].worldPosition - transform.position, Vector3.Distance(transform.position, currentRoute[j].worldPosition), layerMask))
+                if (Physics2D.CircleCast(currentPos, colliderRadius, currentRoute[j].worldPosition - currentPos, Vector3.Distance(currentPos, currentRoute[j].worldPosition), layerMask))
                 {
                     j--;
                 }
@@ -324,7 +381,7 @@ public class AiUnit:Combatant
         }
     }
 
-    private List<GridNode> GetNeighbouringGridSpaces(GridNode node)
+    private GridNode[] GetNeighbouringGridSpaces(GridNode node)
     {
         List<GridNode> neighbours = new List<GridNode>();
         for (int x = -1; x <= 1; x++)
@@ -348,84 +405,14 @@ public class AiUnit:Combatant
             }
         }
 
-        return neighbours;
+        return neighbours.ToArray();
     }
 
-    private bool CheckLineToTarget(Vector3 position)
+    private float DistanceFrom(Vector2Int start, Vector2Int end)
     {
-        int layerMask = 1 << LayerMask.NameToLayer("Walls");
+        int dstX = Mathf.Abs(end.x - start.x);
+        int dstY = Mathf.Abs(end.y - start.y);
 
-        RaycastHit2D hit;
-
-        if (hit = Physics2D.CircleCast(transform.position, colliderRadius, position - transform.position, Vector3.Distance(transform.position, position), layerMask))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    // not pathfinding related
-    public override void Die()
-    {
-        Destroy(Instantiate(deathExplosion, transform.position, Quaternion.identity), 3);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Body/Explosion");
-
-        AiController cont;
-        if (transform.parent.TryGetComponent(out cont))
-        {
-            cont.KillEnemy(this);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void OnDrawGizmosSelected()
-    {
-
-        if (currentRoute == null)
-        {
-            return;
-        }
-
-        if (currentRoute.Count > 0)
-        {
-            foreach (GridNode node in currentRoute)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawSphere(node.worldPosition, 0.1f);
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Temp")
-        {
-            Die();
-        }
-    }
-
-    public void TiltBot(Vector2 tilt)
-    {
-        float tiltAmount = 0;
-        if (tilt.x > 0)
-        {
-            tiltAmount = -15;
-            if (tilt.y != 0)
-                tiltAmount = -5;
-
-        }
-        if (tilt.x < 0)
-        {
-            tiltAmount = 15;
-            if (tilt.y != 0)
-                tiltAmount = 5;
-        }
-        Vector3 desiredTilt = new Vector3(0, 0, tiltAmount);
-        Quaternion q = Quaternion.Euler(desiredTilt);
-        transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * 5);
+        return Mathf.Sqrt((dstX * dstX) + (dstY * dstY));
     }
 }

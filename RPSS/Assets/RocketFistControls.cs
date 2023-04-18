@@ -85,7 +85,7 @@ public class RocketFistControls : Combatant, IHittable
         forwardVector = transform.right;
         timer += Time.deltaTime;
         Mathf.Clamp(timer, 0, 2);
-        if (firing && (GameManager.instance.currentState == GameStates.INGAME || GameManager.instance.currentState == GameStates.PREGAME))
+        if (firing && (GameManager.Instance.currentState == GameStates.INGAME || GameManager.Instance.currentState == GameStates.PREGAME))
         {
             if (timer >= firingDelay)
             {

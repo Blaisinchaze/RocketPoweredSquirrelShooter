@@ -72,12 +72,7 @@ public class NavGrid : MonoBehaviour
             }
         }
 
-        if (returningNode != null)
-        {
-            return returningNode;
-        }
-
-        return null;
+        return returningNode;
     }
 
     void CreateGrid()
