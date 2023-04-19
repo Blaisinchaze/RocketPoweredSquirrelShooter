@@ -85,6 +85,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 5
+  movement: {x: 0, y: 0}
+  maxTime: 10
   enemyBullet: 0
 --- !u!114 &6212908339271535764
 MonoBehaviour:

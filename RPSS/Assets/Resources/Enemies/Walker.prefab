@@ -60,8 +60,8 @@ MonoBehaviour:
   moveSpeed: 3.5
   minDistance: 0.05
   pathUpdateRate: 1.5
-  colliderRadius: 0.1
-  maxStraightLineDistance: 20
+  colliderRadius: 1.4
+  maxStraightLineDistance: 5
 --- !u!58 &1700293764896474490
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -97,6 +97,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1700293764896474489}
     m_Modifications:
+    - target: {fileID: 175505584174194396, guid: 4a36f72f704cb0e40b4cff91fb0f2a4d, type: 3}
+      propertyPath: projSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 175505584174194396, guid: 4a36f72f704cb0e40b4cff91fb0f2a4d, type: 3}
+      propertyPath: projLifetime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4056038177932096045, guid: 4a36f72f704cb0e40b4cff91fb0f2a4d, type: 3}
       propertyPath: m_RootOrder
       value: 1

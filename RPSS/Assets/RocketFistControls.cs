@@ -51,6 +51,7 @@ public class RocketFistControls : Combatant, IHittable
             transform.position = player.transform.position;
             return;
         }
+
         switch (player.currentState)
         {
             case Player.PlayerStates.Combined:
@@ -82,42 +83,16 @@ public class RocketFistControls : Combatant, IHittable
         }
 
         mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        forwardVector = transform.right;
-        timer += Time.deltaTime;
-        Mathf.Clamp(timer, 0, 2);
+
+        if (timer < firingDelay) timer += Time.deltaTime;
         if (firing && (GameManager.Instance.currentState == GameStates.INGAME || GameManager.Instance.currentState == GameStates.PREGAME))
         {
             if (timer >= firingDelay)
             {
-                Quaternion firingAngle = transform.rotation * Quaternion.Euler(0, 0, 90);
-                switch (player.currentState)
+                if (currentAmountOfBullets > 0)
                 {
-                    case Player.PlayerStates.Combined:
-                        {
-                            GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, firingAngle);
-                            Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
-                            rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
-                            FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
-                        }
-
-                        break;
-
-                    case Player.PlayerStates.Split:
-                        {
-                            if (currentAmountOfBullets > 0)
-                            {
-                                GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, firingAngle);
-                                Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
-                                rb.AddForce(bulletSpawnPoint.transform.right * 20f, ForceMode2D.Impulse);
-                                FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
-
-                                //FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
-                                currentAmountOfBullets--;
-                            }
-                        }
-                        break;
-                    default:
-                        break;
+                    Fire();
+                    if(player.currentState == Player.PlayerStates.Split) currentAmountOfBullets--;
                 }
 
                 timer = 0;
@@ -128,17 +103,26 @@ public class RocketFistControls : Combatant, IHittable
 
     }
 
+    void Fire() 
+    {
+        Bullet go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, Quaternion.identity).GetComponent<Bullet>();
+        go.movement = transform.forward * 20;
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
+    }
+
     private void FixedUpdate()
     {
         if (!isAlive)
         {
             return;
         }
+        forwardVector = transform.right;
         Vector2 lookDir = Vector2.zero;
         switch (player.currentState)
         {
             case Player.PlayerStates.Combined:
-                if (jetFlame.active)
+                if (jetFlame.activeInHierarchy)
                 {
                     jetFlame.SetActive(false);
                 }
@@ -148,7 +132,8 @@ public class RocketFistControls : Combatant, IHittable
 
                 break;
             case Player.PlayerStates.Split:
-                if (!jetFlame.active)
+
+                if (!jetFlame.activeInHierarchy)
                 {
                     jetFlame.SetActive(true);
                 }
@@ -156,12 +141,12 @@ public class RocketFistControls : Combatant, IHittable
                 currentTurnSpeed = turnSpeed;        
                 lookDir = mousePos - rb.position;
                 break;
+
             default:
                 break;
         }
 
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis((Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg), Vector3.forward);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, currentTurnSpeed * Time.deltaTime);
     }
 

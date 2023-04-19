@@ -112,7 +112,6 @@ public class AiController : Singleton<AiController>
         foreach (var item in GameObject.FindGameObjectsWithTag("Spawnpoint"))
         {
             spawnPoints.Add(item.transform);
-
         }
 
         gm = GameManager.Instance;
@@ -138,6 +137,7 @@ public class AiController : Singleton<AiController>
         {
             spawnTimer -= Time.deltaTime;
         }
+
         if (waveTimer > 0)
         {
             waveTimer -= Time.deltaTime;
@@ -160,27 +160,16 @@ public class AiController : Singleton<AiController>
     private IEnumerator UpdateEnemies()
     {
         int enemyCount = 0;
+        int delayCounter = 0;
         enemiesUpdating = true;
+
         while (gm.currentState == GameStates.INGAME)
         {
-            if (enemies.Count == 0) 
+            if (enemies.Count == 0)
             {
                 yield return new WaitForSeconds(0.1f);
                 continue;
             }
-
-            //if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
-
-            //int length = enemiesToUpdate;
-            //if (enemiesToUpdate > enemies.Count) length = enemies.Count;
-
-            //for (int i = 0; i < length; i++)
-            //{
-            //    enemies[currentEnemyIndex].UnitUpdate();
-            //    currentEnemyIndex++;
-            //    if (currentEnemyIndex >= enemies.Count) currentEnemyIndex = 0;
-            //}
-            //yield return null;
 
             enemyCount = enemies.Count;
             for (int i = 0; i < enemyCount; i++)
@@ -188,11 +177,18 @@ public class AiController : Singleton<AiController>
                 if (i >= enemies.Count) break;
                 if (enemies[i].UnitUpdate())
                 {
+                    delayCounter++;
+                }
+
+                if (delayCounter >= enemiesToUpdate)
+                {
+                    delayCounter = 0;
                     yield return null;
-                    break;
                 }
             }
+            yield return null;
         }
+
         enemiesUpdating = false;
     }
 
@@ -203,12 +199,12 @@ public class AiController : Singleton<AiController>
         // Calc wave specific values
         totalEnemiesThisWave = baseEnemycount + (currentWave * incrementPerWave);
         enemiesToSpawn = totalEnemiesThisWave;
-        timeBetweenSpawns = Mathf.Clamp(secondsForWaveSpawn / totalEnemiesThisWave, 1, 10);
+        timeBetweenSpawns = Mathf.Clamp(secondsForWaveSpawn / totalEnemiesThisWave, 1, secondsForWaveSpawn);
 
 
         // Reset Timers
         waveTimer = minTimeUntilNextWave;
-        spawnTimer = timeBetweenSpawns;
+        spawnTimer = 1;
     }
 
     private void SpawnEnemy(Enemies type = Enemies.NULL)

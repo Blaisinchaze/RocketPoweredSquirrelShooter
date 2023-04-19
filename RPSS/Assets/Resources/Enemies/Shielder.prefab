@@ -95,8 +95,8 @@ MonoBehaviour:
   moveSpeed: 3.5
   minDistance: 0.05
   pathUpdateRate: 1.5
-  colliderRadius: 0.1
-  maxStraightLineDistance: 20
+  colliderRadius: 1.4
+  maxStraightLineDistance: 5
 --- !u!58 &1700293764896474490
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -151,6 +151,14 @@ PrefabInstance:
     - target: {fileID: 175505584174194396, guid: e034328133994b9449c16d1a408be44c, type: 3}
       propertyPath: projRange
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 175505584174194396, guid: e034328133994b9449c16d1a408be44c, type: 3}
+      propertyPath: projSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 175505584174194396, guid: e034328133994b9449c16d1a408be44c, type: 3}
+      propertyPath: projLifetime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 175505584174194396, guid: e034328133994b9449c16d1a408be44c, type: 3}
       propertyPath: weaponHeldDistanceModifier

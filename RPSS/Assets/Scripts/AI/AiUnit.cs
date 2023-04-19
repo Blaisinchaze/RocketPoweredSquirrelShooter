@@ -49,6 +49,7 @@ public class AiUnit:Combatant
     private float actionTimer;
     float distanceToTarget;
     bool canSeeTarget;
+
     #endregion
 
     public void Start()
@@ -88,6 +89,8 @@ public class AiUnit:Combatant
         {
             state = State.MOVE;
         }
+
+        Debug.Log(state + " " + canSeeTarget);
     }
 
     //returns true if a delay is needed
@@ -100,25 +103,17 @@ public class AiUnit:Combatant
                 break;
 
             case State.MOVE:
-                if (canSeeTarget && distanceToTarget < maxStraightLineDistance)
+                moveToPos = targetPlayer.transform.position;
+
+                if(!canSeeTarget)
                 {
-                    Debug.Log("Straight lining it");
-                    moveToPos = targetPlayer.transform.position;
-                    //pathfinder.currentRoute.Clear();
-                }
-                else
-                {
-                    Debug.Log("Pathfinding");
                     pathfinder.FindPath(pathfinder.navGrid.NodeFromWorld(targetPlayer.transform.position).gridPosition, currentGridPosition);
                     if (pathfinder.currentRoute.Count > 0)
                     {
+                        moveToPos = pathfinder.currentRoute[0].worldPosition;
                         if (Vector3.Distance(transform.position, pathfinder.currentRoute[0].worldPosition) <= minDistance)
                         {
                             pathfinder.currentRoute.RemoveAt(0);
-                        }
-                        else
-                        {
-                            moveToPos = pathfinder.currentRoute[0].worldPosition;
                         }
                     }
 
@@ -127,7 +122,6 @@ public class AiUnit:Combatant
                 break;
 
             case State.ACTION:
-                Debug.Log("Action");
                 //This needs to be changed to whatever action needs to take place.
                 if (actionTimer > 0)
                 {
@@ -136,7 +130,7 @@ public class AiUnit:Combatant
                 else
                 {
                     weapon.Fire();
-
+                    //Debug.Log("Attack");
                     actionTimer = actionDelay;
                 }
 
@@ -148,50 +142,35 @@ public class AiUnit:Combatant
 
     private void UpdateDirection()
     {
-        moving = true;
+        Vector2 diff = moveToPos - (Vector2)transform.position;
 
-        float x;
-        float y;
+        TiltBot(diff);
 
-        if (pathfinder.currentRoute.Count <= 0)
-        {
-            Vector3 diff = targetPlayer.transform.position - transform.position;
-            x = diff.x;
-            y = diff.y;
-        }
-        else
-        {
-            Vector2Int diff = pathfinder.currentRoute[0].gridPosition - currentGridPosition;
-            x = diff.x;
-            y = diff.y;
-        }
+        if (diff == Vector2.zero) return;
 
-        //if (ph.transform != this.transform)
-        //{
-        //    ph.transform.localRotation = Quaternion.LookRotation(new Vector3(x,y,0) , transform.forward);
-        //}
-
-        Vector2 movementDirection = new Vector2(x, y);
-
-        TiltBot(movementDirection);
-
-        if (movementDirection == Vector2.zero)
-        {
-            return;
-        }
-
-        bodyAnimator.SetFloat("Horizontal", movementDirection.x);
-        bodyAnimator.SetFloat("Vertical", movementDirection.y);
-        bodyAnimator.SetFloat("Speed", movementDirection.sqrMagnitude);
-
-
+        bodyAnimator.SetFloat("Horizontal", diff.x);
+        bodyAnimator.SetFloat("Vertical", diff.y);
+        bodyAnimator.SetFloat("Speed", diff.sqrMagnitude);
     }
 
     private bool CheckLineToTarget(Vector3 position)
     {
-        int layerMask = 1 << LayerMask.NameToLayer("Walls");
+        int mask = 1 << LayerMask.NameToLayer("Walls");
+        position = Vector3.MoveTowards(position, transform.position, colliderRadius);
+        RaycastHit2D hit;
+        bool clearLine = ! (hit = Physics2D.CircleCast(transform.position, colliderRadius, position - transform.position,
+            Vector3.Distance(transform.position, position), mask));
 
-        return !Physics2D.CircleCast(transform.position, colliderRadius, position - transform.position, Vector3.Distance(transform.position, position), layerMask);
+        if (clearLine)
+        {
+            Debug.DrawLine(transform.position, position, Color.green, 1);
+        }
+        else
+        {
+            Debug.DrawLine(transform.position, hit.point, Color.red, 1);
+        }
+
+        return clearLine;
     }
 
     // not pathfinding related
@@ -266,6 +245,13 @@ public class Pathfinder
 
     public void FindPath(Vector2Int target, Vector2Int start)
     {
+        if ((target - start).magnitude <= 1)
+        {
+            currentRoute.Clear();
+            return;
+        }
+
+        //Debug.Log("A");
         open.Clear();
         closed.Clear();
 
@@ -274,8 +260,11 @@ public class Pathfinder
         
         open.Add(startNode);
         GridNode currentNode;
+        //Debug.Log("B");
+
         while (open.Count > 0)
         {
+            //Debug.Log("C");
             currentNode = open[0];
 
             for (int i = 0; i < open.Count; i++)
@@ -299,10 +288,7 @@ public class Pathfinder
             {
                 if (closed.Contains(neighbourNode) || neighbourNode.pathable == false)
                 {
-                    if (neighbourNode != targetNode)
-                    {
-                        continue;
-                    }
+                    if (neighbourNode != targetNode) continue;
                 }
 
                 float newMovementCostToNeighbour = currentNode.gCost + DistanceFrom(currentNode.gridPosition, neighbourNode.gridPosition);

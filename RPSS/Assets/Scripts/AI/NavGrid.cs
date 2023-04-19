@@ -54,25 +54,13 @@ public class NavGrid : MonoBehaviour
 
         //Debug.Log(nodeSize + " " + gridSize + " " + gridWorldSize);
 
-
         CreateGrid();
     }
 
     public GridNode NodeFromWorld(Vector3 worldPos)
     {
-        float shortest = 999;
-        GridNode returningNode = null;
-        foreach (GridNode node in grid)
-        {
-            float distance = Vector3.Distance(worldPos, node.worldPosition);
-            if (distance < shortest)
-            {
-                returningNode = node;
-                shortest = distance;
-            }
-        }
-
-        return returningNode;
+        Vector3 adjustedWorldPos = (worldPos - grid[0, 0].worldPosition);
+        return grid[Mathf.RoundToInt(adjustedWorldPos.x / nodeSize.x), Mathf.RoundToInt(adjustedWorldPos.y / nodeSize.y)];
     }
 
     void CreateGrid()

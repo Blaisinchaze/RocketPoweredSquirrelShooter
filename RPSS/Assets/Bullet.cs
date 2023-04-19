@@ -5,16 +5,34 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int damageAmount;
+    public Vector2 movement;
+    public float maxTime;
     private Player player;
     public bool enemyBullet;
+
+    private float lifetime;
 
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(8,8);
 
-        player = FindObjectOfType<Player>();
+        player = AiController.Instance.player.GetComponent<Player>();
 
         Destroy(gameObject, 15);
+    }
+
+    private void Update()
+    {
+        lifetime += Time.deltaTime;
+        if (lifetime >= maxTime)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            transform.Translate(movement * Time.deltaTime);
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

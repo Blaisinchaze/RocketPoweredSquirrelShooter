@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ai_Weapon : MonoBehaviour
 {
     public Enemies type;
-    public float projRange;
+    public float projLifetime;
     public float projSpeed;
     public float turnSpeed;
     public float weaponHeldDistanceModifier;
@@ -31,14 +31,8 @@ public class Ai_Weapon : MonoBehaviour
                 Debug.Log("SET WEAPON TYPE ON ENEMY");
                 break;
 
-            case Enemies.WALK:
-            case Enemies.SHIELD:
-                player = GameObject.FindGameObjectWithTag("Player").transform;
-                break;
-
-            case Enemies.GUN:
-                //need to find the hand object
-                player = GameObject.FindGameObjectWithTag("Player").transform;
+            default:
+                player = AiController.Instance.player.transform;
                 break;
         }
     }
@@ -51,7 +45,6 @@ public class Ai_Weapon : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
 
         float targetAngle = Mathf.Atan2(firingDirection.y, firingDirection.x) * Mathf.Rad2Deg;
-
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetAngle + 270), turnSpeed);
 
         //blend state update for rotating sprite
@@ -77,79 +70,20 @@ public class Ai_Weapon : MonoBehaviour
 
     public void Fire()
     {
-        StartCoroutine(Activate());
-    }
-
-    IEnumerator Activate()
-    {
-        GameObject projectile = Instantiate(spawnPrefab, relativeSpawnPoint.position, Quaternion.Euler(0,0,0), body.parent);
+        GameObject projectile = Instantiate(spawnPrefab, relativeSpawnPoint.position, Quaternion.Euler(0, 0, 0), body.parent);
 
         firingDirection = player.transform.position - transform.position;
         float targetAngle = Mathf.Atan2(firingDirection.y, firingDirection.x) * Mathf.Rad2Deg;
         projectile.transform.rotation = Quaternion.Euler(0, 0, targetAngle + 270);
 
+        Bullet proj = projectile.GetComponent<Bullet>();
+        Vector2 playerDirection = new Vector2(
+            projectile.transform.position.x - player.transform.position.x,
+            projectile.transform.position.y - player.transform.position.y).normalized;
 
-        Vector2 playerDirection = new Vector2(projectile.transform.position.x - player.transform.position.x, projectile.transform.position.y - player.transform.position.y).normalized;
+        proj.movement = playerDirection * projSpeed;
+        proj.maxTime = projLifetime;
 
-        switch (type)
-        {
-            case Enemies.NULL:
-                Debug.Log("SET WEAPON TYPE ON ENEMY");
-                break;
-
-            case Enemies.WALK:
-                {
-                    float distance = 0;
-                    while (distance < projRange)
-                    {
-                        if (projectile == null)
-                        {
-                            yield break;
-                        }
-                        projectile.transform.Translate(Vector3.right * projSpeed * -1);
-                        distance = Vector3.Distance(projectile.transform.position, relativeSpawnPoint.position);
-                        yield return new WaitForSeconds(0.01f);
-                    }
-                    Destroy(projectile);
-                }
-                break;
-
-            case Enemies.SHIELD:
-                {
-                    float distance = 0;
-                    while (distance < projRange)
-                    {
-                        if (projectile == null)
-                        {
-                            yield break;
-                        }
-                        projectile.transform.Translate(Vector3.up * projSpeed);
-                        distance = Vector3.Distance(projectile.transform.position, relativeSpawnPoint.position);
-                        yield return new WaitForSeconds(0.01f);
-                    }
-                    while (distance > 0)
-                    {
-                        if (projectile == null)
-                        {
-                            yield break;
-                        }
-                        projectile.transform.Translate(Vector3.down * projSpeed);
-                        distance -= projSpeed;
-                        yield return new WaitForSeconds(0.05f);
-                    }
-
-                    Destroy(projectile);
-                }
-                break;
-
-            case Enemies.GUN:
-                {
-                    projectile.GetComponent<Rigidbody2D>().AddForce(transform.up * projSpeed, ForceMode2D.Impulse);
-                    //FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
-                }
-                break;
-        }
-
-        yield break;
+        //Debug.Log(proj.movement + " " + proj.maxTime);
     }
 }
