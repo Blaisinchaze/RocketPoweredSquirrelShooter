@@ -90,7 +90,7 @@ public class AiUnit:Combatant
             state = State.MOVE;
         }
 
-        Debug.Log(state + " " + canSeeTarget);
+        //Debug.Log(state + " " + canSeeTarget);
     }
 
     //returns true if a delay is needed
@@ -157,20 +157,9 @@ public class AiUnit:Combatant
     {
         int mask = 1 << LayerMask.NameToLayer("Walls");
         position = Vector3.MoveTowards(position, transform.position, colliderRadius);
-        RaycastHit2D hit;
-        bool clearLine = ! (hit = Physics2D.CircleCast(transform.position, colliderRadius, position - transform.position,
-            Vector3.Distance(transform.position, position), mask));
 
-        if (clearLine)
-        {
-            Debug.DrawLine(transform.position, position, Color.green, 1);
-        }
-        else
-        {
-            Debug.DrawLine(transform.position, hit.point, Color.red, 1);
-        }
-
-        return clearLine;
+        return !Physics2D.CircleCast(transform.position, colliderRadius, position - transform.position,
+            Vector3.Distance(transform.position, position), mask);
     }
 
     // not pathfinding related

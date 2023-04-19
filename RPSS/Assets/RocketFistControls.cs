@@ -13,6 +13,7 @@ public class RocketFistControls : Combatant, IHittable
     public float energyRegenRate = 2f;
     public float explosionRadius = 4f;
     public int explosionDamage = 20;
+    public float bulletSpeed = 10;
     Vector2 mousePos;
     public float moveSpeed = 0.5f;
     public float turnSpeed = 2;
@@ -106,7 +107,7 @@ public class RocketFistControls : Combatant, IHittable
     void Fire() 
     {
         Bullet go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, Quaternion.identity).GetComponent<Bullet>();
-        go.movement = transform.forward * 20;
+        go.movement = transform.right * bulletSpeed;
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
     }

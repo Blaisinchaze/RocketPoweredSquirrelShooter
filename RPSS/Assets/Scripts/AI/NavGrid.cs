@@ -52,8 +52,6 @@ public class NavGrid : MonoBehaviour
         gridWorldSize.x = gridSize.x * (1/nodeSize.x);
         gridWorldSize.y = gridSize.y * (1/nodeSize.y);
 
-        //Debug.Log(nodeSize + " " + gridSize + " " + gridWorldSize);
-
         CreateGrid();
     }
 

@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(8,8);
 
-        player = AiController.Instance.player.GetComponent<Player>();
+        if(enemyBullet) player = AiController.Instance.player.GetComponent<Player>();
 
         Destroy(gameObject, 15);
     }

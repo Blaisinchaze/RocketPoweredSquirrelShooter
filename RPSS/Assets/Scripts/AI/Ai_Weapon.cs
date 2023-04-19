@@ -72,14 +72,15 @@ public class Ai_Weapon : MonoBehaviour
     {
         GameObject projectile = Instantiate(spawnPrefab, relativeSpawnPoint.position, Quaternion.Euler(0, 0, 0), body.parent);
 
-        firingDirection = player.transform.position - transform.position;
-        float targetAngle = Mathf.Atan2(firingDirection.y, firingDirection.x) * Mathf.Rad2Deg;
-        projectile.transform.rotation = Quaternion.Euler(0, 0, targetAngle + 270);
-
         Bullet proj = projectile.GetComponent<Bullet>();
         Vector2 playerDirection = new Vector2(
             projectile.transform.position.x - player.transform.position.x,
             projectile.transform.position.y - player.transform.position.y).normalized;
+
+        if (type == Enemies.GUN)
+        {
+            playerDirection = transform.up;
+        }
 
         proj.movement = playerDirection * projSpeed;
         proj.maxTime = projLifetime;
