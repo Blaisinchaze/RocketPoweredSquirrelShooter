@@ -89,8 +89,6 @@ public class AiUnit:Combatant
         {
             state = State.MOVE;
         }
-
-        //Debug.Log(state + " " + canSeeTarget);
     }
 
     //returns true if a delay is needed

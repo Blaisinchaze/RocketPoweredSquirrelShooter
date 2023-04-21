@@ -111,7 +111,7 @@ public class GameManager : Singleton<GameManager>
 
     public void ResetScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("ResettingScene");
     }
 
     public TextMeshProUGUI roundNumber;

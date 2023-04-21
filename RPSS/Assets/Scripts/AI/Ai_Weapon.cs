@@ -40,6 +40,8 @@ public class Ai_Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
+
         firingDirection = player.transform.position - transform.position;
         Vector3 desiredPos = body.position + (firingDirection.normalized * weaponHeldDistanceModifier);
         transform.position = Vector3.Lerp(transform.position, desiredPos, 0.1f);
