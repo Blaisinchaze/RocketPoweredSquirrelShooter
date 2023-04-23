@@ -7,7 +7,6 @@ using UnityEngine.PlayerLoop;
 
 public class Player : MonoBehaviour
 {
-
     public enum PlayerStates
     {
         Combined,
@@ -23,19 +22,15 @@ public class Player : MonoBehaviour
     [Header("Must be set")]
     public GameObject rocketHandPrefab;
     public Transform rocketHandSpawnPoint;
+
     private void Awake()
     {
         Components.PlayerRb = GetComponent<Rigidbody2D>();
         Components.PlayerTransform = transform;
         Components.Inputs = GetComponentInParent<PlayerInput>();
-        //Components.RocketHand = Instantiate(rocketHandPrefab, rocketHandSpawnPoint.position, rocketHandPrefab.transform.rotation);
-        //Components.RocketHand.GetComponent<RocketFistControls>().player = this;
         Components.playerMovement = GetComponent<PlayerMovement>();
         Components.playerCombat = GetComponent<PlayerCombatant>();
-    }
-
-    private void Start()
-    {
+        Components.gun = Components.playerMovement.fistControls;
         Setup();
     }
 
@@ -44,6 +39,7 @@ public class Player : MonoBehaviour
         Components.playerCombat.Reset(); 
         Components.playerMovement.CheckInitialisedValues();
     }
+
     /// <summary>
     /// Use this if you want to set swap between player modes.
     /// </summary>
@@ -84,6 +80,7 @@ public struct PlayerComponents
     public Transform PlayerTransform;
     public Rigidbody2D PlayerRb;
     public GameObject RocketHand;
+    public RocketFistControls gun;
     public PlayerInput Inputs;
     public PlayerCombatant playerCombat;
     public PlayerMovement playerMovement;

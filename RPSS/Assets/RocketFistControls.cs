@@ -9,17 +9,22 @@ public class RocketFistControls : Combatant, IHittable
     public int MaxAmountOfBullets = 100;
     public int currentAmountOfBullets;
     public float maxEnergyValue = 6f;
-    public float currentEnergyValue;
+    internal float currentEnergyValue;
+    [Space]
     public float energyRegenRate = 2f;
     public float explosionRadius = 4f;
     public int explosionDamage = 20;
+    [Space]
     public float bulletSpeed = 10;
+    public float bulletDamage = 1;
+    [Space]
     Vector2 mousePos;
     public float moveSpeed = 0.5f;
     public float turnSpeed = 2;
     public float currentTurnSpeed = 2;
     Rigidbody2D rb;
     Vector2 forwardVector = new Vector2(0, 0);
+    [Space]
     public bool firing = false;
     public GameObject ratPrefab;
     public GameObject fistExplosion;
@@ -29,7 +34,8 @@ public class RocketFistControls : Combatant, IHittable
     public GameObject BulletPrefab;
     [SerializeField]
     private GameObject bulletSpawnPoint;
-    private float firingDelay = 0.1f;
+    [Space]
+    public float firingDelay = 0.5f;
     private float timer = 0;
 
     public FMODUnity.RuntimeManager firingClip;
@@ -108,6 +114,7 @@ public class RocketFistControls : Combatant, IHittable
     {
         Bullet go = Instantiate(BulletPrefab, bulletSpawnPoint.transform.position, Quaternion.identity).GetComponent<Bullet>();
         go.movement = transform.right * bulletSpeed;
+        go.damageAmount = (int)bulletDamage;
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/PlayerRobot/Hand/Laser");
     }
@@ -189,7 +196,9 @@ public class RocketFistControls : Combatant, IHittable
             }
         }
         Destroy(go, 10);
-        Instantiate(ratPrefab, transform.position, Quaternion.identity);
+        RatBastard rat = Instantiate(ratPrefab, transform.position, Quaternion.identity).GetComponent<RatBastard>();
+        rat.movementSpeed = player.Components.playerMovement.moveSpeed * 0.025f;
+
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         currentEnergyValue = 0;

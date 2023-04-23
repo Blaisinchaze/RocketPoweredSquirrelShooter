@@ -27,6 +27,11 @@ public class GameManager : Singleton<GameManager>
         MainCanvas.Transition(TransitionStates.FADEIN);
     }
 
+    private void OnDestroy()
+    {
+        music.stop(STOP_MODE.IMMEDIATE);
+    }
+
     private void Update()
     {
         if(waitingForTimer)

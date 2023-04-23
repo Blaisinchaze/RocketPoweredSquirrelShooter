@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RatBastard : MonoBehaviour
 {
-
     public float movementSpeed = 2f;
     GameObject mainBody;
     Animator animator;
@@ -16,7 +15,7 @@ public class RatBastard : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, mainBody.transform.position) < 0.3f)
+        if (Vector3.Distance(transform.position, mainBody.transform.position) < 0.5f)
         {
             mainBody.GetComponent<PlayerMovement>().ReloadGun();
             Destroy(gameObject);
@@ -26,7 +25,6 @@ public class RatBastard : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         Vector3 movementDir = mainBody.transform.position - transform.position;
         transform.position = Vector3.MoveTowards(transform.position, mainBody.transform.position, movementSpeed * Time.deltaTime);
         animator.SetFloat("Horizontal", movementDir.normalized.x);

@@ -52,17 +52,21 @@ public class AiUnit:Combatant
 
     #endregion
 
-    public void Start()
+    public new void Awake()
     {
+        base.Awake();
         weapon = GetComponentInChildren<Ai_Weapon>();
 
         //Pathfinding initialistion
-        targetPlayer = AiController.Instance.player;
-        pathfinder = new Pathfinder(colliderRadius, AiController.Instance.navGrid);
+        if (targetPlayer == null) targetPlayer = AiController.Instance.player.gameObject;
+        if (pathfinder == null) pathfinder = new Pathfinder(colliderRadius, AiController.Instance.navGrid);
     }
 
     protected override void Update()
     {
+        if (targetPlayer == null) targetPlayer = AiController.Instance.player.gameObject;
+        if (pathfinder == null) pathfinder = new Pathfinder(colliderRadius, AiController.Instance.navGrid);
+
         base.Update();
         transform.position = Vector3.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
         UpdateDirection();

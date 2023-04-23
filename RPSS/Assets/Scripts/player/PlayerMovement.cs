@@ -19,8 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Animator bodyAnimator;
 
-    [SerializeField]
-    private RocketFistControls fistControls;
+    public RocketFistControls fistControls;
 
     /// <summary>
     /// The maximum distance the player and hand can be apart and still combine
@@ -157,14 +156,14 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * 5);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Pickup"))
-        {
-            player.Components.playerCombat.health += 2;
-            other.gameObject.SetActive(false);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Pickup"))
+    //    {
+    //        player.Components.playerCombat.health += 2;
+    //        other.gameObject.SetActive(false);
+    //    }
+    //}
 
     #region InputEvents
     

@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(8,8);
 
-        if(enemyBullet) player = AiController.Instance.player.GetComponent<Player>();
+        if(enemyBullet) player = AiController.Instance.player;
 
         Destroy(gameObject, 15);
     }
@@ -39,7 +39,10 @@ public class Bullet : MonoBehaviour
     {
         //enemy bullets don't hit enemies
         // friendly no hitty friend
-        if ((enemyBullet && collision.gameObject.layer == 7) || (!enemyBullet && collision.gameObject.layer == 3) || (collision.tag == "Hand" && player.currentState != Player.PlayerStates.Split))
+        if ((enemyBullet && collision.gameObject.layer == 7) ||
+            (!enemyBullet && collision.gameObject.layer == 3) ||
+            (collision.tag == "Hand" && player.currentState != Player.PlayerStates.Split) ||
+            collision.tag == "Pickup")
         {
             return;
         }

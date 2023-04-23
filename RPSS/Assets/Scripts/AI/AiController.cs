@@ -69,7 +69,7 @@ public enum Enemies
 
 public class AiController : Singleton<AiController>
 {
-    public GameObject player;
+    public Player player;
     public NavGrid navGrid;
     [Space]
     public int incrementPerWave;
@@ -115,6 +115,7 @@ public class AiController : Singleton<AiController>
         }
 
         gm = GameManager.Instance;
+        if (player == null) player = FindObjectOfType<Player>();
 
         StartNewWave();
     }

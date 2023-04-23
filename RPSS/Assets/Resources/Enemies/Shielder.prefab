@@ -90,8 +90,8 @@ MonoBehaviour:
   enemyType: 1
   deathExplosion: {fileID: 21834783198813013, guid: 195d1ad5eee502842aed2d5563cedf5b, type: 3}
   bodyAnimator: {fileID: 8059680675339140709}
-  range: 1.5
-  actionDelay: 0.5
+  range: 2
+  actionDelay: 0.2
   moveSpeed: 3.5
   minDistance: 0.05
   pathUpdateRate: 1.5

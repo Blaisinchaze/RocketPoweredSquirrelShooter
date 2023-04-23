@@ -6,25 +6,40 @@ using Random = Unity.Mathematics.Random;
 
 public class HealSpawner : MonoBehaviour
 {
-    public List<GameObject> heals = new List<GameObject>();
-    private float timer;
-    Random it;
+    public List<GameObject> pickups = new List<GameObject>();
+    public GameObject[] prefabs;
+    public float spawnDelay;
+    public int maxPickups;
+    [Space]
+    public NavGrid grid;
+    [SerializeField] private float timer;
 
-    private void Start()
-    {
-        it.InitState();
-    }
+    int i = 0;
 
     private void Update()
     {
+        if (GameManager.Instance.currentState != GameStates.INGAME) return;
+
         timer += Time.deltaTime;
-        if (timer > 30f)
-            SpawnRandomHeal();
+        if (timer > spawnDelay && pickups.Count < maxPickups)
+        {
+            SpawnRandomPickup();
+            timer = 0f;
+        }
     }
 
-    private void SpawnRandomHeal()
+    private void SpawnRandomPickup()
     {
-        heals[it.NextInt(0, heals.Count - 1)].SetActive(true);
-        timer = 0f;
+        int idx = pickups.Count;
+        pickups.Add(Instantiate(prefabs[i]));
+
+        pickups[idx].transform.position = grid.RandomNodeWorldPos();
+        if (pickups[idx].TryGetComponent(out Pickup pickup))
+        {
+            pickup.manager = this;
+        }
+
+        i++;
+        if (i >= prefabs.Length) i = 0;
     }
 }

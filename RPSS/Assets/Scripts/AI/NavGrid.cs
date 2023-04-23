@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class GridNode
 {
@@ -32,6 +34,8 @@ public class NavGrid : MonoBehaviour
     [Space]
     public Tilemap tilemap;
 
+    
+
     internal Vector2 gridWorldSize;
     internal Vector2 nodeSize;
     internal GridNode[,] grid = null;
@@ -55,11 +59,7 @@ public class NavGrid : MonoBehaviour
         CreateGrid();
     }
 
-    public GridNode NodeFromWorld(Vector3 worldPos)
-    {
-        Vector3 adjustedWorldPos = (worldPos - grid[0, 0].worldPosition);
-        return grid[Mathf.RoundToInt(adjustedWorldPos.x / nodeSize.x), Mathf.RoundToInt(adjustedWorldPos.y / nodeSize.y)];
-    }
+    
 
     void CreateGrid()
     {
@@ -108,6 +108,12 @@ public class NavGrid : MonoBehaviour
         }
     }
 
+    public GridNode NodeFromWorld(Vector3 worldPos)
+    {
+        Vector3 adjustedWorldPos = (worldPos - grid[0, 0].worldPosition);
+        return grid[Mathf.RoundToInt(adjustedWorldPos.x / nodeSize.x), Mathf.RoundToInt(adjustedWorldPos.y / nodeSize.y)];
+    }
+
     internal GridNode NodeFromGridSpace(Vector2Int gridSpace)
     {
         foreach (GridNode node in grid)
@@ -118,6 +124,21 @@ public class NavGrid : MonoBehaviour
             }
         }
         return grid[0, 0];
+    }
+
+    internal Vector3 RandomNodeWorldPos()
+    {
+        int x = 0, y = 0;
+        GridNode node = grid[x, y];
+
+        while (node == null || !node.pathable)
+        {
+            x = Random.Range(0, gridSize.x - 1);
+            y = Random.Range(0, gridSize.y - 1);
+            node = grid[x, y];
+        }
+
+        return node.worldPosition;
     }
 
     private void OnDrawGizmos()
