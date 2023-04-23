@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -25,6 +26,13 @@ public class CanvasManager : MonoBehaviour
         canvases.Add(HowToCanvas);
         canvases.Add(PreGameCanvas);
     }
+
+    public void Update()
+    {
+        
+        
+    }
+
     public void ChangeCanvas(GameStates state)
     {
         foreach (var item in canvases)

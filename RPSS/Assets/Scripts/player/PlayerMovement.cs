@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
+
         if (GameManager.Instance.currentState == GameStates.INGAME)
             Movement();
     }

@@ -38,6 +38,8 @@ public class RocketFistControls : Combatant, IHittable
     public float firingDelay = 0.5f;
     private float timer = 0;
 
+    private bool controllerAiming = false;
+
     public FMODUnity.RuntimeManager firingClip;
     public Player player;
 
@@ -89,7 +91,7 @@ public class RocketFistControls : Combatant, IHittable
                 break;
         }
 
-        mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if(!controllerAiming) mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         if (timer < firingDelay) timer += Time.deltaTime;
         if (firing && (GameManager.Instance.currentState == GameStates.INGAME || GameManager.Instance.currentState == GameStates.PREGAME))
@@ -160,16 +162,30 @@ public class RocketFistControls : Combatant, IHittable
 
     public void Shoot(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.currentState != GameStates.INGAME) return;
+
         Debug.Log("PEW");
+
         if (context.started)
         {
             firing = true;
             muzzleFlash.SetActive(true);
         }
+
         if (context.canceled)
         {
             firing = false;
             muzzleFlash.SetActive(false);
+        }
+    }
+
+    public void Aim(InputAction.CallbackContext context) 
+    {
+        controllerAiming = false;
+        if (context.valueType == typeof(Vector2))
+        {
+            mousePos = (Vector2)transform.position + context.ReadValue<Vector2>()*2;
+            controllerAiming = true;
         }
     }
 

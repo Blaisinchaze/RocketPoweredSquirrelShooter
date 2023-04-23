@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public enum GameStates{INMENU, HOWTO, PREGAME, INGAME, PAUSED, GAMELOSE, NULL }
@@ -51,12 +52,41 @@ public class GameManager : Singleton<GameManager>
 
         roundNumber.text = aiController.currentWave.ToString();
 
-        if (currentState != GameStates.PREGAME) return;
-        preGameTimer -= Time.deltaTime;
+        switch (currentState)
+        {
+            case GameStates.INMENU:
+                if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame) ChangeStateWithTransition(GameStates.PREGAME);
+                if (Gamepad.current != null && Gamepad.current.selectButton.wasPressedThisFrame) ChangeStateWithTransition(GameStates.HOWTO);
+                break;
 
-        if (preGameTimer > 0) return;
-        preGameTimer = 4.5f;
-        ChangeState(GameStates.INGAME);
+            case GameStates.HOWTO:
+                if (Gamepad.current != null && Gamepad.current.bButton.wasPressedThisFrame) ChangeStateWithTransition(GameStates.INMENU);
+                break;
+
+            case GameStates.PREGAME:
+                preGameTimer -= Time.deltaTime;
+
+                if (preGameTimer > 0) return;
+                preGameTimer = 4.5f;
+                ChangeState(GameStates.INGAME);
+                break;
+
+            case GameStates.INGAME:
+                if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame) ChangeState(GameStates.PAUSED);
+                break;
+
+            case GameStates.PAUSED:
+                if (Gamepad.current != null && (Gamepad.current.startButton.wasPressedThisFrame ||
+                    Gamepad.current.bButton.wasPressedThisFrame)) ChangeState(GameStates.INGAME);
+                break;
+
+            case GameStates.GAMELOSE:
+                if (Gamepad.current != null && Gamepad.current.aButton.wasPressedThisFrame) ResetScene();
+                break;
+
+            default:
+                break;
+        }
 
     }
 
@@ -66,6 +96,7 @@ public class GameManager : Singleton<GameManager>
         MainCanvas.ChangeCanvas(currentState);
 
     }    
+
     public void ChangeState(int stateToChangeTo)
     {
         currentState = (GameStates)stateToChangeTo;

@@ -27,7 +27,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Firing"",
+                    ""name"": ""Aiming"",
                     ""type"": ""Value"",
                     ""id"": ""5538cc5c-e334-4578-bbc4-b04441e9da0c"",
                     ""expectedControlType"": ""Axis"",
@@ -132,7 +132,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -143,7 +143,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -154,7 +154,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -165,63 +165,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""84fc9f1b-d38b-481f-9e34-3dabfa97c0d9"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Firing"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""65a7ab6a-50ab-475d-9a7b-2f86d8edd6d5"",
-                    ""path"": ""<Pointer>/delta/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""Firing"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""713fe05c-171d-4387-beb3-eab8a7dfeab9"",
-                    ""path"": ""<Pointer>/delta/y"",
-                    ""interactions"": """",
-                    ""processors"": ""Invert"",
-                    ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""Firing"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""6d4be150-80ae-4497-bb33-11e78cc21c67"",
-                    ""path"": ""<Pointer>/delta/x"",
-                    ""interactions"": """",
-                    ""processors"": ""Invert"",
-                    ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""Firing"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""e00c76d7-a6ce-4315-8956-bbdb1f7ccf2c"",
-                    ""path"": ""<Pointer>/delta/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""Firing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -232,7 +177,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Firing"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -242,8 +187,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Firing"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -253,8 +198,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Firing"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -264,8 +209,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Firing"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -275,8 +220,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Firing"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -297,7 +242,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -308,7 +253,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<DualShockGamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -319,7 +264,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -341,7 +286,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<XInputController>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Separate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -352,7 +297,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<DualShockGamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Separate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -363,8 +308,19 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
                     ""action"": ""Separate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10a17321-c535-4e8d-9f57-eb8e239e2728"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller;Keyboard + Mouse"",
+                    ""action"": ""Fist Firing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -898,7 +854,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         // Gameplay Combined
         m_GameplayCombined = asset.FindActionMap("Gameplay Combined", throwIfNotFound: true);
         m_GameplayCombined_Movement = m_GameplayCombined.FindAction("Movement", throwIfNotFound: true);
-        m_GameplayCombined_Firing = m_GameplayCombined.FindAction("Firing", throwIfNotFound: true);
+        m_GameplayCombined_Aiming = m_GameplayCombined.FindAction("Aiming", throwIfNotFound: true);
         m_GameplayCombined_FistFiring = m_GameplayCombined.FindAction("Fist Firing", throwIfNotFound: true);
         m_GameplayCombined_Interact = m_GameplayCombined.FindAction("Interact", throwIfNotFound: true);
         m_GameplayCombined_Separate = m_GameplayCombined.FindAction("Separate", throwIfNotFound: true);
@@ -965,7 +921,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputActionMap m_GameplayCombined;
     private IGameplayCombinedActions m_GameplayCombinedActionsCallbackInterface;
     private readonly InputAction m_GameplayCombined_Movement;
-    private readonly InputAction m_GameplayCombined_Firing;
+    private readonly InputAction m_GameplayCombined_Aiming;
     private readonly InputAction m_GameplayCombined_FistFiring;
     private readonly InputAction m_GameplayCombined_Interact;
     private readonly InputAction m_GameplayCombined_Separate;
@@ -974,7 +930,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         private @PlayerInputs m_Wrapper;
         public GameplayCombinedActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_GameplayCombined_Movement;
-        public InputAction @Firing => m_Wrapper.m_GameplayCombined_Firing;
+        public InputAction @Aiming => m_Wrapper.m_GameplayCombined_Aiming;
         public InputAction @FistFiring => m_Wrapper.m_GameplayCombined_FistFiring;
         public InputAction @Interact => m_Wrapper.m_GameplayCombined_Interact;
         public InputAction @Separate => m_Wrapper.m_GameplayCombined_Separate;
@@ -990,9 +946,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnMovement;
-                @Firing.started -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnFiring;
-                @Firing.performed -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnFiring;
-                @Firing.canceled -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnFiring;
+                @Aiming.started -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnAiming;
+                @Aiming.performed -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnAiming;
+                @Aiming.canceled -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnAiming;
                 @FistFiring.started -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnFistFiring;
                 @FistFiring.performed -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnFistFiring;
                 @FistFiring.canceled -= m_Wrapper.m_GameplayCombinedActionsCallbackInterface.OnFistFiring;
@@ -1009,9 +965,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Firing.started += instance.OnFiring;
-                @Firing.performed += instance.OnFiring;
-                @Firing.canceled += instance.OnFiring;
+                @Aiming.started += instance.OnAiming;
+                @Aiming.performed += instance.OnAiming;
+                @Aiming.canceled += instance.OnAiming;
                 @FistFiring.started += instance.OnFistFiring;
                 @FistFiring.performed += instance.OnFistFiring;
                 @FistFiring.canceled += instance.OnFistFiring;
@@ -1168,7 +1124,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     public interface IGameplayCombinedActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnFiring(InputAction.CallbackContext context);
+        void OnAiming(InputAction.CallbackContext context);
         void OnFistFiring(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnSeparate(InputAction.CallbackContext context);
